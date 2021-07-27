@@ -1,3 +1,4 @@
+import 'package:findnwalk/components/colors.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -37,9 +38,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
       MaterialState.focused,
     };
     if (estados.any(mudaEstado.contains)) {
-      return Color(0xff707070);
+      return Cores.cinza;
     }
-    return Color(0xffF5A732);
+    return Cores.laranja;
   }
 
 
@@ -78,7 +79,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                   TextSpan(
                     text: 'N',
                     style: TextStyle(
-                      color: Color(0xffF5A732)
+                      color: Cores.laranja
                     )
                   ),
                   TextSpan(
@@ -93,18 +94,18 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
             Padding(
               padding: EdgeInsets.only(left: 20, right: 20, top: 10),
               child: TextField(
-                cursorColor: Color(0xffF5A732),
+                cursorColor: Cores.laranja,
                 decoration: InputDecoration(
                 enabledBorder: new OutlineInputBorder(
                   borderRadius: new BorderRadius.circular(10),
                   borderSide: const BorderSide(
-                    color: Color(0xff707070)
+                    color: Cores.cinza
                   )
                 ),
                 focusedBorder: new OutlineInputBorder(
                   borderRadius: new BorderRadius.circular(10),
                   borderSide: const BorderSide(
-                    color: Color(0xffF5A732)
+                    color: Cores.laranja
                   )
                 ),
                 hintText: 'Digite seu email',
@@ -115,18 +116,18 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
             Padding(
               padding: EdgeInsets.only(left: 20, right: 20, top: 10),
               child: TextField(
-                cursorColor: Color(0xffF5A732),
+                cursorColor: Cores.laranja,
                 decoration: InputDecoration(
                 enabledBorder: new OutlineInputBorder(
                   borderRadius: new BorderRadius.circular(10),
                   borderSide: const BorderSide(
-                    color: Color(0xff707070)
+                    color: Cores.cinza
                   )
                 ),
                 focusedBorder: new OutlineInputBorder(
                   borderRadius: new BorderRadius.circular(10),
                   borderSide: const BorderSide(
-                    color: Color(0xffF5A732)
+                    color: Cores.laranja
                   )
                 ),
                 hintText: 'Digite sua senha',
@@ -138,11 +139,11 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
               title: Text(
                 'lembre-se de mim',
                 style: TextStyle(
-                  color: Color(0xff707070)
+                  color: Cores.cinza
                 ),
               ),
-              activeColor: Color(0xffF5A732),
-              checkColor: Colors.white,
+              activeColor: Cores.laranja,
+              checkColor: Cores.branco,
               controlAffinity: ListTileControlAffinity.leading,
               value: selecionado,
               onChanged: (bool? value){
@@ -160,7 +161,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                 height: MediaQuery.of(context).size.height/20,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color(0xffF5A732)
+                  color: Cores.laranja
                 ),
                 child: Align(
                   alignment: Alignment.center,
@@ -169,7 +170,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
-                      color: Colors.white
+                      color: Cores.branco
                     ),
                   ),
                 ),
@@ -184,13 +185,13 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                   text: 'Não tem cadastro?',
                   style: TextStyle(
                     fontSize: 15,
-                    color: Color(0xff707070)
+                    color: Cores.cinza
                   ),
                   children: const <TextSpan>[
                     TextSpan(
                       text: ' Cadastre-se',
                       style: TextStyle(
-                        color: Colors.blue
+                        color: Cores.azul
                       )
                     ),
                   ]
