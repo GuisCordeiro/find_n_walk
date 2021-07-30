@@ -1,12 +1,17 @@
+import 'package:findnwalk/components/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:findnwalk/pages/loginPage.dart';
+
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'FindNWalk',
-      home: Index(title: 'FindNwalk'),
+      home: LoginPage(),
+      theme: ThemeData(
+        primaryColor: Cores.laranja
+      ),
     );
   }
 }
@@ -23,16 +28,7 @@ class _IndexState extends State<Index> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          child: Column(
-            children: [
-              LoginPage(),
-            ],
-          ),
-        ),
-      ),
-    );
+    return LoginPage();
   }
+  
 }

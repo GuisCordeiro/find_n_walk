@@ -1,5 +1,10 @@
+import 'package:findnwalk/components/botao.dart';
+import 'package:findnwalk/components/checkbox.dart';
 import 'package:findnwalk/components/colors.dart';
+import 'package:findnwalk/components/formulario.dart';
 import 'package:flutter/material.dart';
+
+import 'cadastro.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({ Key? key }) : super(key: key);
@@ -47,160 +52,105 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: MediaQuery.of(context).size.width,
-        alignment: Alignment.center,
-        child: Column(
-          children:[
-
-            ScaleTransition(
-              scale: _animation,
-              child: InkWell(
-                child: Padding(
-                  padding: EdgeInsets.all(8),
-                  child: SizedBox(
-                    child: Image.asset(
-                      'lib/assets/images/Logo_FindNWalk_SemFundo.png',
-                      scale: MediaQuery.of(context).size.height/100,
+    return Scaffold(
+      body: 
+      SafeArea(
+        child: ListView(
+          children: [
+              Column(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    alignment: Alignment.center,
+                    child: Column(
+                      children:[
+                        ScaleTransition(
+                          scale: _animation,
+                          child: InkWell(
+                            child: Padding(
+                              padding: EdgeInsets.all(8),
+                              child: SizedBox(
+                                child: Image.asset(
+                                  'lib/assets/images/Logo_FindNWalk_SemFundo.png',
+                                  scale: MediaQuery.of(context).size.height/100,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ), 
+                        RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: 'Find',
+                            style: TextStyle(
+                              fontSize: 25,
+                              color: Color(0xff3f3f3f)
+                            ),
+                            children: const <TextSpan>[
+                              TextSpan(
+                                text: 'N',
+                                style: TextStyle(
+                                  color: Cores.laranja
+                                )
+                              ),
+                              TextSpan(
+                                text: 'Walk',
+                                style: TextStyle(
+                                  color: Color(0xff3f3f3f)
+                                )
+                              )
+                            ]
+                          ),
+                        ),
+                        
+                        Formulario('Digite seu email'),
+                  
+                        Formulario('Digite sua senha'),
+                  
+                        CheckboxLaranja('lembre-se de mim'),
+                  
+                        Botao('Enviar'),
+                           
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CadastroPage(),
+                              )
+                            );
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 20, bottom: 20),
+                            child: RichText(
+                              textAlign: TextAlign.center,
+                              text: TextSpan(
+                                text: 'Não tem cadastro?',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Cores.cinza
+                                ),
+                                children: const <TextSpan>[
+                                  TextSpan(
+                                    text: ' Cadastre-se',
+                                    style: TextStyle(
+                                      color: Cores.azul
+                                    )
+                                  ),
+                                ]
+                              ),
+                            ),
+                          ),
+                        ),
+                        
+                      ]
                     ),
                   ),
-                ),
+                ],
               ),
-            ), 
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                text: 'Find',
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Color(0xff3f3f3f)
-                ),
-                children: const <TextSpan>[
-                  TextSpan(
-                    text: 'N',
-                    style: TextStyle(
-                      color: Cores.laranja
-                    )
-                  ),
-                  TextSpan(
-                    text: 'Walk',
-                    style: TextStyle(
-                      color: Color(0xff3f3f3f)
-                    )
-                  )
-                ]
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-              child: TextField(
-                cursorColor: Cores.laranja,
-                decoration: InputDecoration(
-                enabledBorder: new OutlineInputBorder(
-                  borderRadius: new BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Cores.cinza
-                  )
-                ),
-                focusedBorder: new OutlineInputBorder(
-                  borderRadius: new BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Cores.laranja
-                  )
-                ),
-                hintText: 'Digite seu email',
-                ),
-              ),
-            ),
-
-            Padding(
-              padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-              child: TextField(
-                cursorColor: Cores.laranja,
-                decoration: InputDecoration(
-                enabledBorder: new OutlineInputBorder(
-                  borderRadius: new BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Cores.cinza
-                  )
-                ),
-                focusedBorder: new OutlineInputBorder(
-                  borderRadius: new BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Cores.laranja
-                  )
-                ),
-                hintText: 'Digite sua senha',
-                ),
-              ),
-            ),
-
-            CheckboxListTile(
-              title: Text(
-                'lembre-se de mim',
-                style: TextStyle(
-                  color: Cores.cinza
-                ),
-              ),
-              activeColor: Cores.laranja,
-              checkColor: Cores.branco,
-              controlAffinity: ListTileControlAffinity.leading,
-              value: selecionado,
-              onChanged: (bool? value){
-                setState(() {
-                  selecionado = value!;
-                });
-              },
-            ),
-            InkWell(
-              onTap: (){
-                
-              },
-              child: Container(
-                width: MediaQuery.of(context).size.width/3,
-                height: MediaQuery.of(context).size.height/20,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Cores.laranja
-                ),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    'Enviar',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                      color: Cores.branco
-                    ),
-                  ),
-                ),
-              ),
-            ),
-               
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  text: 'Não tem cadastro?',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Cores.cinza
-                  ),
-                  children: const <TextSpan>[
-                    TextSpan(
-                      text: ' Cadastre-se',
-                      style: TextStyle(
-                        color: Cores.azul
-                      )
-                    ),
-                  ]
-                ),
-              ),
-            ),
-            
-          ]
+            ],
         ),
-      );
+      ),
+    );
   }
 }
