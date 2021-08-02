@@ -6,4 +6,5 @@ class Cores{
   static const preto = Color(0xff3f3f3f);
   static const branco = Colors.white;
   static const azul = Colors.blue;
+  static const transparente = Colors.transparent;
 }

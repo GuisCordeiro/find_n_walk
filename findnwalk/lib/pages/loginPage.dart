@@ -2,9 +2,10 @@ import 'package:findnwalk/components/botao.dart';
 import 'package:findnwalk/components/checkbox.dart';
 import 'package:findnwalk/components/colors.dart';
 import 'package:findnwalk/components/formulario.dart';
+import 'package:findnwalk/pages/homePage.dart';
 import 'package:flutter/material.dart';
 
-import 'cadastro.dart';
+import 'cadastroPage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({ Key? key }) : super(key: key);
@@ -109,7 +110,19 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                   
                         CheckboxLaranja('lembre-se de mim'),
                   
-                        Botao('Enviar'),
+                        InkWell(
+                          onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomePage(),
+                              )
+                            );
+                          },
+                          child: Botao(
+                            'Enviar'
+                          )
+                        ),
                            
                         InkWell(
                           onTap: (){
