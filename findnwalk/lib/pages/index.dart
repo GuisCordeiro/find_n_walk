@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       title: 'FindNWalk',
       home: LoginPage(),
       theme: ThemeData(
-        primaryColor: Cores.laranja
+        primaryColor: AppColors.orange
       ),
     );
   }

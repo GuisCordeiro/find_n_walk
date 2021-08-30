@@ -16,18 +16,18 @@ class Formulario extends StatelessWidget {
     return Padding(
               padding: EdgeInsets.only(left: 20, right: 20, top: 10),
               child: TextField(
-                cursorColor: Cores.laranja,
+                cursorColor: AppColors.orange,
                 decoration: InputDecoration(
                 enabledBorder: new OutlineInputBorder(
                   borderRadius: new BorderRadius.circular(10),
                   borderSide: const BorderSide(
-                    color: Cores.cinza
+                    color: AppColors.grey
                   )
                 ),
                 focusedBorder: new OutlineInputBorder(
                   borderRadius: new BorderRadius.circular(10),
                   borderSide: const BorderSide(
-                    color: Cores.laranja
+                    color: AppColors.orange
                   )
                 ),
                 hintText: '$label',

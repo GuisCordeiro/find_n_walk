@@ -1,11 +1,12 @@
-import 'package:findnwalk/components/botao.dart';
+import 'package:findnwalk/components/orangeButton.dart';
 import 'package:findnwalk/components/checkbox.dart';
 import 'package:findnwalk/components/colors.dart';
-import 'package:findnwalk/components/formulario.dart';
+import 'package:findnwalk/components/form.dart';
+import 'package:findnwalk/controller/bottomNavigationBar.dart';
 import 'package:findnwalk/pages/homePage.dart';
 import 'package:flutter/material.dart';
 
-import 'cadastroPage.dart';
+import 'registrationPage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({ Key? key }) : super(key: key);
@@ -44,9 +45,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
       MaterialState.focused,
     };
     if (estados.any(mudaEstado.contains)) {
-      return Cores.cinza;
+      return AppColors.grey;
     }
-    return Cores.laranja;
+    return AppColors.orange;
   }
 
 
@@ -91,7 +92,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                               TextSpan(
                                 text: 'N',
                                 style: TextStyle(
-                                  color: Cores.laranja
+                                  color: AppColors.orange
                                 )
                               ),
                               TextSpan(
@@ -115,7 +116,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => HomePage(),
+                                builder: (context) => BottomFNBar(),
                               )
                             );
                           },
@@ -129,7 +130,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => CadastroPage(),
+                                builder: (context) => RegistrationPage(),
                               )
                             );
                           },
@@ -141,13 +142,13 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                                 text: 'Não tem cadastro?',
                                 style: TextStyle(
                                   fontSize: 15,
-                                  color: Cores.cinza
+                                  color: AppColors.grey
                                 ),
                                 children: const <TextSpan>[
                                   TextSpan(
                                     text: ' Cadastre-se',
                                     style: TextStyle(
-                                      color: Cores.azul
+                                      color: AppColors.blue
                                     )
                                   ),
                                 ]

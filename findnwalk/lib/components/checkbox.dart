@@ -18,11 +18,11 @@ class _CheckboxLaranjaState extends State<CheckboxLaranja> {
               title: Text(
                 '${widget.label}',
                 style: TextStyle(
-                  color: Cores.cinza
+                  color: AppColors.grey
                 ),
               ),
-              activeColor: Cores.laranja,
-              checkColor: Cores.branco,
+              activeColor: AppColors.orange,
+              checkColor: AppColors.white,
               controlAffinity: ListTileControlAffinity.leading,
               value: selecionado,
               onChanged: (bool? value){

@@ -1,15 +1,15 @@
 import 'package:findnwalk/controller/bottomNavigationBar.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({ Key? key }) : super(key: key);
+class HistoryPage extends StatefulWidget {
+  const HistoryPage({ Key? key }) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HistoryPageState createState() => _HistoryPageState();
 }
 
 
-class _HomePageState extends State<HomePage> {
+class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: ListView(
           children: [
-            Text('Home page')
+            Text('History page')
         ],
         ),
       ),

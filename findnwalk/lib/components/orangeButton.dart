@@ -14,7 +14,7 @@ class Botao extends StatelessWidget {
         height: MediaQuery.of(context).size.height/20,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Cores.laranja
+          color: AppColors.orange
         ),
         child: Align(
           alignment: Alignment.center,
@@ -23,7 +23,7 @@ class Botao extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 15,
-              color: Cores.branco
+              color: AppColors.white
             ),
           ),
         ),
