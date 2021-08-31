@@ -13,12 +13,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomFNBar(),
       body: SafeArea(
-        child: ListView(
-          children: [
-            Text('Home page')
-        ],
+        child: Expanded(
+          child: ListView(
+            children: [
+              Text('Home page')
+          ],
+          ),
         ),
       ),
     );

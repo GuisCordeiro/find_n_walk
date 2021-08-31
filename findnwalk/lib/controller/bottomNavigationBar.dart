@@ -15,23 +15,29 @@ class BottomFNBar extends StatefulWidget {
 
 
 class _BottomFNBarState extends State<BottomFNBar> {
-  int listIndex = 2;
-  final List<Widget> _screens = [
-    EventsPage(),
-    HomePage(),
-    HomePage(),
-    HistoryPage(),
-    PerfilPage(),
-  ];
-
+  var listIndex = 0;
+  var pageController = new PageController();
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:_screens[listIndex],
+      body: PageView(
+        controller: pageController,
+        children: [ 
+          EventsPage(),
+          HomePage(),
+          HomePage(),
+          HistoryPage(),
+          PerfilPage(),
+        ],
+        onPageChanged: (index){
+          setState(() {
+            listIndex = index;
+          });
+        },
+      ),
       bottomNavigationBar: CurvedNavigationBar(
         index: listIndex,
-        onTap: changeIndexPage,
         backgroundColor: AppColors.transparent,
         color: AppColors.orange,
         items: const <Widget>[
@@ -41,13 +47,13 @@ class _BottomFNBarState extends State<BottomFNBar> {
           Icon(Icons.history, size: 30, color: AppColors.black,),
           Icon(Icons.person, size: 30, color: AppColors.black,),
         ],
+        onTap: (index){
+          setState(() {
+            listIndex = index;
+          });
+          pageController.jumpToPage(listIndex);
+        },
       ),
     );
-  }
-
-  void changeIndexPage(int index){
-    setState(() {
-      listIndex = index;
-    });
   }
 }

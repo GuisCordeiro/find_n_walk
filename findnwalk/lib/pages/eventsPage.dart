@@ -13,7 +13,6 @@ class _EventsPageState extends State<EventsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomFNBar(),
       body: SafeArea(
         child: ListView(
           children: [

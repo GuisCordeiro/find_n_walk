@@ -13,7 +13,6 @@ class _PerfilPageState extends State<PerfilPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomFNBar(),
       body: SafeArea(
         child: ListView(
           children: [

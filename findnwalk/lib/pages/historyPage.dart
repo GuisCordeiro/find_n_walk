@@ -13,7 +13,6 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomFNBar(),
       body: SafeArea(
         child: ListView(
           children: [
