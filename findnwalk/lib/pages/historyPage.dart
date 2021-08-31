@@ -1,4 +1,6 @@
+import 'package:findnwalk/components/appBar.dart';
 import 'package:findnwalk/controller/bottomNavigationBar.dart';
+import 'package:findnwalk/pages/perfilPage.dart';
 import 'package:flutter/material.dart';
 
 class HistoryPage extends StatefulWidget {
@@ -13,12 +15,14 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          children: [
-            Text('History page')
-        ],
-        ),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: FNAppBar('Recentes', Icon(Icons.person),PerfilPage(),false)
+      ),
+      body: ListView(
+        children: [
+          Text('History page')
+      ],
       ),
     );
   }

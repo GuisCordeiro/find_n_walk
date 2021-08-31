@@ -13,14 +13,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Expanded(
-          child: ListView(
-            children: [
-              Text('Home page')
-          ],
-          ),
-        ),
+      body: ListView(
+        children: [
+          Text('Home page')
+      ],
       ),
     );
   }
