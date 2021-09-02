@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                               padding: EdgeInsets.all(8),
                               child: SizedBox(
                                 child: Image.asset(
-                                  'lib/assets/images/Logo_FindNWalk_SemFundo.png',
+                                  'lib/assets/images/logoWithOutBG.png',
                                   scale: MediaQuery.of(context).size.height/100,
                                 ),
                               ),

@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  anim_search_bar: ^2.0.2
   curved_navigation_bar: ^1.0.1
   image_picker: ^0.6.6+5
   flutter:
@@ -32,10 +33,14 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
-  flutter_native_splash: ^1.2.0
+  flutter_native_splash: ^1.2.1
   flutter_test:
     sdk: flutter
 
+flutter_native_splash:
+  color: "#ffffff"
+  color_dark: "#707070"
+  image: lib/assets/images/logoWithOutBG.png
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

@@ -16,7 +16,7 @@ class _HistoryPageState extends State<HistoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100),
+        preferredSize: const Size.fromHeight(50),
         child: FNAppBar('Recentes', Icon(Icons.person),PerfilPage(),false)
       ),
       body: ListView(

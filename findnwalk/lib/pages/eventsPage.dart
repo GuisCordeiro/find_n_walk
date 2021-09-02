@@ -15,7 +15,7 @@ class _EventsPageState extends State<EventsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100),
+        preferredSize: const Size.fromHeight(50),
         child: FNAppBar('Eventos', Icon(Icons.person), PerfilPage(),false)
       ),
       body: ListView(
