@@ -1,6 +1,4 @@
-import 'package:findnwalk/components/appBar.dart';
 import 'package:findnwalk/components/colors.dart';
-import 'package:findnwalk/pages/perfilPage.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {

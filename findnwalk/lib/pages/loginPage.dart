@@ -3,7 +3,6 @@ import 'package:findnwalk/components/checkbox.dart';
 import 'package:findnwalk/components/colors.dart';
 import 'package:findnwalk/components/form.dart';
 import 'package:findnwalk/controller/bottomNavigationBar.dart';
-import 'package:findnwalk/pages/homePage.dart';
 import 'package:flutter/material.dart';
 
 import 'registrationPage.dart';

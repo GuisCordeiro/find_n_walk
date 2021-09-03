@@ -1,5 +1,5 @@
-import 'package:findnwalk/components/appBar.dart';
-import 'package:findnwalk/controller/bottomNavigationBar.dart';
+import 'package:findnwalk/components/colors.dart';
+import 'package:findnwalk/components/tabAppBar.dart';
 import 'package:findnwalk/pages/perfilPage.dart';
 import 'package:flutter/material.dart';
 
@@ -14,16 +14,25 @@ class HistoryPage extends StatefulWidget {
 class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50),
-        child: FNAppBar('Recentes', Icon(Icons.person),PerfilPage(),false)
+    return MaterialApp(
+      theme: ThemeData(
+        primaryColor: AppColors.orange
       ),
-      body: ListView(
-        children: [
-          Text('History page')
-      ],
-      ),
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(80),
+            child: TabFNAppBar('Recentes', Icon(Icons.person),PerfilPage(),false,'Lugares Frequentados','Minhas Avaliações')
+          ),
+          body: TabBarView(
+                children: <Widget>[
+                  Text('1'),
+                  Text('2'),
+                ],
+          )
+        )
+      )
     );
   }
 }
