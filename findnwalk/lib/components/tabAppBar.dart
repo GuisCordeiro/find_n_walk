@@ -27,8 +27,18 @@ class TabFNAppBar extends StatelessWidget {
           labelColor: AppColors.black,
           indicatorColor: AppColors.black,
           tabs: <Widget>[
-            Text('$pg1'),
-            Text('$pg2'),
+            Text(
+              '$pg1',
+              style: TextStyle(
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            Text(
+              '$pg2',
+              style: TextStyle(
+                fontWeight: FontWeight.bold
+              ),
+            ),
           ],
         ),
         automaticallyImplyLeading: arrow,
