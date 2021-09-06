@@ -104,9 +104,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                           ),
                         ),
                         
-                        Formulario('Digite seu email'),
+                        AppForm('Digite seu email'),
                   
-                        Formulario('Digite sua senha'),
+                        AppForm('Digite sua senha'),
                   
                         CheckboxLaranja('lembre-se de mim'),
                   

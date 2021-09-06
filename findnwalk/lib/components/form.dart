@@ -8,9 +8,9 @@ import 'colors.dart';
   A chamada desse componente é: Formulário('string')
 */
 
-class Formulario extends StatelessWidget {
+class AppForm extends StatelessWidget {
   String label;
-  Formulario(this.label);
+  AppForm(this.label, );
   @override
   Widget build(BuildContext context) {
     return Padding(
