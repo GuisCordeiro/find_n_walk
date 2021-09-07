@@ -1,4 +1,5 @@
 import 'package:findnwalk/components/appBar.dart';
+import 'package:findnwalk/components/perfilImagePicker.dart';
 import 'package:findnwalk/pages/settingsPage.dart';
 import 'package:flutter/material.dart';
 
@@ -20,9 +21,9 @@ class _PerfilPageState extends State<PerfilPage> {
       ),
       body: SafeArea(
         child: ListView(
-          children: [
-            
-        ],
+            children: [
+              PerfilImagePicker(),
+          ],
         ),
       ),
     );
