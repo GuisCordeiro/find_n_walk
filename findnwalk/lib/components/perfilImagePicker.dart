@@ -95,7 +95,7 @@ Widget build(BuildContext context) {
                       height: 100,
                       child: Icon(
                         Icons.camera_alt,
-                        color: Colors.grey[800],
+                        color: AppColors.black,
                       ),
                     ),
             ),
