@@ -1,7 +1,6 @@
 import 'package:findnwalk/components/orangeButton.dart';
 import 'package:findnwalk/components/colors.dart';
 import 'package:findnwalk/components/form.dart';
-import 'package:findnwalk/components/perfilImagePicker.dart';
 import 'package:findnwalk/pages/loginPage.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +22,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
       body: SafeArea(
         child: ListView(
           children: [
-            PerfilImagePicker(),
             AppForm('Nome do usuário'),
             AppForm('Data de nascimento'),
             AppForm('E-mail'),

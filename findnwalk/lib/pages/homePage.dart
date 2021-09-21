@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
+        child: Stack(
           children: [
             Padding(
               padding: EdgeInsets.only(left: 10,right: 10),
