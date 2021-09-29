@@ -2,6 +2,9 @@ import 'package:findnwalk/components/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:findnwalk/pages/loginPage.dart';
 
+/*
+  Página índice do aplicativo, não é uma página acessível no app
+*/
 
 class MyApp extends StatelessWidget {
   @override

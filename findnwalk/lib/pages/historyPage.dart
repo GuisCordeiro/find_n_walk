@@ -3,6 +3,10 @@ import 'package:findnwalk/components/tabAppBar.dart';
 import 'package:findnwalk/pages/perfilPage.dart';
 import 'package:flutter/material.dart';
 
+/*
+  Página de histórico de eventos
+*/
+
 class HistoryPage extends StatefulWidget {
   const HistoryPage({ Key? key }) : super(key: key);
 
@@ -22,7 +26,7 @@ class _HistoryPageState extends State<HistoryPage> {
         length: 2,
         child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(80),
+            preferredSize: const Size.fromHeight(70),
             child: TabFNAppBar('Recentes', Icon(Icons.person),PerfilPage(),false,'Lugares Frequentados','Minhas Avaliações')
           ),
           body: TabBarView(

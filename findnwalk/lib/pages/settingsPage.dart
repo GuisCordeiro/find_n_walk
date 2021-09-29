@@ -1,6 +1,10 @@
 import 'package:findnwalk/components/colors.dart';
 import 'package:flutter/material.dart';
 
+/*
+  Página de Configurações
+*/
+
 class SettingsPage extends StatefulWidget {
   const SettingsPage({ Key? key }) : super(key: key);
 
@@ -25,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
         child: ListView(
           children: [
             Text('Settings Page')
-        ],
+          ],
         ),
       ),
     );

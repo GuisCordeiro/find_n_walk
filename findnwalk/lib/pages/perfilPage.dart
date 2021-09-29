@@ -2,6 +2,10 @@ import 'package:findnwalk/components/appBar.dart';
 import 'package:findnwalk/pages/settingsPage.dart';
 import 'package:flutter/material.dart';
 
+/*
+  Página de perfil
+*/
+
 class PerfilPage extends StatefulWidget {
   const PerfilPage({ Key? key }) : super(key: key);
 

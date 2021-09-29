@@ -4,8 +4,11 @@ import 'package:findnwalk/components/colors.dart';
 import 'package:findnwalk/components/form.dart';
 import 'package:findnwalk/controller/bottomNavigationBar.dart';
 import 'package:flutter/material.dart';
-
 import 'registrationPage.dart';
+
+/*
+  Página de login
+*/
 
 class LoginPage extends StatefulWidget {
   const LoginPage({ Key? key }) : super(key: key);

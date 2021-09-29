@@ -5,6 +5,10 @@ import 'package:findnwalk/components/allEventsListView.dart';
 import 'package:findnwalk/pages/perfilPage.dart';
 import 'package:flutter/material.dart';
 
+/*
+  Página de eventos do aplicativo
+*/
+
 class EventsPage extends StatefulWidget {
   const EventsPage({Key? key}) : super(key: key);
 
@@ -21,14 +25,16 @@ class _EventsPageState extends State<EventsPage> {
           length: 2,
           child: Scaffold(
               appBar: PreferredSize(
-                  preferredSize: const Size.fromHeight(80),
+                  preferredSize: const Size.fromHeight(70),
                   child: TabFNAppBar(
                       'Eventos',
                       Icon(Icons.person),
                       PerfilPage(),
                       false,
                       'Eventos Cadastrados',
-                      'Meus Eventos')),
+                      'Meus Eventos'
+                  )
+              ),
               body: TabBarView(
                 children: <Widget>[
                   allEvents(),

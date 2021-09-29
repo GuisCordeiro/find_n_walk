@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
+/*
+  Componente de checkbox básico, ele recebe o texto que fica ao lado como uma String
+*/
+
 class CheckboxLaranja extends StatefulWidget {
   String label;
   CheckboxLaranja(this.label);

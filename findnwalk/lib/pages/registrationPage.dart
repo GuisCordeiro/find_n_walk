@@ -4,6 +4,10 @@ import 'package:findnwalk/components/form.dart';
 import 'package:findnwalk/pages/loginPage.dart';
 import 'package:flutter/material.dart';
 
+/*
+  Página de Cadastro
+*/
+
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({ Key? key }) : super(key: key);
 
