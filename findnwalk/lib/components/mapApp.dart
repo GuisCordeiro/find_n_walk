@@ -1,5 +1,7 @@
+import 'package:findnwalk/controller/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapApp extends StatefulWidget {
@@ -14,9 +16,10 @@ class _MapAppState extends State<MapApp> {
   Widget build(BuildContext context) {
   return FlutterMap(
     options: MapOptions(
-      center: LatLng(51.5, -0.09),
+      center: LatLng(lat,lng),
       zoom: 16.0,
-      maxZoom: 18
+      maxZoom: 18,
+      minZoom: 5,
     ),
     layers: [
       TileLayerOptions(
@@ -31,10 +34,13 @@ class _MapAppState extends State<MapApp> {
           Marker(
             width: 120.0,
             height: 120.0,
-            point: LatLng(51.5, -0.09),
+            point: LatLng(lat, lng),
             builder: (ctx) =>
-            Container(
-              child: Image.asset('lib/assets/images/logoWithOutBG.png'),
+            GestureDetector(
+              //onTap: _getCurrentLocation,
+              child: Container(
+                child: Image.asset('lib/assets/images/logoWithOutBG.png'),
+              ),
             ),
           ),
         ],
