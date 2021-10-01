@@ -43,7 +43,7 @@ class _BottomFNBarState extends State<BottomFNBar> {
         color: AppColors.orange,
         items: const <Widget>[
           Icon(Icons.list, size: 30, color: AppColors.black,),
-          Icon(Icons.place, size: 40, color: AppColors.black,),
+          Icon(Icons.home, size: 40, color: AppColors.black,),
           Icon(Icons.history, size: 30, color: AppColors.black,),
         ],
         onTap: (index){

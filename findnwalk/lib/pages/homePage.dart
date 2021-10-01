@@ -1,4 +1,5 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
+import 'package:findnwalk/components/addButton.dart';
 import 'package:findnwalk/components/colors.dart';
 import 'package:findnwalk/components/mapApp.dart';
 import 'package:findnwalk/controller/variables.dart';
@@ -21,10 +22,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   _getCurrentLocation()async{
     final position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    setState(() {
-      lat = position.latitude;
-      lng = position.longitude;
-    }); 
+    if(lat == 0 || lng == 0){
+      setState(() {
+        lat = position.latitude;
+        lng = position.longitude;
+      });  
+    }
     print("latitude: $lat,longitude: $lng");
 
   }
@@ -32,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: AddButton(),
       body: SafeArea(
         child: FutureBuilder(
           future:_getCurrentLocation(),
