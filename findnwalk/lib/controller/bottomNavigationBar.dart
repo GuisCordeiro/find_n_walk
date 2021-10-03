@@ -1,6 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:findnwalk/components/colors.dart';
-import 'package:findnwalk/controller/getLocation.dart';
 import 'package:findnwalk/pages/eventsPage.dart';
 import 'package:findnwalk/pages/historyPage.dart';
 import 'package:findnwalk/pages/homePage.dart';
@@ -16,7 +15,6 @@ class BottomFNBar extends StatefulWidget {
 
 class _BottomFNBarState extends State<BottomFNBar> {
   var listIndex = 0;
-  //var index = 0;
   var pageController = new PageController();
   
   @override

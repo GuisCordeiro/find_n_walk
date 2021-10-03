@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
             } else{
               return Center(
                 child: Text(
-                  'Não conseguimos carregar o mapa :(',
+                  'Não foi possível carregar o mapa :(',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: AppColors.black,

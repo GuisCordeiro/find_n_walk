@@ -22,6 +22,7 @@ environment:
 
 dependencies:
   geocoding: ^1.0.5
+  page_transition: "^2.0.4"
   geolocator: ^6.0.2
   flutter_map: any
   anim_search_bar: ^2.0.2
