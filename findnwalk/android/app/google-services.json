@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "917241997431",
+    "project_id": "findnwalk-c9840",
+    "storage_bucket": "findnwalk-c9840.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917241997431:android:c6c1440e8b1ae1c5273e72",
+        "android_client_info": {
+          "package_name": "br.com.findnwalk.findnwalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917241997431-p5tfreuivmfc9rkgq8lmlcmo3a3km5tm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeqGXzXcXCSRp9AdUIllNx82YHyaBAF_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917241997431-p5tfreuivmfc9rkgq8lmlcmo3a3km5tm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
