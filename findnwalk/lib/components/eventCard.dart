@@ -1,9 +1,13 @@
 import 'package:findnwalk/api/eventClass.dart';
 import 'package:findnwalk/components/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 eventCard(Events event) {
   return AlertDialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(25))),
       title: Text(event.title,
           style: TextStyle(
               color: AppColors.orange,
@@ -17,10 +21,10 @@ eventCard(Events event) {
               commonText(event.cathegory),
               space(),
               titleText("Horário de Início"),
-              commonText(event.startTime.toString()),
+              commonText(DateFormat('d/M/y H:m').format(event.startTime)),
               space(),
               titleText("Duração"),
-              commonText(event.duration.toString()),
+              commonText(event.duration.toString().substring(10, 15)),
               space(),
               titleText("Local"),
               commonText(event.location),
