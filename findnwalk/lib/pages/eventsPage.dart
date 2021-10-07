@@ -32,9 +32,7 @@ class _EventsPageState extends State<EventsPage> {
                       PerfilPage(),
                       false,
                       'Eventos Cadastrados',
-                      'Meus Eventos'
-                  )
-              ),
+                      'Meus Eventos')),
               body: TabBarView(
                 children: <Widget>[
                   allEvents(),

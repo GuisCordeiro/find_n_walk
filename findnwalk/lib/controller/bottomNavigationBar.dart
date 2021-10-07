@@ -6,29 +6,28 @@ import 'package:findnwalk/pages/homePage.dart';
 import 'package:flutter/material.dart';
 
 class BottomFNBar extends StatefulWidget {
-  const BottomFNBar({ Key? key }) : super(key: key);
+  const BottomFNBar({Key? key}) : super(key: key);
 
   @override
   _BottomFNBarState createState() => _BottomFNBarState();
 }
 
-
 class _BottomFNBarState extends State<BottomFNBar> {
   var listIndex = 0;
   var pageController = new PageController();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: PageView(
           controller: pageController,
-          children: [ 
+          children: [
             EventsPage(),
             HomePage(),
             HistoryPage(),
           ],
-          onPageChanged: (index){
+          onPageChanged: (index) {
             setState(() {
               listIndex = index;
             });
@@ -40,16 +39,29 @@ class _BottomFNBarState extends State<BottomFNBar> {
         backgroundColor: AppColors.transparent,
         color: AppColors.orange,
         items: const <Widget>[
-          Icon(Icons.list, size: 30, color: AppColors.black,),
-          Icon(Icons.home, size: 40, color: AppColors.black,),
-          Icon(Icons.history, size: 30, color: AppColors.black,),
+          Icon(
+            Icons.list,
+            size: 30,
+            color: AppColors.black,
+          ),
+          Icon(
+            Icons.home,
+            size: 40,
+            color: AppColors.black,
+          ),
+          Icon(
+            Icons.history,
+            size: 30,
+            color: AppColors.black,
+          ),
         ],
-        onTap: (index){
+        onTap: (index) {
           setState(() {
             listIndex = index;
           });
           pageController.jumpToPage(listIndex);
-          pageController.animateToPage(listIndex, duration: Duration(microseconds: 800), curve: Curves.easeInOut);
+          pageController.animateToPage(listIndex,
+              duration: Duration(microseconds: 800), curve: Curves.easeInOut);
         },
       ),
     );
