@@ -21,6 +21,7 @@ class FNAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.orange,
         automaticallyImplyLeading: arrow,
         title: Text(
           '$pageName',

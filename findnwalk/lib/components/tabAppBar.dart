@@ -21,8 +21,8 @@ class TabFNAppBar extends StatelessWidget {
   bool arrow;
   TabFNAppBar(this.pageName, this.icon, this.page, this.arrow,this.pg1,this.pg2);
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return AppBar(
+        backgroundColor: AppColors.orange,
         bottom: TabBar(
           labelColor: AppColors.black,
           indicatorColor: AppColors.black,
@@ -62,7 +62,6 @@ class TabFNAppBar extends StatelessWidget {
             },
           )
         ],
-      ),
-    );
+      );
   }
 }
