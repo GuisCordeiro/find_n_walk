@@ -19,8 +19,7 @@ class _BottomFNBarState extends State<BottomFNBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: PageView(
+      body: PageView(
           controller: pageController,
           children: [
             EventsPage(),
@@ -33,7 +32,6 @@ class _BottomFNBarState extends State<BottomFNBar> {
             });
           },
         ),
-      ),
       bottomNavigationBar: CurvedNavigationBar(
         index: listIndex,
         backgroundColor: AppColors.transparent,
