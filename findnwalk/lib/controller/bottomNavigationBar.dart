@@ -1,6 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:findnwalk/components/colors.dart';
-import 'package:findnwalk/pages/eventsPage.dart';
+import 'package:findnwalk/pages/placesPage.dart';
 import 'package:findnwalk/pages/historyPage.dart';
 import 'package:findnwalk/pages/homePage.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class _BottomFNBarState extends State<BottomFNBar> {
       body: PageView(
           controller: pageController,
           children: [
-            EventsPage(),
+            PlacesPage(),
             HomePage(),
             HistoryPage(),
           ],
@@ -38,7 +38,7 @@ class _BottomFNBarState extends State<BottomFNBar> {
         color: AppColors.orange,
         items: const <Widget>[
           Icon(
-            Icons.list,
+            Icons.place,
             size: 30,
             color: AppColors.black,
           ),

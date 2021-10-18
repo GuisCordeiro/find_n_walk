@@ -21,7 +21,13 @@ class _RegistrationPageState extends State<RegistrationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastro'),
+        backgroundColor: AppColors.orange,
+        title: Text(
+          'Cadastro',
+          style: TextStyle(
+            color: AppColors.black
+          ),
+        ),
       ),
       body: SafeArea(
         child: ListView(

@@ -9,14 +9,14 @@ import 'package:flutter/material.dart';
   Página de eventos do aplicativo
 */
 
-class EventsPage extends StatefulWidget {
-  const EventsPage({Key? key}) : super(key: key);
+class PlacesPage extends StatefulWidget {
+  const PlacesPage({Key? key}) : super(key: key);
 
   @override
-  _EventsPageState createState() => _EventsPageState();
+  _PlacesPageState createState() => _PlacesPageState();
 }
 
-class _EventsPageState extends State<EventsPage> {
+class _PlacesPageState extends State<PlacesPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,12 +27,13 @@ class _EventsPageState extends State<EventsPage> {
               appBar: PreferredSize(
                   preferredSize: const Size.fromHeight(70),
                   child: TabFNAppBar(
-                      'Eventos',
+                      'Lugares',
                       Icon(Icons.person),
                       PerfilPage(),
                       false,
-                      'Eventos Cadastrados',
-                      'Meus Eventos')),
+                      'Lugares perto de você',
+                      'Lugares favoritos'
+                  )),
               body: TabBarView(
                 children: <Widget>[
                   allEvents(),
