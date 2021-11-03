@@ -10,11 +10,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'FindNWalk',
       home: LoginPage(),
-      theme: ThemeData(
-        primaryColor: AppColors.orange
-      ),
+      theme: ThemeData(primaryColor: AppColors.orange),
     );
   }
 }
@@ -28,10 +27,8 @@ class Index extends StatefulWidget {
 }
 
 class _IndexState extends State<Index> {
-
   @override
   Widget build(BuildContext context) {
     return LoginPage();
   }
-  
 }

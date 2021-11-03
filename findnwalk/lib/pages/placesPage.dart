@@ -2,7 +2,7 @@ import 'package:findnwalk/components/colors.dart';
 import 'package:findnwalk/components/myEventsListView.dart';
 import 'package:findnwalk/components/tabAppBar.dart';
 import 'package:findnwalk/components/allEventsListView.dart';
-import 'package:findnwalk/pages/perfilPage.dart';
+import 'package:findnwalk/pages/profilePage.dart';
 import 'package:flutter/material.dart';
 
 /*
@@ -20,6 +20,7 @@ class _PlacesPageState extends State<PlacesPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(primaryColor: AppColors.orange),
         home: DefaultTabController(
           length: 2,
@@ -32,8 +33,7 @@ class _PlacesPageState extends State<PlacesPage> {
                       PerfilPage(),
                       false,
                       'Lugares perto de você',
-                      'Lugares favoritos'
-                  )),
+                      'Lugares favoritos')),
               body: TabBarView(
                 children: <Widget>[
                   allEvents(),

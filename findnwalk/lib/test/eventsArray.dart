@@ -1,4 +1,4 @@
-import 'package:findnwalk/api/eventClass.dart';
+import 'package:findnwalk/classes/eventClass.dart';
 import 'package:flutter/material.dart';
 
 var eventosDeTeste = [

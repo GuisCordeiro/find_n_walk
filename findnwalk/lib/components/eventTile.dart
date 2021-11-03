@@ -1,4 +1,4 @@
-import 'package:findnwalk/api/eventClass.dart';
+import 'package:findnwalk/classes/eventClass.dart';
 import 'package:findnwalk/components/eventCard.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
