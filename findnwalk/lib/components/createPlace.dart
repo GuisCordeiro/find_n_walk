@@ -29,7 +29,7 @@ class _CreatePlaceState extends State<CreatePlace> {
                     ),
                     children: const <TextSpan>[
                       TextSpan(
-                        text: 'Evento',
+                        text: 'Local',
                         style: TextStyle(
                           color: AppColors.orange,
                           fontSize: 25,

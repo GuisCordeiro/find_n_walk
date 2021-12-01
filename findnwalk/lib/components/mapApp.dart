@@ -31,13 +31,13 @@ class _MapAppState extends State<MapApp> {
         MarkerLayerOptions(
           markers: [
             Marker(
-              width: 120.0,
-              height: 120.0,
+              width: 130.0,
+              height: 130.0,
               point: LatLng(lat, lng),
               builder: (ctx) => GestureDetector(
                 //onTap: _getCurrentLocation,
                 child: Container(
-                  child: Image.asset('lib/assets/images/logoWithOutBG.png'),
+                  child: Image.asset('lib/assets/images/cursor.png'),
                 ),
               ),
             ),
