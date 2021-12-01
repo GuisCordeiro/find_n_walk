@@ -50,7 +50,7 @@ class _CreatePlaceState extends State<CreatePlace> {
                   child: GestureDetector(
                     onTap: (){},
                     child: Botao(
-                      'Procurar lugar no mapa'
+                      'Marcar local no mapa'
                     )
                   ),
                 ),
