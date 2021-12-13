@@ -41,8 +41,7 @@ class _CreatePlaceState extends State<CreatePlace> {
                 AppForm('Nome do evento'),
                 AppForm('Horário'),
                 AppForm('Duração'),
-                AppForm('Local'),
-                AppForm('Bairro'),
+                AppForm('Endereço'),
                 AppForm('Número de participantes'),
                 AppForm('Descrição'),
                 Padding(

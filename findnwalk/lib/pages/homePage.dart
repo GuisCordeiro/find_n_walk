@@ -1,5 +1,5 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
-import 'package:findnwalk/components/createPlace.dart';
+import 'package:findnwalk/pages/createPlace.dart';
 import 'package:findnwalk/components/colors.dart';
 import 'package:findnwalk/components/form.dart';
 import 'package:findnwalk/components/mapApp.dart';

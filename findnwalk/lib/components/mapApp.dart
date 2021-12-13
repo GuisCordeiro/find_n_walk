@@ -24,9 +24,6 @@ class _MapAppState extends State<MapApp> {
         TileLayerOptions(
           urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
           subdomains: ['a', 'b', 'c'],
-          attributionBuilder: (_) {
-            return Text("");
-          },
         ),
         MarkerLayerOptions(
           markers: [
