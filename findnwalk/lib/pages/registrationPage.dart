@@ -32,11 +32,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
       body: SafeArea(
         child: ListView(
           children: [
-            AppForm('Nome do usuário'),
-            AppForm('Data de nascimento'),
-            AppForm('E-mail'),
-            AppForm('Senha'),
-            AppForm('Confirme sua senha'),
+            AppForm('Nome do usuário', Icon(Icons.people), false),
+            AppForm('Data de nascimento', Icon(Icons.date_range), false),
+            AppForm('E-mail', Icon(Icons.email), false),
+            AppForm('Senha', Icon(Icons.lock_open), false),
+            AppForm('Confirme sua senha', Icon(Icons.lock), false),
               CheckboxListTile(
                 title: RichText(
                     textAlign: TextAlign.start,

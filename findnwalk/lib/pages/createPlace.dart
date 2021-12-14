@@ -38,12 +38,12 @@ class _CreatePlaceState extends State<CreatePlace> {
                     ]
                   ),
                 ),
-                AppForm('Nome do evento'),
-                AppForm('Horário'),
-                AppForm('Duração'),
-                AppForm('Endereço'),
-                AppForm('Número de participantes'),
-                AppForm('Descrição'),
+                AppForm('Nome do evento', Icon(Icons.event), false),
+                AppForm('Horário', Icon(Icons.hourglass_bottom), false),
+                AppForm('Duração', Icon(Icons.timer), false),
+                AppForm('Endereço', Icon(Icons.place), false),
+                AppForm('Número de participantes', Icon(Icons.people), false),
+                AppForm('Descrição', Icon(Icons.view_list), false),
                 Padding(
                   padding: EdgeInsets.only(top: 10),
                   child: GestureDetector(
