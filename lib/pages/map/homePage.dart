@@ -1,9 +1,9 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
-import 'package:findnwalk/pages/createPlace.dart';
-import 'package:findnwalk/components/colors.dart';
-import 'package:findnwalk/components/form.dart';
-import 'package:findnwalk/components/mapApp.dart';
-import 'package:findnwalk/components/orangeButton.dart';
+import 'package:findnwalk/pages/create%20place/createPlace.dart';
+import 'package:findnwalk/components/shared/colors.dart';
+import 'package:findnwalk/components/shared/form.dart';
+import 'package:findnwalk/components/map/mapApp.dart';
+import 'package:findnwalk/components/shared/orangeButton.dart';
 import 'package:findnwalk/controller/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';

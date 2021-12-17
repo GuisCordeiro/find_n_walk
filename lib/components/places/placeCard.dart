@@ -1,14 +1,14 @@
-import 'package:findnwalk/classes/eventClass.dart';
-import 'package:findnwalk/components/colors.dart';
+import 'package:findnwalk/classes/placeClass.dart';
+import 'package:findnwalk/components/shared/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
-eventCard(Events event) {
+placeCard(Place place) {
   return AlertDialog(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25))),
-      title: Text(event.title,
+      title: Text(place.name,
           style: TextStyle(
               color: AppColors.orange,
               fontWeight: FontWeight.bold,
@@ -17,23 +17,19 @@ eventCard(Events event) {
         Center(
           child: Column(
             children: [
+              isPublic(place),
+              space(height: 30),
               titleText("Categoria"),
-              commonText(event.cathegory),
-              space(),
-              titleText("Horário de Início"),
-              commonText(DateFormat('d/M/y H:m').format(event.startTime)),
-              space(),
-              titleText("Duração"),
-              commonText(event.duration.toString().substring(10, 15)),
+              commonText(place.cathegory.toString()),
               space(),
               titleText("Local"),
-              commonText(event.location),
+              commonText(place.address),
               space(),
-              titleText("Número de Participantes"),
-              commonText("${event.currentMembers}/${event.maxMembers}"),
+              titleText("Capacidade máxima"),
+              commonText(place.capacity.toString()),
               space(),
               titleText("Descrição"),
-              commonText(event.description),
+              commonText(place.description),
             ],
           ),
         ),
@@ -55,8 +51,20 @@ commonText(String text) {
   );
 }
 
-space() {
-  return Container(
-    height: 10,
-  );
+space({double? height}) {
+  if(height == null) {
+    return Container(
+      height: 10,
+    );
+  } else {
+    return Container(height: height);
+  }
+}
+
+isPublic(Place place) {
+  if (place.isPublic) {
+    return titleText("Local Público");
+  } else {
+    return titleText("Local Privado");
+  }
 }

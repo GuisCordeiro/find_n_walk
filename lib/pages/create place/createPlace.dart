@@ -1,6 +1,6 @@
-import 'package:findnwalk/components/colors.dart';
-import 'package:findnwalk/components/form.dart';
-import 'package:findnwalk/components/orangeButton.dart';
+import 'package:findnwalk/components/shared/colors.dart';
+import 'package:findnwalk/components/shared/form.dart';
+import 'package:findnwalk/components/shared/orangeButton.dart';
 import 'package:flutter/material.dart';
 
 class CreatePlace extends StatefulWidget {

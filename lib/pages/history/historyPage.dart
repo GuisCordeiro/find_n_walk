@@ -1,6 +1,6 @@
-import 'package:findnwalk/components/colors.dart';
-import 'package:findnwalk/components/tabAppBar.dart';
-import 'package:findnwalk/pages/profilePage.dart';
+import 'package:findnwalk/components/shared/colors.dart';
+import 'package:findnwalk/components/shared/tabAppBar.dart';
+import 'package:findnwalk/pages/profile/profilePage.dart';
 import 'package:flutter/material.dart';
 
 /*

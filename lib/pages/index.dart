@@ -1,6 +1,6 @@
-import 'package:findnwalk/components/colors.dart';
+import 'package:findnwalk/components/shared/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:findnwalk/pages/loginPage.dart';
+import 'package:findnwalk/pages/login/loginPage.dart';
 
 /*
   Página índice do aplicativo, não é uma página acessível no app

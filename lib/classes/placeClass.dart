@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 
@@ -13,16 +14,16 @@ class Place {
   String description;
 
   //Público (true) ou Privado (false)
-  bool public;
+  bool isPublic;
 
   //Categorias esportivas
   List<String> cathegory;
 
   //foto principal
-  Image thumbnail;
+  File? thumbnail;
 
   //fotos do local
-  List<Image>? picture;
+  List<File>? picture;
 
   //Nota do local --> 1 a 5 estrelas
   Float? rate;
@@ -30,5 +31,5 @@ class Place {
   //Capacidade de pessoas
   int capacity;
 
-  Place(this.name, this.address, this.description, this.public, this.cathegory, this.thumbnail, this.capacity);
+  Place(this.name, this.address, this.description, this.isPublic, this.cathegory, this.thumbnail, this.capacity);
 }
