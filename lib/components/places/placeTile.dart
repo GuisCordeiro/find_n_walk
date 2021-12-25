@@ -1,11 +1,7 @@
 import 'package:findnwalk/classes/placeClass.dart';
 import 'package:findnwalk/components/places/placeCard.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-/*
-  Cria uma lista de evento de uma forma dinâmica
-*/
 
 placeTile(Place place, BuildContext context) {
   return ListTile(

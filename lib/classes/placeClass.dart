@@ -1,9 +1,10 @@
 import 'dart:ffi';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 class Place {
+  //id do local
+  int id;
+
   //Nome do local
   String name;
 
@@ -31,5 +32,5 @@ class Place {
   //Capacidade de pessoas
   int capacity;
 
-  Place(this.name, this.address, this.description, this.isPublic, this.cathegory, this.thumbnail, this.capacity);
+  Place(this.id, this.name, this.address, this.description, this.isPublic, this.cathegory, this.thumbnail, this.capacity);
 }

@@ -1,8 +1,7 @@
 import 'package:findnwalk/classes/placeClass.dart';
 import 'package:findnwalk/components/shared/colors.dart';
+import 'package:findnwalk/components/shared/favoriteButton.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 placeCard(Place place) {
   return AlertDialog(
@@ -19,7 +18,7 @@ placeCard(Place place) {
             children: [
               isPublic(place),
               space(height: 30),
-              titleText("Categoria"),
+              titleText("Categorias"),
               commonText(place.cathegory.toString()),
               space(),
               titleText("Local"),
@@ -30,6 +29,8 @@ placeCard(Place place) {
               space(),
               titleText("Descrição"),
               commonText(place.description),
+              space(),
+              FavoriteButton(favorite: false),
             ],
           ),
         ),
@@ -52,7 +53,7 @@ commonText(String text) {
 }
 
 space({double? height}) {
-  if(height == null) {
+  if (height == null) {
     return Container(
       height: 10,
     );

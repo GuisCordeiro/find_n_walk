@@ -1,8 +1,9 @@
 //Classe que representa os usuários
 
-import 'package:flutter/material.dart';
-
 class User {
+  //Id do usuário
+  int id;
+
   //Nome de Usuário
   String userName;
 
@@ -15,8 +16,11 @@ class User {
   //senha
   String password;
 
+  //lista de ids de lugares favoritos
+  List<int?> favorites;
+
   //bio
   String? bio;
 
-  User(this.userName, this.birthday, this.email, this.password);
+  User(this.id, this.userName, this.birthday, this.email, this.password, this.favorites);
 }

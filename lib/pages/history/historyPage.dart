@@ -1,3 +1,4 @@
+import 'package:findnwalk/components/history/myEvaluationsListView.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/tabAppBar.dart';
 import 'package:findnwalk/pages/profile/profilePage.dart';
@@ -35,7 +36,7 @@ class _HistoryPageState extends State<HistoryPage> {
                 body: TabBarView(
                   children: <Widget>[
                     Text('1'),
-                    Text('2'),
+                    evaluatedPlaces(),
                   ],
                 ))));
   }

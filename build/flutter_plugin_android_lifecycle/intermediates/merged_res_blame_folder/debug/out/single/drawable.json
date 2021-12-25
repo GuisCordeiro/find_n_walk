@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/lucas/Área de Trabalho/find_n_walk/build/flutter_plugin_android_lifecycle/intermediates/merged_res/debug/drawable/notification_bg.xml",
+        "source": "/home/lucas/.gradle/caches/transforms-3/2a21ed69e63c698ea1cf0802f2e6cc99/transformed/core-1.6.0/res/drawable/notification_bg.xml"
+    },
+    {
+        "merged": "/home/lucas/Área de Trabalho/find_n_walk/build/flutter_plugin_android_lifecycle/intermediates/merged_res/debug/drawable/notification_bg_low.xml",
+        "source": "/home/lucas/.gradle/caches/transforms-3/2a21ed69e63c698ea1cf0802f2e6cc99/transformed/core-1.6.0/res/drawable/notification_bg_low.xml"
+    },
+    {
+        "merged": "/home/lucas/Área de Trabalho/find_n_walk/build/flutter_plugin_android_lifecycle/intermediates/merged_res/debug/drawable/notification_tile_bg.xml",
+        "source": "/home/lucas/.gradle/caches/transforms-3/2a21ed69e63c698ea1cf0802f2e6cc99/transformed/core-1.6.0/res/drawable/notification_tile_bg.xml"
+    },
+    {
+        "merged": "/home/lucas/Área de Trabalho/find_n_walk/build/flutter_plugin_android_lifecycle/intermediates/merged_res/debug/drawable/notification_icon_background.xml",
+        "source": "/home/lucas/.gradle/caches/transforms-3/2a21ed69e63c698ea1cf0802f2e6cc99/transformed/core-1.6.0/res/drawable/notification_icon_background.xml"
+    }
+]
