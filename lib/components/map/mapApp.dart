@@ -1,7 +1,8 @@
+import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/controller/variables.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 
 class MapApp extends StatefulWidget {
   const MapApp({Key? key}) : super(key: key);
@@ -10,6 +11,38 @@ class MapApp extends StatefulWidget {
   _MapAppState createState() => _MapAppState();
 }
 
+class _MapAppState extends State<MapApp> {
+  MapController controller = MapController(
+    initMapWithUserPosition: true
+  );
+  @override
+  Widget build(BuildContext context) {
+    return OSMFlutter(
+      controller: controller,
+      trackMyPosition: false,
+      initZoom: 16,
+      maxZoomLevel: 18,
+      minZoomLevel: 5,
+      stepZoom: 1,
+      userLocationMarker: UserLocationMaker(
+        personMarker: MarkerIcon(
+          icon: Icon(
+            Icons.person_pin,
+            color: AppColors.orange,
+            size: 48,
+          ),
+        ),
+        directionArrowMarker: MarkerIcon(
+          icon: Icon(
+            Icons.arrow_circle_down
+          ),
+        ),
+        ), 
+    );
+  }
+}
+
+/*
 class _MapAppState extends State<MapApp> {
   @override
   Widget build(BuildContext context) {
@@ -44,3 +77,5 @@ class _MapAppState extends State<MapApp> {
     );
   }
 }
+
+ */
