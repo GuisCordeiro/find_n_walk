@@ -6,7 +6,8 @@ import 'colors.dart';
 */
 
 class CheckboxLaranja extends StatefulWidget {
-  String label;
+  final String label;
+
   CheckboxLaranja(this.label);
 
   @override
@@ -19,23 +20,19 @@ class _CheckboxLaranjaState extends State<CheckboxLaranja> {
   @override
   Widget build(BuildContext context) {
     return CheckboxListTile(
-              title: Text(
-                '${widget.label}',
-                style: TextStyle(
-                  color: AppColors.grey
-                ),
-              ),
-              activeColor: AppColors.orange,
-              checkColor: AppColors.white,
-              controlAffinity: ListTileControlAffinity.leading,
-              value: selecionado,
-              onChanged: (bool? value){
-                setState(() {
-                  selecionado = value!;
-                });
-              },
-            );
+      title: Text(
+        '${widget.label}',
+        style: TextStyle(color: AppColors.grey),
+      ),
+      activeColor: AppColors.orange,
+      checkColor: AppColors.white,
+      controlAffinity: ListTileControlAffinity.leading,
+      value: selecionado,
+      onChanged: (bool? value) {
+        setState(() {
+          selecionado = value!;
+        });
+      },
+    );
   }
 }
-
-

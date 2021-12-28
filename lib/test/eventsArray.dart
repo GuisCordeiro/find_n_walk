@@ -1,24 +1,22 @@
-import 'package:findnwalk/classes/placeClass.dart';
+import 'package:findnwalk/data/models/place.dart';
 
-var eventosDeTeste = [
+var lugaresDeTeste = [
   Place(
-      0,
-      'Poliesportivo claudomiro',
-      'Rua dos Bobos, n 0, Bairro do Limoeiro',
-      'O melhor poliesportivo',
-      true,
-      ['Futebol', 'Volei', 'Basquete'],
-      null,
-      300,
-      ),
+    name: 'Poliesportivo claudomiro',
+    address: 'Rua dos Bobos, n 0, Bairro do Limoeiro',
+    description: 'O melhor poliesportivo',
+    isPublic: true,
+    cathegory: ['Futebol', 'Volei', 'Basquete'],
+    thumbnail: null,
+    capacity: 300,
+  ),
   Place(
-      1,
-      'Quadra de futebas do marcola',
-      'Rua Juquinha, nº143, Centro',
-      'Bão que só',
-      false,
-      ['Futebol'],
-      null,
-      100,
-      ),
+    name: 'Quadra de futebas do marcola',
+    address: 'Rua Juquinha, nº143, Centro',
+    description: 'Bão que só',
+    isPublic: false,
+    cathegory: ['Futebol'],
+    thumbnail: null,
+    capacity: 100,
+  ),
 ];

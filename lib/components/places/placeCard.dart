@@ -1,7 +1,9 @@
-import 'package:findnwalk/classes/placeClass.dart';
+import 'package:findnwalk/data/models/place.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/favoriteButton.dart';
 import 'package:flutter/material.dart';
+// import 'package:intl/intl.dart';
+// import 'package:intl/date_symbol_data_local.dart';
 
 placeCard(Place place) {
   return AlertDialog(

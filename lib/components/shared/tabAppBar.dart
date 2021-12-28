@@ -12,14 +12,16 @@ import 'package:flutter/material.dart';
 
 class TabFNAppBar extends StatelessWidget {
 
-  @override
-  String pg1;
-  String pg2;
-  String pageName;
-  Icon icon;
-  Widget page;
-  bool arrow;
+  final String pg1;
+  final String pg2;
+  final String pageName;
+  final Icon icon;
+  final Widget page;
+  final bool arrow;
+
   TabFNAppBar(this.pageName, this.icon, this.page, this.arrow,this.pg1,this.pg2);
+
+  @override
   Widget build(BuildContext context) {
     return AppBar(
         backgroundColor: AppColors.orange,

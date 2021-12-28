@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 /*
-  Componenete de botão laranja, recebe o texto do botão como uma String  
+  Componenete de botão laranja, recebe o texto do botão como uma String
 */
 
 class Botao extends StatelessWidget {
-  String texto;
+  final String texto;
+
   Botao(this.texto);
 
   @override
@@ -33,6 +34,6 @@ class Botao extends StatelessWidget {
         ),
       ),
     );
-               
+
   }
 }

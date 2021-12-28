@@ -12,12 +12,14 @@ import 'package:flutter/material.dart';
 
 class FNAppBar extends StatelessWidget {
 
-  @override
-  String pageName;
-  Icon icon;
-  Widget page;
-  bool arrow;
+  final String pageName;
+  final Icon icon;
+  final Widget page;
+  final bool arrow;
+
   FNAppBar(this.pageName, this.icon, this.page, this.arrow);
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

@@ -1,6 +1,7 @@
-import 'package:findnwalk/classes/placeClass.dart';
+import 'package:findnwalk/data/models/place.dart';
 import 'package:findnwalk/components/places/placeCard.dart';
 import 'package:flutter/material.dart';
+// import 'package:intl/intl.dart';
 
 
 placeTile(Place place, BuildContext context) {

@@ -9,10 +9,12 @@ import 'colors.dart';
 */
 
 class AppForm extends StatelessWidget {
-  String label;
-  bool decision;
-  Icon icon;
+  final String label;
+  final bool decision;
+  final Icon icon;
+
   AppForm(this.label, this.icon, this.decision);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
