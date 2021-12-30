@@ -1,29 +1,49 @@
-import 'package:findnwalk/components/shared/colors.dart';
 import 'package:flutter/material.dart';
+
+import 'colors.dart';
 
 /*
   Appbar do aplicativo, declarar com as seguinte sintaxe:
   appBar: PreferredSize(
         preferredSize: const Size.fromHeight(100),
-        child: FNAppBar('Nome da página', Icon(Icons.iconeDesejado),PaginaDeDestinoDoIcone(),true or false <--- serve para decidir se terá ou não arrowback))
+        child: TabFNAppBar('Nome da página', Icon(Icons.iconeDesejado),PaginaDeDestinoDoIcone(),true or false <--- serve para decidir se terá ou não arrowback))
       )
 */
 
 
-class FNAppBar extends StatelessWidget {
+class TabFNAppBar extends StatelessWidget {
 
+  final String pg1;
+  final String pg2;
   final String pageName;
   final Icon icon;
   final Widget page;
   final bool arrow;
 
-  FNAppBar(this.pageName, this.icon, this.page, this.arrow);
+  TabFNAppBar(this.pageName, this.icon, this.page, this.arrow,this.pg1,this.pg2);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return AppBar(
         backgroundColor: AppColors.orange,
+        bottom: TabBar(
+          labelColor: AppColors.black,
+          indicatorColor: AppColors.black,
+          tabs: <Widget>[
+            Text(
+              '$pg1',
+              style: TextStyle(
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            Text(
+              '$pg2',
+              style: TextStyle(
+                fontWeight: FontWeight.bold
+              ),
+            ),
+          ],
+        ),
         automaticallyImplyLeading: arrow,
         title: Text(
           '$pageName',
@@ -45,7 +65,6 @@ class FNAppBar extends StatelessWidget {
             },
           )
         ],
-      ),
-    );
+      );
   }
 }

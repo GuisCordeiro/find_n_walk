@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'colors.dart';
 
+import 'colors.dart';
 
 /*
   Esse é o campo de preenchimento dos formulários, você só precisa passar a string

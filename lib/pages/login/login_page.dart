@@ -1,10 +1,11 @@
-import 'package:findnwalk/components/shared/orangeButton.dart';
 import 'package:findnwalk/components/shared/checkbox.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/form.dart';
-import 'package:findnwalk/controller/bottomNavigationBar.dart';
+import 'package:findnwalk/components/shared/orange_button.dart';
+import 'package:findnwalk/controller/bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import '../registration/registrationPage.dart';
+
+import '../registration/registration_page.dart';
 
 /*
   Página de login
@@ -18,25 +19,25 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
-  
+
   late final AnimationController _controller = AnimationController(
     lowerBound: 0.5,
     duration: const Duration( seconds: 2 ),
     vsync: this,
   )..repeat(reverse: true);
-  
+
   late final Animation<double> _animation = CurvedAnimation(
     parent: _controller,
     curve: Curves.elasticInOut,
   );
-  
+
 
   @override
   void dispose(){
     super.dispose();
     _controller.dispose();
   }
-  
+
 
   bool selecionado = false;
 
@@ -57,7 +58,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: 
+      body:
       SafeArea(
         child: ListView(
           children: [
@@ -81,7 +82,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                               ),
                             ),
                           ),
-                        ), 
+                        ),
                         RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(
@@ -106,13 +107,13 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                             ]
                           ),
                         ),
-                        
+
                         AppForm('Digite seu email', Icon(Icons.email), false),
-                  
+
                         AppForm('Digite sua senha', Icon(Icons.lock), true),
-                  
+
                         CheckboxLaranja('lembre-se de mim'),
-                  
+
                         InkWell(
                           onTap: (){
                             Navigator.push(
@@ -126,7 +127,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                             'Enviar'
                           )
                         ),
-                           
+
                         InkWell(
                           onTap: (){
                             Navigator.push(
@@ -158,7 +159,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin{
                             ),
                           ),
                         ),
-                        
+
                       ]
                     ),
                   ),

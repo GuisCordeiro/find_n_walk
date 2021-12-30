@@ -1,8 +1,8 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:findnwalk/components/shared/colors.dart';
-import 'package:findnwalk/pages/places/placesPage.dart';
-import 'package:findnwalk/pages/history/historyPage.dart';
-import 'package:findnwalk/pages/map/homePage.dart';
+import 'package:findnwalk/pages/history/history_page.dart';
+import 'package:findnwalk/pages/map/home_page.dart';
+import 'package:findnwalk/pages/places/places_page.dart';
 import 'package:flutter/material.dart';
 
 class BottomFNBar extends StatefulWidget {

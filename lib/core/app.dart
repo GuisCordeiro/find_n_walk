@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:findnwalk/components/shared/colors.dart';
-import 'package:findnwalk/pages/login/loginPage.dart';
+import 'package:findnwalk/pages/login/login_page.dart';
+import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
   @override

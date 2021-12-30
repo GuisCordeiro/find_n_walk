@@ -1,12 +1,13 @@
 import 'package:findnwalk/data/models/place.dart';
-import 'package:findnwalk/components/places/placeCard.dart';
-import 'package:findnwalk/components/shared/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+import '../places/place_card.dart';
+import '../shared/colors.dart';
+
 //Este widget deve receber a nota da avaliação relacinada ao usuario e ao local, mas por enquanto está recebendo a nota geral do local
 
-evaluationTile(Place place, BuildContext context) {
+reviewTile(Place place, BuildContext context) {
   return ListTile(
       title: Text(place.name, style: TextStyle(fontSize: 18),),
       subtitle: RatingBar(
@@ -47,9 +48,9 @@ checkThumbnail(Place place) {
 }
 
 rateValue(Place place) {
-  if (place.rate == null) {
+  if (place.rating == null) {
     return 0.0;
   } else {
-    return place.rate;
+    return place.rating;
   }
 }

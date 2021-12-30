@@ -1,8 +1,9 @@
-import 'package:findnwalk/components/shared/appBar.dart';
+import 'package:findnwalk/components/profile/edit_bio_card.dart';
+import 'package:findnwalk/components/shared/app_bar.dart';
 import 'package:findnwalk/components/shared/colors.dart';
-import 'package:findnwalk/components/profile/editBioCard.dart';
-import 'package:findnwalk/pages/settings/settingsPage.dart';
 import 'package:flutter/material.dart';
+
+import '../settings/settings_page.dart';
 
 /*
   Página de perfil

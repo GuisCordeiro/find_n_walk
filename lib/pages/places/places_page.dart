@@ -1,9 +1,10 @@
+import 'package:findnwalk/components/places/all_places_list_view.dart';
+import 'package:findnwalk/components/places/favorite_places_list_view.dart';
 import 'package:findnwalk/components/shared/colors.dart';
-import 'package:findnwalk/components/places/favoritePlacesListView.dart';
-import 'package:findnwalk/components/shared/tabAppBar.dart';
-import 'package:findnwalk/components/places/allPlacesListView.dart';
-import 'package:findnwalk/pages/profile/profilePage.dart';
+import 'package:findnwalk/components/shared/tab_app_bar.dart';
 import 'package:flutter/material.dart';
+
+import '../profile/profile_page.dart';
 
 /*
   Página de eventos do aplicativo

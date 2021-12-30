@@ -1,8 +1,7 @@
-// Classe de intereção com o BD.
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:findnwalk/data/models/user.dart';
-import 'package:findnwalk/data/models/place.dart';
+
+import '../models/place.dart';
+import '../models/user.dart';
 
 class Database {
   get _source => FirebaseFirestore.instance;

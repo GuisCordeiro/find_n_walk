@@ -1,8 +1,7 @@
-import 'package:findnwalk/components/shared/colors.dart';
-import 'package:findnwalk/controller/variables.dart';
 import 'package:flutter/material.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+
+import '../shared/colors.dart';
 
 class MapApp extends StatefulWidget {
   const MapApp({Key? key}) : super(key: key);
@@ -37,7 +36,7 @@ class _MapAppState extends State<MapApp> {
             Icons.arrow_circle_down
           ),
         ),
-        ), 
+        ),
     );
   }
 }

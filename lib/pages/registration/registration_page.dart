@@ -1,8 +1,9 @@
-import 'package:findnwalk/components/shared/orangeButton.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/form.dart';
-import 'package:findnwalk/pages/login/loginPage.dart';
+import 'package:findnwalk/components/shared/orange_button.dart';
 import 'package:flutter/material.dart';
+
+import '../login/login_page.dart';
 
 /*
   Página de Cadastro
@@ -52,7 +53,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           style: TextStyle(
                             color: AppColors.blue
                           ),
-                          
+
                         ),
                       ]
                     ),

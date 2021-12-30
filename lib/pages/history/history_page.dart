@@ -1,8 +1,9 @@
-import 'package:findnwalk/components/history/myEvaluationsListView.dart';
+import 'package:findnwalk/components/history/reviews_list_view.dart';
 import 'package:findnwalk/components/shared/colors.dart';
-import 'package:findnwalk/components/shared/tabAppBar.dart';
-import 'package:findnwalk/pages/profile/profilePage.dart';
+import 'package:findnwalk/components/shared/tab_app_bar.dart';
 import 'package:flutter/material.dart';
+
+import '../profile/profile_page.dart';
 
 /*
   Página de histórico de eventos
@@ -36,7 +37,7 @@ class _HistoryPageState extends State<HistoryPage> {
                 body: TabBarView(
                   children: <Widget>[
                     Text('1'),
-                    evaluatedPlaces(),
+                    reviewedPlaces(),
                   ],
                 ))));
   }

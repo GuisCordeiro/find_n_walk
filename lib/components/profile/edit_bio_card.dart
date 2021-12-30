@@ -1,6 +1,7 @@
-import 'package:findnwalk/components/shared/colors.dart';
-import 'package:findnwalk/components/shared/orangeButton.dart';
 import 'package:flutter/material.dart';
+
+import '../shared/colors.dart';
+import '../shared/orange_button.dart';
 
 editBioCard() {
   return AlertDialog(

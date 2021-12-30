@@ -1,4 +1,4 @@
-import 'package:findnwalk/data/models/place.dart';
+import '../models/place.dart';
 
 var lugaresDeTeste = [
   Place(
