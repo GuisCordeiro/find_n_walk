@@ -4,7 +4,6 @@ import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/controller/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-
 import '../create_place/create_place.dart';
 
 /*
