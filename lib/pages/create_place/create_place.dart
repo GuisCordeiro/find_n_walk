@@ -1,6 +1,7 @@
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/form.dart';
 import 'package:findnwalk/components/shared/orange_button.dart';
+import 'package:findnwalk/pages/create_place/choose_place.dart';
 import 'package:flutter/material.dart';
 
 class CreatePlace extends StatefulWidget {
@@ -38,16 +39,20 @@ class _CreatePlaceState extends State<CreatePlace> {
                 ],
               ),
             ),
-            AppForm('Nome do evento', Icon(Icons.event), false),
-            AppForm('Horário', Icon(Icons.hourglass_bottom), false),
-            AppForm('Duração', Icon(Icons.timer), false),
+            AppForm('Nome do local', Icon(Icons.event), false),
             AppForm('Endereço', Icon(Icons.place), false),
-            AppForm('Número de participantes', Icon(Icons.people), false),
             AppForm('Descrição', Icon(Icons.view_list), false),
             Padding(
               padding: EdgeInsets.only(top: 10),
               child: GestureDetector(
-                onTap: () {},
+                onTap: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ChoosePlace(),
+                              )
+                            );
+                          },
                 child: Botao('Marcar local no mapa'),
               ),
             ),
