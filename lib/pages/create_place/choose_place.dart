@@ -1,18 +1,26 @@
 import 'package:findnwalk/components/markers/marker_place.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/controller/variables.dart';
+import 'package:findnwalk/pages/map/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 class ChoosePlace extends StatefulWidget {
-  const ChoosePlace({ Key? key }) : super(key: key);
-
+  final String placeName;
+  final String placeAddress;
+  final String placeDescription;
+  const ChoosePlace(this.placeName, this.placeAddress, this.placeDescription);
   @override
-  _ChoosePlaceState createState() => _ChoosePlaceState();
+  _ChoosePlaceState createState() => _ChoosePlaceState(placeName, placeAddress, placeDescription);
 }
 
 class _ChoosePlaceState extends State<ChoosePlace> {
+  final String placeName;
+  final String placeAddress;
+  final String placeDescription;
+  _ChoosePlaceState(this.placeName, this.placeAddress, this.placeDescription);
+  List<Marker> placesMarker = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +35,15 @@ class _ChoosePlaceState extends State<ChoosePlace> {
       ),
       body: FlutterMap(
         options: MapOptions(
-          onTap: _handleTap,
+          onLongPress: (tappedPoint, LatLng) {
+            _handleTap;
+            Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ),
+          );
+          },
           center: LatLng(lat, lng),
           zoom: 16.0,
           maxZoom: 18,
@@ -37,6 +53,9 @@ class _ChoosePlaceState extends State<ChoosePlace> {
           TileLayerOptions(
             urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
             subdomains: ['a', 'b', 'c'],
+          ),
+          MarkerLayerOptions(
+            markers: placesMarker
           ),
           
           MarkerLayerOptions(
@@ -125,11 +144,10 @@ class _ChoosePlaceState extends State<ChoosePlace> {
       ),
     );
   }
-  void _handleTap(LatLng tappedPoint){
+   _handleTap(LatLng tappedPoint){
     setState(() {
-      placesMarker = [];
       placesMarker.add(
-        createmarker(tappedPoint, context, placeName, placeAdress, placeDescription)
+        createmarker(tappedPoint, context, placeName, placeAddress, placeDescription)
       );      
     });
   }

@@ -1,6 +1,7 @@
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/form.dart';
 import 'package:findnwalk/components/shared/orange_button.dart';
+import 'package:findnwalk/controller/create_place.dart';
 import 'package:findnwalk/pages/create_place/choose_place.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,7 @@ class CreatePlace extends StatefulWidget {
 }
 
 class _CreatePlaceState extends State<CreatePlace> {
+  PlaceController createPlace = PlaceController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,22 +41,29 @@ class _CreatePlaceState extends State<CreatePlace> {
                 ],
               ),
             ),
-            AppForm('Nome do local', Icon(Icons.event), false),
-            AppForm('Endereço', Icon(Icons.place), false),
-            AppForm('Descrição', Icon(Icons.view_list), false),
+            AppForm('Nome do local', Icon(Icons.event), false, createPlace.local),
+            AppForm('Endereço', Icon(Icons.place), false, createPlace.address),
+            AppForm('Descrição', Icon(Icons.view_list), false, createPlace.description),
             Padding(
               padding: EdgeInsets.only(top: 10),
-              child: GestureDetector(
-                onTap: (){
-                            Navigator.push(
+                child: GestureDetector(
+                  onTap: (){
+                    if (createPlace.local.text == '' || createPlace.address.text == '' || createPlace.description.text == '') {
+                      AlertDialog(
+                        title: Text("Preencha todos os campos!"),
+                      );
+                    } else {
+                      Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ChoosePlace(),
+                                builder: (context) => ChoosePlace(createPlace.local.text, createPlace.address.text, createPlace.description.text),
                               )
                             );
-                          },
-                child: Botao('Marcar local no mapa'),
-              ),
+                    }
+                  },
+                  child: Botao('Marcar local no mapa'),
+                ),
+              
             ),
             GestureDetector(
               onTap: () => Navigator.of(

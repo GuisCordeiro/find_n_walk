@@ -33,11 +33,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
       body: SafeArea(
         child: ListView(
           children: [
-            AppForm('Nome do usuário', Icon(Icons.people), false),
-            AppForm('Data de nascimento', Icon(Icons.date_range), false),
-            AppForm('E-mail', Icon(Icons.email), false),
-            AppForm('Senha', Icon(Icons.lock_open), false),
-            AppForm('Confirme sua senha', Icon(Icons.lock), false),
+            AppForm('Nome do usuário', Icon(Icons.people), false, TextEditingController()),
+            AppForm('Data de nascimento', Icon(Icons.date_range), false, TextEditingController()),
+            AppForm('E-mail', Icon(Icons.email), false, TextEditingController()),
+            AppForm('Senha', Icon(Icons.lock_open), false, TextEditingController()),
+            AppForm('Confirme sua senha', Icon(Icons.lock), false, TextEditingController()),
               CheckboxListTile(
                 title: RichText(
                     textAlign: TextAlign.start,

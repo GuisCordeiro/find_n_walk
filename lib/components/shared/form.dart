@@ -12,14 +12,19 @@ class AppForm extends StatelessWidget {
   final String label;
   final bool decision;
   final Icon icon;
+  final TextEditingController formController;
 
-  AppForm(this.label, this.icon, this.decision);
+  AppForm(this.label, this.icon, this.decision, this.formController);
 
   @override
+  void dispose(){
+    formController.dispose();
+  }
   Widget build(BuildContext context) {
     return Padding(
               padding: EdgeInsets.only(left: 20, right: 20, top: 10),
               child: TextField(
+                controller: formController,
                 obscureText: decision,
                 cursorColor: AppColors.orange,
                 decoration: InputDecoration(
