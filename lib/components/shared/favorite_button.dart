@@ -19,7 +19,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
             isFavorite = true;
             setState(() {});
           },
-          icon: Icon(Icons.favorite_border));
+          icon: const Icon(Icons.favorite_border));
     } else {
       return IconButton(
           color: Colors.red,
@@ -27,7 +27,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
             isFavorite = false;
             setState(() {});
           },
-          icon: Icon(Icons.favorite, color: Colors.red));
+          icon: const Icon(Icons.favorite, color: Colors.red));
     }
   }
 }

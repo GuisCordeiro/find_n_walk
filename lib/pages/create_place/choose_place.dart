@@ -1,6 +1,6 @@
 import 'package:findnwalk/components/markers/marker_place.dart';
 import 'package:findnwalk/components/shared/colors.dart';
-import 'package:findnwalk/controller/variables.dart';
+import 'package:findnwalk/controllers/variables.dart';
 import 'package:findnwalk/pages/map/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
