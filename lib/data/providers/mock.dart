@@ -1,6 +1,9 @@
-import '../models/place.dart';
+// ignore_for_file: prefer_final_fields
 
-var lugaresDeTeste = [
+import '../models/place.dart';
+import '../models/user.dart';
+
+List<Place> lugaresDeTeste = [
   Place(
     name: 'Poliesportivo claudomiro',
     address: 'Rua dos Bobos, n 0, Bairro do Limoeiro',
@@ -20,3 +23,5 @@ var lugaresDeTeste = [
     capacity: 100,
   ),
 ];
+
+// Classe de mock da base de dados para alguns testes iniciais

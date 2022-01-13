@@ -17,17 +17,24 @@ class Database {
   // permitiria que os usuários mudassem o e-mail associado a
   // conta a qualquer momento, o que seria bem bacana.
 
-  Future<User> getUser(String email) async {
-    var dados = await _users.doc(email).get();
-    return User.fromMap(dados.data() as Map<String, String>);
+  Future<User?> getUser(String name) async {
+    var dados = await _users.doc(name).get();
+    var data = dados.data();
+    if (data != null) {
+      return User.fromMap(dados.data() as Map<String, String>);
+    }
+    return null;
   }
 
-  Future<void> addUser(User user) async {
-    _users.doc(user.email).set(user.toMap());
+  Future<bool> addUser(User user) async {
+    // Um tiro, por favor...
+    _users.doc(user.name).set(user.toMap());
+    return true;
   }
 
-  Future<void> updateUser(User updated) async {
-    _users.doc(updated.email).set(updated.toMap());
+  Future<bool> updateUser(User updated) async {
+    _users.doc(updated.name).set(updated.toMap());
+    return true;
   }
 
   // Operações sobre os lugares.
@@ -37,17 +44,17 @@ class Database {
   // mas posteriormente, vamos substituí-lo por um tipo geográfico.
   // Quando isso acontecer, teremos que armazenar um geopoint no BD.
 
-  Future<Place> getPlace(String address) async {
-    var dados = await _places.doc(address).get();
+  Future<Place> getPlace(String name) async {
+    var dados = await _places.doc(name).get();
     return Place.fromMap(dados.data() as Map<String, dynamic>);
   }
 
   Future<void> addPlace(Place place) async {
-    _places.doc(place.address).set(place.toMap());
+    _places.doc(place.name).set(place.toMap());
   }
 
   Future<void> updatePlace(Place updated) async {
-    _places.doc(updated.address).set(updated.toMap());
+    _places.doc(updated.name).set(updated.toMap());
   }
 
   // TODO operações sobre as avaliações. O armazenamento

@@ -1,8 +1,9 @@
-import 'package:findnwalk/controller/variables.dart';
+import 'package:findnwalk/components/map/marker_popup.dart';
+// import 'package:findnwalk/controllers/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:flutter_map_marker_popup/flutter_map_marker_popup.dart';
+
 import '../shared/colors.dart';
 
 class MapApp extends StatefulWidget {
@@ -10,13 +11,12 @@ class MapApp extends StatefulWidget {
 
   @override
   _MapAppState createState() => _MapAppState();
-  
+
 }
 
 
 
 class _MapAppState extends State<MapApp> {
-    final PopupController _popupLayerController = PopupController();
     final List<LatLng> _markerPositions = [
     LatLng(44.421, 10.404),
     LatLng(45.683, 10.839),
@@ -39,7 +39,7 @@ class _MapAppState extends State<MapApp> {
           urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
           subdomains: ['a', 'b', 'c'],
         ),
-        
+
         MarkerLayerOptions(
           markers: [
             Marker(
@@ -49,7 +49,7 @@ class _MapAppState extends State<MapApp> {
               builder: (ctx) => GestureDetector(
                 onTap: (){
                   showModalBottomSheet(
-                    context: context, 
+                    context: context,
                     builder: (builder){
                       return Container(
                         height: MediaQuery.of(context).size.height/3,
@@ -118,12 +118,11 @@ class _MapAppState extends State<MapApp> {
                 ),
               ),
             ),
-            
+
           ],
         ),
       ],
-      
+
     );
   }
 }
-
