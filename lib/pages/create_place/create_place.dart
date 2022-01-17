@@ -1,10 +1,13 @@
 import 'package:findnwalk/components/shared/colors.dart';
+import 'package:findnwalk/components/shared/custom_selectformfield.dart';
 import 'package:findnwalk/components/shared/form.dart';
 import 'package:findnwalk/components/shared/orange_button.dart';
 import 'package:findnwalk/components/shared/switch_form.dart';
 import 'package:findnwalk/controllers/create_place.dart';
 import 'package:findnwalk/pages/create_place/choose_place.dart';
 import 'package:flutter/material.dart';
+import 'package:findnwalk/data/providers/mock.dart';
+import 'package:select_form_field/select_form_field.dart';
 
 class CreatePlace extends StatefulWidget {
   const CreatePlace({Key? key}) : super(key: key);
@@ -49,10 +52,12 @@ class _CreatePlaceState extends State<CreatePlace> {
                 createPlace.address),
             AppForm('Descrição', const Icon(Icons.view_list), false,
                 createPlace.description),
-            //TODO inserir o controlador que crie uma lista de categorias a partir da string
+            //TODO inserir o controlador que crie uma lista de categorias a partir da string.
             //local está inserido por falta de outro controlador
             AppForm('Categorias', const Icon(Icons.sports_soccer), false,
                 createPlace.local),
+            //TODO inserir controlador de capacidade de pessoas.
+            CustomSelectFormField('Capacidade de Pessoas', Icon(Icons.person), createPlace.local, items),
             //TODO inserir o controlador que receba um bool para determinar se o local é público ou não
             //local está inserido por falta de outro controlador
             AppSwitchForm(
