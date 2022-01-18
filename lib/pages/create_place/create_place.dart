@@ -7,7 +7,6 @@ import 'package:findnwalk/controllers/create_place.dart';
 import 'package:findnwalk/pages/create_place/choose_place.dart';
 import 'package:flutter/material.dart';
 import 'package:findnwalk/data/providers/mock.dart';
-import 'package:select_form_field/select_form_field.dart';
 
 class CreatePlace extends StatefulWidget {
   const CreatePlace({Key? key}) : super(key: key);
@@ -57,7 +56,7 @@ class _CreatePlaceState extends State<CreatePlace> {
             AppForm('Categorias', const Icon(Icons.sports_soccer), false,
                 createPlace.local),
             //TODO inserir controlador de capacidade de pessoas.
-            CustomSelectFormField('Capacidade de Pessoas', Icon(Icons.person), createPlace.local, items),
+            CustomSelectFormField('Capacidade de Pessoas', const Icon(Icons.person), createPlace.local, items),
             //TODO inserir o controlador que receba um bool para determinar se o local é público ou não
             //local está inserido por falta de outro controlador
             AppSwitchForm(
@@ -83,14 +82,14 @@ class _CreatePlaceState extends State<CreatePlace> {
                         ));
                   }
                 },
-                child: Botao('Marcar local no mapa'),
+                child: const Botao('Marcar local no mapa'),
               ),
             ),
             GestureDetector(
               onTap: () => Navigator.of(
                 context,
               ).pop(),
-              child: Botao('Fechar'),
+              child: const Botao('Fechar'),
             ),
           ],
         ),

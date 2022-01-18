@@ -10,7 +10,7 @@ import '../login/login_page.dart';
 */
 
 class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({ Key? key }) : super(key: key);
+  const RegistrationPage({Key? key}) : super(key: key);
 
   @override
   _RegistrationPageState createState() => _RegistrationPageState();
@@ -23,66 +23,56 @@ class _RegistrationPageState extends State<RegistrationPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.orange,
-        title: Text(
+        title: const Text(
           'Cadastro',
-          style: TextStyle(
-            color: AppColors.black
-          ),
+          style: TextStyle(color: AppColors.black),
         ),
       ),
       body: SafeArea(
-        child: ListView(
-          children: [
-            AppForm('Nome do usuário', Icon(Icons.people), false, TextEditingController()),
-            AppForm('Data de nascimento', Icon(Icons.date_range), false, TextEditingController()),
-            AppForm('E-mail', Icon(Icons.email), false, TextEditingController()),
-            AppForm('Senha', Icon(Icons.lock_open), false, TextEditingController()),
-            AppForm('Confirme sua senha', Icon(Icons.lock), false, TextEditingController()),
-              CheckboxListTile(
-                title: RichText(
-                    textAlign: TextAlign.start,
-                    text: TextSpan(
-                      text: 'Li e concordo com os',
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: AppColors.grey
-                      ),
-                      children: const <TextSpan>[
-                        TextSpan(
-                          text: ' termos de uso',
-                          style: TextStyle(
-                            color: AppColors.blue
-                          ),
-
-                        ),
-                      ]
+        child: ListView(children: [
+          AppForm('Nome do usuário', const Icon(Icons.people), false,
+              TextEditingController()),
+          AppForm('Data de nascimento', const Icon(Icons.date_range), false,
+              TextEditingController()),
+          AppForm('E-mail', const Icon(Icons.email), false,
+              TextEditingController()),
+          AppForm('Senha', const Icon(Icons.lock_open), false,
+              TextEditingController()),
+          AppForm('Confirme sua senha', const Icon(Icons.lock), false,
+              TextEditingController()),
+          CheckboxListTile(
+            title: RichText(
+              textAlign: TextAlign.start,
+              text: const TextSpan(
+                  text: 'Li e concordo com os',
+                  style: TextStyle(fontSize: 15, color: AppColors.grey),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: ' termos de uso',
+                      style: TextStyle(color: AppColors.blue),
                     ),
-                  ),
-                activeColor: AppColors.orange,
-                checkColor: AppColors.white,
-                controlAffinity: ListTileControlAffinity.leading,
-                value: selecionado,
-                onChanged: (bool? value){
-                  setState(() {
-                    selecionado = value!;
-                  });
-                },
+                  ]),
             ),
-              InkWell(
-                onTap: (){
-                  Navigator.push(
+            activeColor: AppColors.orange,
+            checkColor: AppColors.white,
+            controlAffinity: ListTileControlAffinity.leading,
+            value: selecionado,
+            onChanged: (bool? value) {
+              setState(() {
+                selecionado = value!;
+              });
+            },
+          ),
+          InkWell(
+              onTap: () {
+                Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginPage(),
-                    )
-                  );
-                },
-                child: Botao(
-                  'Cadastrar-se'
-                )
-              )
-          ]
-        ),
+                      builder: (context) => const LoginPage(),
+                    ));
+              },
+              child: const Botao('Cadastrar-se'))
+        ]),
       ),
     );
   }

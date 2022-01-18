@@ -5,9 +5,9 @@ import '../shared/orange_button.dart';
 
 editBioCard() {
   return AlertDialog(
-    shape: RoundedRectangleBorder(
+    shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(25))),
-    title: Text('Editar Biografia',
+    title: const Text('Editar Biografia',
         style: TextStyle(
             color: AppColors.orange,
             fontWeight: FontWeight.bold,
@@ -16,12 +16,12 @@ editBioCard() {
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: TextFormField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
               hintText: 'Insira sua biografia...',
               border: OutlineInputBorder()),
         ),
       ),
-      Botao('Enviar')
+      const Botao('Enviar')
     ],
   );
 }

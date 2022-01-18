@@ -14,16 +14,18 @@ class AppForm extends StatelessWidget {
   final Icon icon;
   final TextEditingController formController;
 
-  AppForm(this.label, this.icon, this.decision, this.formController);
+  const AppForm(this.label, this.icon, this.decision, this.formController,
+      {Key? key})
+      : super(key: key);
 
-  @override
   void dispose() {
     formController.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
       child: TextField(
         controller: formController,
         obscureText: decision,
@@ -31,13 +33,13 @@ class AppForm extends StatelessWidget {
         decoration: InputDecoration(
           prefixIcon: icon,
           focusColor: AppColors.orange,
-          enabledBorder: new OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(10),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(color: AppColors.grey)),
-          focusedBorder: new OutlineInputBorder(
-              borderRadius: new BorderRadius.circular(10),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(color: AppColors.orange)),
-          hintText: '$label',
+          hintText: label,
         ),
       ),
     );

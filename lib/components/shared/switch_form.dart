@@ -19,11 +19,12 @@ class AppSwitchForm extends StatefulWidget {
 
 class _AppSwitchFormState extends State<AppSwitchForm> {
   bool value = false;
-  @override
+
   void dispose() {
     widget.formController.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
@@ -34,7 +35,7 @@ class _AppSwitchFormState extends State<AppSwitchForm> {
               widget.label,
               style: const TextStyle(fontSize: 18),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Switch.adaptive(
                 inactiveThumbColor: Colors.red,
                 activeColor: Colors.green,

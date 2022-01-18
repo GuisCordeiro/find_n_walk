@@ -25,19 +25,20 @@ class _PlacesPageState extends State<PlacesPage> {
         home: DefaultTabController(
           length: 2,
           child: Scaffold(
-              appBar: PreferredSize(
-                  preferredSize: const Size.fromHeight(70),
+              appBar: const PreferredSize(
+                  preferredSize: Size.fromHeight(70),
                   child: TabFNAppBar(
-                      'Lugares',
-                      Icon(Icons.person),
-                      PerfilPage(),
-                      false,
-                      'Lugares perto de você',
-                      'Lugares favoritos')),
+                    'Lugares',
+                    Icon(Icons.person),
+                    PerfilPage(),
+                    false,
+                    'Lugares perto de você',
+                    'Lugares favoritos',
+                  )),
               body: TabBarView(
                 children: <Widget>[
                   allPlaces(),
-                  FavoritePlaces(),
+                  favoritePlaces(),
                 ],
               )),
         ));

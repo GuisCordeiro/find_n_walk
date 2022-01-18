@@ -14,14 +14,14 @@ class BottomFNBar extends StatefulWidget {
 
 class _BottomFNBarState extends State<BottomFNBar> {
   var listIndex = 0;
-  var pageController = new PageController();
+  var pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
           controller: pageController,
-          children: [
+          children: const [
             PlacesPage(),
             HomePage(),
             HistoryPage(),
@@ -59,7 +59,7 @@ class _BottomFNBarState extends State<BottomFNBar> {
           });
           pageController.jumpToPage(listIndex);
           pageController.animateToPage(listIndex,
-              duration: Duration(microseconds: 800), curve: Curves.easeInOut);
+              duration: const Duration(microseconds: 800), curve: Curves.easeInOut);
         },
       ),
     );
