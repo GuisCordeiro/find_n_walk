@@ -10,15 +10,14 @@ import 'colors.dart';
       )
 */
 
-
 class FNAppBar extends StatelessWidget {
-
   final String pageName;
   final Icon icon;
   final Widget page;
   final bool arrow;
 
-  FNAppBar(this.pageName, this.icon, this.page, this.arrow);
+  const FNAppBar(this.pageName, this.icon, this.page, this.arrow, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,21 +26,19 @@ class FNAppBar extends StatelessWidget {
         backgroundColor: AppColors.orange,
         automaticallyImplyLeading: arrow,
         title: Text(
-          '$pageName',
-          style: TextStyle(
-            color: AppColors.black
-          ),
+          pageName,
+          style: const TextStyle(color: AppColors.black),
         ),
         actions: <Widget>[
           IconButton(
             color: AppColors.black,
             icon: icon,
-            onPressed: (){
+            onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => page,
-                )
+                ),
               );
             },
           )

@@ -3,10 +3,10 @@ class Review {
   int id;
 
   // id do avaliador
-  int user_id;
+  int userId;
 
   // id do local
-  int place_id;
+  int placeId;
 
   // nota da avaliação
   double rate;
@@ -14,5 +14,5 @@ class Review {
   // descrição da avaliação
   String text;
 
-  Review(this.id, this.user_id, this.place_id, this.rate, this.text);
+  Review(this.id, this.userId, this.placeId, this.rate, this.text);
 }

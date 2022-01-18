@@ -4,10 +4,10 @@ import '../models/place.dart';
 import '../models/user.dart';
 
 class Database {
-  get _source => FirebaseFirestore.instance;
+  static final _source = FirebaseFirestore.instance;
 
-  CollectionReference get _users => _source.collection('users');
-  CollectionReference get _places => _source.collection('places');
+  static final _users = _source.collection('users');
+  static final _places = _source.collection('places');
 
   // Operações sobre os usuários.
   // A chave primária para a coleção users é o e-mail.
@@ -17,7 +17,7 @@ class Database {
   // permitiria que os usuários mudassem o e-mail associado a
   // conta a qualquer momento, o que seria bem bacana.
 
-  Future<User?> getUser(String name) async {
+  static Future<User?> getUser(String name) async {
     var dados = await _users.doc(name).get();
     var data = dados.data();
     if (data != null) {
@@ -26,13 +26,12 @@ class Database {
     return null;
   }
 
-  Future<bool> addUser(User user) async {
-    // Um tiro, por favor...
+  static Future<bool> addUser(User user) async {
     _users.doc(user.name).set(user.toMap());
     return true;
   }
 
-  Future<bool> updateUser(User updated) async {
+  static Future<bool> updateUser(User updated) async {
     _users.doc(updated.name).set(updated.toMap());
     return true;
   }
@@ -44,16 +43,16 @@ class Database {
   // mas posteriormente, vamos substituí-lo por um tipo geográfico.
   // Quando isso acontecer, teremos que armazenar um geopoint no BD.
 
-  Future<Place> getPlace(String name) async {
+  static Future<Place> getPlace(String name) async {
     var dados = await _places.doc(name).get();
     return Place.fromMap(dados.data() as Map<String, dynamic>);
   }
 
-  Future<void> addPlace(Place place) async {
+  static Future<void> addPlace(Place place) async {
     _places.doc(place.name).set(place.toMap());
   }
 
-  Future<void> updatePlace(Place updated) async {
+  static Future<void> updatePlace(Place updated) async {
     _places.doc(updated.name).set(updated.toMap());
   }
 

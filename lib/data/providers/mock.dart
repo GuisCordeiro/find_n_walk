@@ -1,7 +1,4 @@
-// ignore_for_file: prefer_final_fields
-
 import '../models/place.dart';
-import '../models/user.dart';
 
 List<Place> lugaresDeTeste = [
   Place(
@@ -23,5 +20,3 @@ List<Place> lugaresDeTeste = [
     capacity: 100,
   ),
 ];
-
-// Classe de mock da base de dados para alguns testes iniciais

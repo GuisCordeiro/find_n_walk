@@ -5,43 +5,49 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../places/place_card.dart';
 import '../shared/colors.dart';
 
-//Este widget deve receber a nota da avaliação relacinada ao usuario e ao local, mas por enquanto está recebendo a nota geral do local
+//Este widget deve receber a nota da avaliação relacinada ao usuario e ao local,
+// mas por enquanto está recebendo a nota geral do local
 
 reviewTile(Place place, BuildContext context) {
   return ListTile(
-      title: Text(place.name, style: TextStyle(fontSize: 18),),
-      subtitle: RatingBar(
-        initialRating: rateValue(place),
-        direction: Axis.horizontal,
-        allowHalfRating: true,
-        itemCount: 5,
-        ratingWidget: RatingWidget(
-          full: Icon(Icons.star, color: AppColors.orange),
-          half: Icon(Icons.star_half, color: AppColors.orange),
-          empty: Icon(Icons.star_border, color: AppColors.orange),
-        ),
-        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-        onRatingUpdate: (x){},
-        ignoreGestures: true,
+    title: Text(
+      place.name,
+      style: const TextStyle(fontSize: 18),
+    ),
+    subtitle: RatingBar(
+      initialRating: rateValue(place),
+      direction: Axis.horizontal,
+      allowHalfRating: true,
+      itemCount: 5,
+      ratingWidget: RatingWidget(
+        full: const Icon(Icons.star, color: AppColors.orange),
+        half: const Icon(Icons.star_half, color: AppColors.orange),
+        empty: const Icon(Icons.star_border, color: AppColors.orange),
       ),
-      leading: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          checkThumbnail(place),
-        ],
-      ),
-      onTap: () {
-        showDialog(
-            context: context,
-            builder: (context) {
-              return placeCard(place);
-            });
-      });
+      itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+      onRatingUpdate: (x) {},
+      ignoreGestures: true,
+    ),
+    leading: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        checkThumbnail(place),
+      ],
+    ),
+    onTap: () {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return placeCard(place);
+        },
+      );
+    },
+  );
 }
 
 checkThumbnail(Place place) {
   if (place.thumbnail == null) {
-    return Container(width: 10, height: 10);
+    return const SizedBox(width: 10, height: 10);
   } else {
     return Image.file(place.thumbnail!);
   }

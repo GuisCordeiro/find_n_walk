@@ -9,6 +9,6 @@ reviewedPlaces() {
   return ListView.separated(
     itemCount: lugaresDeTeste.length,
     itemBuilder: (context, index) => reviewTile(lugaresDeTeste[index], context),
-    separatorBuilder: (context, index) => Divider(),
+    separatorBuilder: (context, index) => const Divider(),
   );
 }

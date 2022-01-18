@@ -8,43 +8,47 @@ import 'colors.dart';
   A chamada desse componente é: Formulário('string')
 */
 
+// TODO convert to Stateful Widget
+
 class AppForm extends StatelessWidget {
   final String label;
   final bool decision;
   final Icon icon;
   final TextEditingController formController;
 
-  AppForm(this.label, this.icon, this.decision, this.formController);
+  const AppForm(this.label, this.icon, this.decision, this.formController,
+      {Key? key})
+      : super(key: key);
 
   @override
-  void dispose(){
+  void dispose() {
     formController.dispose();
   }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
-              padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-              child: TextField(
-                controller: formController,
-                obscureText: decision,
-                cursorColor: AppColors.orange,
-                decoration: InputDecoration(
-                prefixIcon: icon,
-                focusColor: AppColors.orange,
-                enabledBorder: new OutlineInputBorder(
-                  borderRadius: new BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: AppColors.grey
-                  )
-                ),
-                focusedBorder: new OutlineInputBorder(
-                  borderRadius: new BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: AppColors.orange
-                  )
-                ),
-                hintText: '$label',
-                ),
-              ),
+      padding: const EdgeInsets.only(
+        left: 20,
+        right: 20,
+        top: 10,
+      ),
+      child: TextField(
+        controller: formController,
+        obscureText: decision,
+        cursorColor: AppColors.orange,
+        decoration: InputDecoration(
+          prefixIcon: icon,
+          focusColor: AppColors.orange,
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: AppColors.grey)),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: AppColors.orange)),
+          hintText: label,
+        ),
+      ),
     );
   }
 }

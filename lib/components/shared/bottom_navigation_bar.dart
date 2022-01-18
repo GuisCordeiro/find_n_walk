@@ -1,9 +1,10 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/pages/history/history_page.dart';
 import 'package:findnwalk/pages/map/home_page.dart';
 import 'package:findnwalk/pages/places/places_page.dart';
 import 'package:flutter/material.dart';
+
+import 'colors.dart';
 
 class BottomFNBar extends StatefulWidget {
   const BottomFNBar({Key? key}) : super(key: key);
@@ -14,24 +15,26 @@ class BottomFNBar extends StatefulWidget {
 
 class _BottomFNBarState extends State<BottomFNBar> {
   var listIndex = 0;
-  var pageController = new PageController();
+  var pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-          controller: pageController,
-          children: [
-            PlacesPage(),
-            HomePage(),
-            HistoryPage(),
-          ],
-          onPageChanged: (index) {
-            setState(() {
+        controller: pageController,
+        children: const [
+          PlacesPage(),
+          HomePage(),
+          HistoryPage(),
+        ],
+        onPageChanged: (index) {
+          setState(
+            () {
               listIndex = index;
-            });
-          },
-        ),
+            },
+          );
+        },
+      ),
       bottomNavigationBar: CurvedNavigationBar(
         index: listIndex,
         backgroundColor: AppColors.transparent,
@@ -54,12 +57,17 @@ class _BottomFNBarState extends State<BottomFNBar> {
           ),
         ],
         onTap: (index) {
-          setState(() {
-            listIndex = index;
-          });
+          setState(
+            () {
+              listIndex = index;
+            },
+          );
           pageController.jumpToPage(listIndex);
-          pageController.animateToPage(listIndex,
-              duration: Duration(microseconds: 800), curve: Curves.easeInOut);
+          pageController.animateToPage(
+            listIndex,
+            duration: const Duration(microseconds: 800),
+            curve: Curves.easeInOut,
+          );
         },
       ),
     );
