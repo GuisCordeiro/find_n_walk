@@ -13,7 +13,6 @@ import '../registration/registration_page.dart';
 */
 
 class LoginPage extends StatefulWidget {
-
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -22,6 +21,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
   final _emailFieldController = TextEditingController();
+
   final _passwordFieldController = TextEditingController();
 
   late final AnimationController _controller = AnimationController(
@@ -37,11 +37,11 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    _emailFieldController.dispose();
+    _passwordFieldController.dispose();
+    super.dispose();
   }
-
-  bool selecionado = false;
 
   Color getColor(Set<MaterialState> estados) {
     const Set<MaterialState> mudaEstado = <MaterialState>{

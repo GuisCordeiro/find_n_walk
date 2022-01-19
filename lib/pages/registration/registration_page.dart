@@ -17,13 +17,27 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
-  bool selecionado = false;
+  bool agreed = false;
 
   final _nameFieldController = TextEditingController();
+
   final _birthdayFieldController = TextEditingController();
+
   final _emailFieldController = TextEditingController();
+
   final _passwordFieldController = TextEditingController();
+
   final _passwordAgainFieldController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameFieldController.dispose();
+    _birthdayFieldController.dispose();
+    _emailFieldController.dispose();
+    _passwordFieldController.dispose();
+    _passwordAgainFieldController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,11 +99,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
               activeColor: AppColors.orange,
               checkColor: AppColors.white,
               controlAffinity: ListTileControlAffinity.leading,
-              value: selecionado,
+              value: agreed,
               onChanged: (bool? value) {
                 setState(
                   () {
-                    selecionado = value!;
+                    agreed = value ?? false;
                   },
                 );
               },
