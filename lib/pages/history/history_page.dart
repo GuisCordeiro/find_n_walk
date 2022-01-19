@@ -24,19 +24,19 @@ class _HistoryPageState extends State<HistoryPage> {
         home: Scaffold(
             appBar: AppBar(
               backgroundColor: AppColors.orange,
-              title: Text(
+              title: const Text(
                 'Minhas Avaliações',
                 style: TextStyle(color: AppColors.black),
               ),
               actions: [
                 IconButton(
                   color: AppColors.black,
-                  icon: Icon(Icons.person),
+                  icon: const Icon(Icons.person),
                   onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PerfilPage(),
+                          builder: (context) => const PerfilPage(),
                         ));
                   },
                 )

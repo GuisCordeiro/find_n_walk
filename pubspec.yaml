@@ -32,6 +32,7 @@ dependencies:
   latlong2: ^0.8.1
   intl: ^0.17.0
   flutter_rating_bar: ^4.0.0
+  select_form_field: ^2.2.0
   crypto: ^3.0.1
   flutter:
     sdk: flutter

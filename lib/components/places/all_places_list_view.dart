@@ -8,6 +8,6 @@ allPlaces() {
   return ListView.separated(
     itemCount: lugaresDeTeste.length,
     itemBuilder: (context, index) => placeTile(lugaresDeTeste[index], context),
-    separatorBuilder: (context, index) => Divider(),
+    separatorBuilder: (context, index) => const Divider(),
   );
 }

@@ -1,4 +1,4 @@
-import 'package:findnwalk/controller/variables.dart';
+import 'package:findnwalk/controllers/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';

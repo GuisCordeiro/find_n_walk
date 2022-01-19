@@ -1,7 +1,7 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:findnwalk/components/map/map_app.dart';
 import 'package:findnwalk/components/shared/colors.dart';
-import 'package:findnwalk/controller/variables.dart';
+import 'package:findnwalk/controllers/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import '../create_place/create_place.dart';
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CreatePlace(),
+              builder: (context) => const CreatePlace(),
             ),
           );
         },
@@ -56,9 +56,9 @@ class _HomePageState extends State<HomePage> {
             if (lat != 0) {
               return Stack(
                 children: [
-                  MapApp(),
+                  const MapApp(),
                   Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10),
                     child: AnimSearchBar(
                       helpText: 'Pesquisar...',
                       width: MediaQuery.of(context).size.width,
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               );
             } else {
-              return Center(
+              return const Center(
                 child: Text(
                   'Não foi possível carregar o mapa :(',
                   textAlign: TextAlign.center,

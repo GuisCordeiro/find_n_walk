@@ -1,8 +1,7 @@
 import 'package:findnwalk/data/models/place.dart';
 import 'package:flutter/material.dart';
 
-import 'place_card.dart';
-
+import 'place_page.dart';
 
 placeTile(Place place, BuildContext context) {
   return ListTile(
@@ -15,17 +14,17 @@ placeTile(Place place, BuildContext context) {
         ],
       ),
       onTap: () {
-        showDialog(
-            context: context,
-            builder: (context) {
-              return placeCard(place);
-            });
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => PlacePage(place: place),
+            ));
       });
 }
 
 checkThumbnail(Place place) {
   if (place.thumbnail == null) {
-    return Container(width: 10, height: 10);
+    return const SizedBox(width: 10, height: 10);
   } else {
     return Image.file(place.thumbnail!);
   }
