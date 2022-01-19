@@ -1,6 +1,6 @@
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/form.dart';
-import 'package:findnwalk/components/shared/orange_button.dart';
+import 'package:findnwalk/components/shared/app_button.dart';
 import 'package:findnwalk/controllers/create_place_controller.dart';
 import 'package:findnwalk/pages/create_place/choose_place.dart';
 import 'package:flutter/material.dart';
@@ -63,8 +63,9 @@ class _CreatePlaceState extends State<CreatePlace> {
                 controller: createPlace.description),
             Padding(
               padding: const EdgeInsets.only(top: 10),
-              child: GestureDetector(
-                onTap: () {
+              child: AppButton(
+                label: 'Marcar local no mapa',
+                onTap: () => () {
                   if (createPlace.local.text == '' ||
                       createPlace.address.text == '' ||
                       createPlace.description.text == '') {
@@ -83,14 +84,13 @@ class _CreatePlaceState extends State<CreatePlace> {
                     );
                   }
                 },
-                child: const Botao('Marcar local no mapa'),
               ),
             ),
-            GestureDetector(
-              onTap: () => Navigator.of(
-                context,
-              ).pop(),
-              child: const Botao('Fechar'),
+            AppButton(
+              label: 'Fechar',
+              onTap: () => () => Navigator.of(
+                    context,
+                  ).pop(),
             ),
           ],
         ),

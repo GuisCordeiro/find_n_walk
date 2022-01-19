@@ -1,6 +1,6 @@
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/form.dart';
-import 'package:findnwalk/components/shared/orange_button.dart';
+import 'package:findnwalk/components/shared/app_button.dart';
 import 'package:flutter/material.dart';
 
 import '../login/login_page.dart';
@@ -108,7 +108,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 );
               },
             ),
-            InkWell(
+            AppButton(
+              label: 'Cadastrar-se',
               onTap: () {
                 Navigator.push(
                   context,
@@ -117,7 +118,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   ),
                 );
               },
-              child: const Botao('Cadastrar-se'),
             )
           ],
         ),

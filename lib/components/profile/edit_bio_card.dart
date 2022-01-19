@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../shared/colors.dart';
-import '../shared/orange_button.dart';
+import '../shared/app_button.dart';
 
 editBioCard() {
   return AlertDialog(
@@ -28,7 +28,10 @@ editBioCard() {
           ),
         ),
       ),
-      const Botao('Enviar'),
+      AppButton(
+        label: 'Enviar',
+        onTap: () => print('Não implementado ainda'),
+      ),
     ],
   );
 }

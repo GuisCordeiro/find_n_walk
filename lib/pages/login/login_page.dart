@@ -2,7 +2,7 @@ import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:findnwalk/components/shared/checkbox.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/form.dart';
-import 'package:findnwalk/components/shared/orange_button.dart';
+import 'package:findnwalk/components/shared/app_button.dart';
 import 'package:findnwalk/components/shared/bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -117,7 +117,8 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                         controller: _passwordFieldController,
                       ),
                       const CheckboxLaranja('lembre-se de mim'),
-                      InkWell(
+                      AppButton(
+                        label: 'Enviar',
                         onTap: () {
                           Navigator.push(
                             context,
@@ -126,7 +127,6 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                             ),
                           );
                         },
-                        child: const Botao('Enviar'),
                       ),
                       InkWell(
                         onTap: () {
