@@ -3,19 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/place.dart';
 import '../models/user.dart';
 
-class Database {
+mixin Database {
   static final _source = FirebaseFirestore.instance;
 
   static final _users = _source.collection('users');
   static final _places = _source.collection('places');
 
   // Operações sobre os usuários.
-  // A chave primária para a coleção users é o e-mail.
-
-  // NOTE Posteriormente, nós podemos mudar isso para um id numérico.
-  // Isso introduziria um cado bom de complexidade, mas também
-  // permitiria que os usuários mudassem o e-mail associado a
-  // conta a qualquer momento, o que seria bem bacana.
 
   static Future<User?> getUser(String name) async {
     var dados = await _users.doc(name).get();
@@ -37,11 +31,6 @@ class Database {
   }
 
   // Operações sobre os lugares.
-  // A chave primária para a coleção places é o endereço.
-
-  // NOTE No momento, o endereço está na forma de string,
-  // mas posteriormente, vamos substituí-lo por um tipo geográfico.
-  // Quando isso acontecer, teremos que armazenar um geopoint no BD.
 
   static Future<Place> getPlace(String name) async {
     var dados = await _places.doc(name).get();

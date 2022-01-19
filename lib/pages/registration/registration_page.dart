@@ -10,7 +10,7 @@ import '../login/login_page.dart';
 */
 
 class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({ Key? key }) : super(key: key);
+  const RegistrationPage({Key? key}) : super(key: key);
 
   @override
   _RegistrationPageState createState() => _RegistrationPageState();
@@ -18,70 +18,94 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   bool selecionado = false;
+
+  final _nameFieldController = TextEditingController();
+  final _birthdayFieldController = TextEditingController();
+  final _emailFieldController = TextEditingController();
+  final _passwordFieldController = TextEditingController();
+  final _passwordAgainFieldController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.orange,
-        title: Text(
+        title: const Text(
           'Cadastro',
-          style: TextStyle(
-            color: AppColors.black
-          ),
+          style: TextStyle(color: AppColors.black),
         ),
       ),
       body: SafeArea(
         child: ListView(
           children: [
-            AppForm('Nome do usuário', Icon(Icons.people), false, TextEditingController()),
-            AppForm('Data de nascimento', Icon(Icons.date_range), false, TextEditingController()),
-            AppForm('E-mail', Icon(Icons.email), false, TextEditingController()),
-            AppForm('Senha', Icon(Icons.lock_open), false, TextEditingController()),
-            AppForm('Confirme sua senha', Icon(Icons.lock), false, TextEditingController()),
-              CheckboxListTile(
-                title: RichText(
-                    textAlign: TextAlign.start,
-                    text: TextSpan(
-                      text: 'Li e concordo com os',
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: AppColors.grey
-                      ),
-                      children: const <TextSpan>[
-                        TextSpan(
-                          text: ' termos de uso',
-                          style: TextStyle(
-                            color: AppColors.blue
-                          ),
-
-                        ),
-                      ]
-                    ),
-                  ),
-                activeColor: AppColors.orange,
-                checkColor: AppColors.white,
-                controlAffinity: ListTileControlAffinity.leading,
-                value: selecionado,
-                onChanged: (bool? value){
-                  setState(() {
-                    selecionado = value!;
-                  });
-                },
+            AppForm(
+              label: 'Nome do usuário',
+              icon: const Icon(Icons.people),
+              decision: false,
+              controller: _nameFieldController,
             ),
-              InkWell(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LoginPage(),
-                    )
-                  );
-                },
-                child: Botao(
-                  'Cadastrar-se'
-                )
-              )
-          ]
+            AppForm(
+              label: 'Data de nascimento',
+              icon: const Icon(Icons.date_range),
+              decision: false,
+              controller: _birthdayFieldController,
+            ),
+            AppForm(
+              label: 'E-mail',
+              icon: const Icon(Icons.email),
+              decision: false,
+              controller: _emailFieldController,
+            ),
+            AppForm(
+              label: 'Senha',
+              icon: const Icon(Icons.lock_open),
+              decision: false,
+              controller: _passwordFieldController,
+            ),
+            AppForm(
+              label: 'Confirme sua senha',
+              icon: const Icon(Icons.lock),
+              decision: false,
+              controller: _passwordAgainFieldController,
+            ),
+            CheckboxListTile(
+              title: RichText(
+                textAlign: TextAlign.start,
+                text: const TextSpan(
+                  text: 'Li e concordo com os',
+                  style: TextStyle(fontSize: 15, color: AppColors.grey),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: ' termos de uso',
+                      style: TextStyle(color: AppColors.blue),
+                    ),
+                  ],
+                ),
+              ),
+              activeColor: AppColors.orange,
+              checkColor: AppColors.white,
+              controlAffinity: ListTileControlAffinity.leading,
+              value: selecionado,
+              onChanged: (bool? value) {
+                setState(
+                  () {
+                    selecionado = value!;
+                  },
+                );
+              },
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LoginPage(),
+                  ),
+                );
+              },
+              child: const Botao('Cadastrar-se'),
+            )
+          ],
         ),
       ),
     );

@@ -13,6 +13,7 @@ import '../registration/registration_page.dart';
 */
 
 class LoginPage extends StatefulWidget {
+
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -20,8 +21,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
-  // Controlador de auntenticação
-  final loginController = LoginController();
+  final _emailFieldController = TextEditingController();
+  final _passwordFieldController = TextEditingController();
 
   late final AnimationController _controller = AnimationController(
     lowerBound: 0.5,
@@ -65,30 +66,31 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   alignment: Alignment.center,
-                  child: Column(children: [
-                    ScaleTransition(
-                      scale: _animation,
-                      child: InkWell(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: SizedBox(
-                            child: Image.asset(
-                              'assets/images/logoWithOutBG.png',
-                              scale: MediaQuery.of(context).size.height / 100,
+                  child: Column(
+                    children: [
+                      ScaleTransition(
+                        scale: _animation,
+                        child: InkWell(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: SizedBox(
+                              child: Image.asset(
+                                'assets/images/logoWithOutBG.png',
+                                scale: MediaQuery.of(context).size.height / 100,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
+                      RichText(
+                        textAlign: TextAlign.center,
+                        text: const TextSpan(
                           text: 'Find',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 25,
                             color: Color(0xff3f3f3f),
                           ),
-                          children: const <TextSpan>[
+                          children: <TextSpan>[
                             TextSpan(
                               text: 'N',
                               style: TextStyle(color: AppColors.orange),
@@ -99,47 +101,61 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                 color: Color(0xff3f3f3f),
                               ),
                             )
-                          ]),
-                    ),
-                    AppForm('Digite seu email', Icon(Icons.email), false,
-                        TextEditingController()),
-                    AppForm('Digite sua senha', Icon(Icons.lock), true,
-                        TextEditingController()),
-                    CheckboxLaranja('lembre-se de mim'),
-                    InkWell(
+                          ],
+                        ),
+                      ),
+                      AppForm(
+                        label: 'Digite seu email',
+                        icon: const Icon(Icons.email),
+                        decision: false,
+                        controller: _emailFieldController,
+                      ),
+                      AppForm(
+                        label: 'Digite sua senha',
+                        icon: const Icon(Icons.lock),
+                        decision: true,
+                        controller: _passwordFieldController,
+                      ),
+                      const CheckboxLaranja('lembre-se de mim'),
+                      InkWell(
                         onTap: () {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const BottomFNBar(),
-                              ));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const BottomFNBar(),
+                            ),
+                          );
                         },
-                        child: Botao('Enviar')),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
+                        child: const Botao('Enviar'),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => const RegistrationPage(),
-                            ));
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 20, bottom: 20),
-                        child: RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
+                            ),
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20, bottom: 20),
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: const TextSpan(
                               text: 'Não tem cadastro?',
-                              style: const TextStyle(
+                              style: TextStyle(
                                   fontSize: 15, color: AppColors.grey),
-                              children: const <TextSpan>[
+                              children: <TextSpan>[
                                 TextSpan(
                                     text: ' Cadastre-se',
                                     style: TextStyle(color: AppColors.blue)),
-                              ]),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ]),
+                    ],
+                  ),
                 ),
               ],
             ),

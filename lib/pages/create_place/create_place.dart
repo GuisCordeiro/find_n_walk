@@ -35,7 +35,7 @@ class _CreatePlaceState extends State<CreatePlace> {
                   color: AppColors.black,
                   fontSize: 25,
                 ),
-                children: const <TextSpan>[
+                children: <TextSpan>[
                   TextSpan(
                     text: 'Local',
                     style: TextStyle(
@@ -47,10 +47,20 @@ class _CreatePlaceState extends State<CreatePlace> {
               ),
             ),
             AppForm(
-                'Nome do local', Icon(Icons.event), false, createPlace.local),
-            AppForm('Endereço', Icon(Icons.place), false, createPlace.address),
-            AppForm('Descrição', Icon(Icons.view_list), false,
-                createPlace.description),
+                label: 'Nome do local',
+                icon: const Icon(Icons.event),
+                decision: false,
+                controller: createPlace.local),
+            AppForm(
+                label: 'Endereço',
+                icon: const Icon(Icons.place),
+                decision: false,
+                controller: createPlace.address),
+            AppForm(
+                label: 'Descrição',
+                icon: const Icon(Icons.view_list),
+                decision: false,
+                controller: createPlace.description),
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: GestureDetector(

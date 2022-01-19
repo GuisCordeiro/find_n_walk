@@ -9,7 +9,7 @@ import 'package:geolocator/geolocator.dart';
 enum AuthResult { nameNotFound, wrongPassword, success }
 
 // Controlador estático que gerencia a autenticação e a criação de usuários
-class LoginController {
+mixin LoginController {
   static User? user;
 
   static LatLng? location;
