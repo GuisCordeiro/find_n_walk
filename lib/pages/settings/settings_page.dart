@@ -19,7 +19,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.orange,
-          title: Text(
+          title: const Text(
             'Configurações',
             style: TextStyle(
               color: AppColors.black
@@ -28,7 +28,7 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       body: SafeArea(
         child: ListView(
-          children: [
+          children: const [
             Text('Settings Page')
           ],
         ),

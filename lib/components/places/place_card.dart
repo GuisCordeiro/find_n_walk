@@ -6,42 +6,49 @@ import '../shared/favorite_button.dart';
 
 placeCard(Place place) {
   return AlertDialog(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(25))),
-      title: Text(place.name,
-          style: TextStyle(
-              color: AppColors.orange,
-              fontWeight: FontWeight.bold,
-              fontSize: 25)),
-      actions: [
-        Center(
-          child: Column(
-            children: [
-              isPublic(place),
-              space(height: 30),
-              titleText("Categorias"),
-              commonText(place.cathegory.toString()),
-              space(),
-              titleText("Local"),
-              commonText(place.address),
-              space(),
-              titleText("Capacidade máxima"),
-              commonText(place.capacity.toString()),
-              space(),
-              titleText("Descrição"),
-              commonText(place.description),
-              space(),
-              FavoriteButton(favorite: false),
-            ],
-          ),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(
+        Radius.circular(25),
+      ),
+    ),
+    title: Text(
+      place.name,
+      style: const TextStyle(
+        color: AppColors.orange,
+        fontWeight: FontWeight.bold,
+        fontSize: 25,
+      ),
+    ),
+    actions: [
+      Center(
+        child: Column(
+          children: [
+            isPublic(place),
+            space(height: 30),
+            titleText("Categorias"),
+            commonText(place.cathegory.toString()),
+            space(),
+            titleText("Local"),
+            commonText(place.address),
+            space(),
+            titleText("Capacidade máxima"),
+            commonText(place.capacity.toString()),
+            space(),
+            titleText("Descrição"),
+            commonText(place.description),
+            space(),
+            const FavoriteButton(favorite: false),
+          ],
         ),
-      ]);
+      ),
+    ],
+  );
 }
 
 titleText(String text) {
   return Text(
     text,
-    style: TextStyle(
+    style: const TextStyle(
         color: AppColors.orange, fontWeight: FontWeight.bold, fontSize: 20),
   );
 }
@@ -49,7 +56,7 @@ titleText(String text) {
 commonText(String text) {
   return Text(
     text,
-    style: TextStyle(color: AppColors.black, fontSize: 15),
+    style: const TextStyle(color: AppColors.black, fontSize: 15),
   );
 }
 

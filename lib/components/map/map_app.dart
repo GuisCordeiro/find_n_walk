@@ -15,11 +15,11 @@ class MapApp extends StatefulWidget {
 
 class _MapAppState extends State<MapApp> {
 
-    final List<LatLng> _markerPositions = [
-    LatLng(44.421, 10.404),
-    LatLng(45.683, 10.839),
-    LatLng(45.246, 5.783),
-  ];
+  //   final List<LatLng> _markerPositions = [
+  //   LatLng(44.421, 10.404),
+  //   LatLng(45.683, 10.839),
+  //   LatLng(45.246, 5.783),
+  // ];
 
   @override
   Widget build(BuildContext context) {
