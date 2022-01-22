@@ -16,15 +16,6 @@ class MapApp extends StatefulWidget {
 
 
 class _MapAppState extends State<MapApp> {
-    final PopupController _popupLayerController = PopupController();
-    final List<LatLng> _markerPositions = [
-    LatLng(44.421, 10.404),
-    LatLng(45.683, 10.839),
-    LatLng(45.246, 5.783),
-  ];
-
-
-
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
@@ -39,7 +30,9 @@ class _MapAppState extends State<MapApp> {
           urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
           subdomains: ['a', 'b', 'c'],
         ),
-        
+                  MarkerLayerOptions(
+            markers: listPlaceMarkers.placesMarker
+          ),
         MarkerLayerOptions(
           markers: [
             Marker(

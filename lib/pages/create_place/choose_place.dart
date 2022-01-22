@@ -20,14 +20,13 @@ class _ChoosePlaceState extends State<ChoosePlace> {
   final String placeAddress;
   final String placeDescription;
   _ChoosePlaceState(this.placeName, this.placeAddress, this.placeDescription);
-  List<Marker> placesMarker = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.orange,
         title: Text(
-          "Escolha o local",
+          "Pressione o local desejado",
           style: TextStyle(
             color: AppColors.black
           ),
@@ -42,7 +41,7 @@ class _ChoosePlaceState extends State<ChoosePlace> {
             MaterialPageRoute(
               builder: (context) => HomePage(),
             ),
-          );
+          ).then((value) => setState((){}));
           },
           center: LatLng(lat, lng),
           zoom: 16.0,
@@ -55,7 +54,7 @@ class _ChoosePlaceState extends State<ChoosePlace> {
             subdomains: ['a', 'b', 'c'],
           ),
           MarkerLayerOptions(
-            markers: placesMarker
+            markers: listPlaceMarkers.placesMarker
           ),
           
           MarkerLayerOptions(
@@ -146,9 +145,9 @@ class _ChoosePlaceState extends State<ChoosePlace> {
   }
    _handleTap(LatLng tappedPoint){
     setState(() {
-      placesMarker.add(
+      listPlaceMarkers.placesMarker.add(
         createmarker(tappedPoint, context, placeName, placeAddress, placeDescription)
-      );      
+      );     
     });
   }
 }

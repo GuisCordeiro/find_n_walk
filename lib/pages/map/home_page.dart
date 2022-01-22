@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
             if (lat != 0) {
               return Stack(
                 children: [
-                  const MapApp(),
+                 const MapApp(),
                   Padding(
                     padding: const EdgeInsets.only(left: 10, right: 10),
                     child: AnimSearchBar(
