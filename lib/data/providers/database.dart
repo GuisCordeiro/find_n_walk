@@ -2,50 +2,103 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../models/place.dart';
 import '../models/user.dart';
+import '../models/review.dart';
 
 mixin Database {
   static final _source = FirebaseFirestore.instance;
 
-  static final _users = _source.collection('users');
-  static final _places = _source.collection('places');
+  static final _users = _source.collection('users').withConverter<User>(
+        fromFirestore: (snapshots, _) => User.fromJson(snapshots.data()!),
+        toFirestore: (user, _) => user.toJson(),
+      );
+
+  static final _places = _source.collection('places').withConverter<Place>(
+        fromFirestore: (snapshots, _) => Place.fromJson(snapshots.data()!),
+        toFirestore: (place, _) => place.toJson(),
+      );
 
   // Operações sobre os usuários.
 
-  static Future<User?> getUser(String name) async {
-    var dados = await _users.doc(name).get();
-    var data = dados.data();
-    if (data != null) {
-      return User.fromMap(dados.data() as Map<String, String>);
+  static Future<User?> getUser(String id) async {
+    final dados = await _users.doc(id).get();
+    return dados.data();
+  }
+
+  static Future<User?> getUserBy(String property, String value) async {
+    final dados = await _users.where(property, isEqualTo: value).get();
+    final userDoc = dados.docs.single;
+    if (!userDoc.exists) {
+      return null;
     }
-    return null;
+    var user = userDoc.data();
+    user.id = userDoc.id;
+    return user;
   }
 
-  static Future<bool> addUser(User user) async {
-    _users.doc(user.name).set(user.toMap());
-    return true;
+  static Future<void> addUser(User user) async {
+    final dados = await _users.add(user);
+    user.id = dados.id;
   }
 
-  static Future<bool> updateUser(User updated) async {
-    _users.doc(updated.name).set(updated.toMap());
-    return true;
+  static Future<void> updateUser(
+      String id, Map<String, dynamic> data) async {
+    await _users
+        .doc(id)
+        .update(data)
+        .onError((error, stackTrace) => print('TODO lidar com esse erro'));
   }
 
   // Operações sobre os lugares.
 
-  static Future<Place> getPlace(String name) async {
-    var dados = await _places.doc(name).get();
-    return Place.fromMap(dados.data() as Map<String, dynamic>);
+  static Future<Place?> getPlace(String name) async {
+    final dados = await _places.doc(name).get();
+    final place = dados.data();
+    return place;
   }
 
   static Future<void> addPlace(Place place) async {
-    _places.doc(place.name).set(place.toMap());
+    await _places
+        .doc(place.name)
+        .set(place)
+        .onError((error, stackTrace) => print('TODO lidar com esse erro'));
   }
 
-  static Future<void> updatePlace(Place updated) async {
-    _places.doc(updated.name).set(updated.toMap());
+  static Future<void> updatePlace(
+      String name, Map<String, dynamic> data) async {
+    await _places
+        .doc(name)
+        .update(data)
+        .onError((error, stackTrace) => print('TODO lidar com esse erro'));
   }
 
-  // TODO operações sobre as avaliações. O armazenamento
-  // delas é ligeiramente mais complexo que o de usuários
-  // e lugares, pois envolve subcoleções e gerência de redundância.
+  // Ok, acredito que descobri como nós vamos armazenar as avaliações.
+  // As avaliações associadas a um certo lugar serão armazenadas como uma
+  // subcoleção desse lugar. Certo? ;)
+
+  static CollectionReference _reviewCollection(Place place) {
+    return _places.doc(place.name).collection('reviews').withConverter<Review>(
+          fromFirestore: (snapshots, _) => Review.fromJson(snapshots.data()!),
+          toFirestore: (review, _) => review.toJson(),
+        );
+  }
+
+  static Future<Iterable<Review?>> getReviews(Place place) async {
+    final snapshot = await _reviewCollection(place).get();
+    return snapshot.docs.map((doc) => doc.data() as Review?);
+  }
+
+  static Future<void> addReview(Place place, Review review) async {
+    await _reviewCollection(place)
+        .doc(review.userId)
+        .set(review)
+        .onError((error, stackTrace) => print('TODO lidar com esse erro'));
+  }
+
+  static Future<void> updateReview(
+      Place place, String reviewId, Map<String, dynamic> data) async {
+    await _reviewCollection(place)
+        .doc(reviewId)
+        .update(data)
+        .onError((error, stackTrace) => print('TODO lidar com esse erro'));
+  }
 }

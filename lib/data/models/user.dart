@@ -1,18 +1,23 @@
-// Classe que representa um usuário
+// Classe que representa um usuário.
+// Seu id no banco de dados é gerado automaticamente.
 
 import 'package:crypto/crypto.dart';
 
 class User {
-  // TODO  falta o campo de foto.
+  // id
+  String? id;
+
+  // email
+  String email;
+
+  // URL da foto
+  String? picture;
 
   // Nome de Usuário
   String name;
 
   // Data de Nascimento
   DateTime birthday;
-
-  // email
-  String email;
 
   // senha
   Digest passwordHash;
@@ -29,9 +34,10 @@ class User {
       required this.birthday,
       required this.passwordHash,
       required this.favoritePlaces,
+      this.picture,
       this.bio});
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'email': email,
       'user_name': name,
@@ -41,7 +47,7 @@ class User {
     };
   }
 
-  static User fromMap(Map<String, dynamic> map) {
+  static User fromJson(Map<String, dynamic> map) {
     return User(
       email: map['email'],
       name: map['user_name'],

@@ -1,18 +1,31 @@
+// Classe que representa uma avaliação.
+// Seu id no banco de dados é gerado automaticamente.
+
 class Review {
-  // id da avaliação
-  int id;
-
   // id do avaliador
-  int userId;
-
-  // id do local
-  int placeId;
+  String userId;
 
   // nota da avaliação
-  double rate;
+  int rating;
 
-  // descrição da avaliação
+  // texto da avaliação
   String text;
 
-  Review(this.id, this.userId, this.placeId, this.rate, this.text);
+  Review({required this.userId, required this.rating, required this.text});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'user_id': userId,
+      'rating': rating,
+      'text': text,
+    };
+  }
+
+  static Review fromJson(Map<String, dynamic> json) {
+    return Review(
+      userId: json['user_id'],
+      rating: json['rating'],
+      text: json['text'],
+    );
+  }
 }
