@@ -10,20 +10,15 @@ class MapApp extends StatefulWidget {
 
   @override
   _MapAppState createState() => _MapAppState();
-  
 }
 
-
-
 class _MapAppState extends State<MapApp> {
-    final PopupController _popupLayerController = PopupController();
-    final List<LatLng> _markerPositions = [
+  final PopupController _popupLayerController = PopupController();
+  final List<LatLng> _markerPositions = [
     LatLng(44.421, 10.404),
     LatLng(45.683, 10.839),
     LatLng(45.246, 5.783),
   ];
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +34,6 @@ class _MapAppState extends State<MapApp> {
           urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
           subdomains: ['a', 'b', 'c'],
         ),
-        
         MarkerLayerOptions(
           markers: [
             Marker(
@@ -47,12 +41,12 @@ class _MapAppState extends State<MapApp> {
               height: 130.0,
               point: LatLng(lat, lng),
               builder: (ctx) => GestureDetector(
-                onTap: (){
+                onTap: () {
                   showModalBottomSheet(
-                    context: context, 
-                    builder: (builder){
+                    context: context,
+                    builder: (builder) {
                       return Container(
-                        height: MediaQuery.of(context).size.height/3,
+                        height: MediaQuery.of(context).size.height / 3,
                         color: AppColors.white,
                         child: Column(
                           children: [
@@ -60,43 +54,42 @@ class _MapAppState extends State<MapApp> {
                               children: [
                                 Container(
                                   color: AppColors.orange,
-                                  height: MediaQuery.of(context).size.height/12,
+                                  height:
+                                      MediaQuery.of(context).size.height / 12,
                                 ),
                                 Column(
-                                  children: [
+                                  children: const [
                                     Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: EdgeInsets.all(8.0),
                                       child: Align(
                                         alignment: Alignment.center,
-                                        child: const Text(
+                                        child: Text(
                                           "Nome do Local",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.white,
-                                            fontSize: 26
-                                          ),
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.white,
+                                              fontSize: 26),
                                         ),
                                       ),
                                     ),
                                     Align(
                                       alignment: Alignment.center,
-                                      child: const Text(
+                                      child: Text(
                                         "Endereço",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: AppColors.white,
-                                          fontSize: 12
-                                        ),
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.white,
+                                            fontSize: 12),
                                       ),
                                     ),
                                   ],
                                 )
                               ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
@@ -113,17 +106,12 @@ class _MapAppState extends State<MapApp> {
                     },
                   );
                 },
-                child: Container(
-                  child: Image.asset('assets/images/cursor.png'),
-                ),
+                child: Image.asset('assets/images/cursor.png'),
               ),
             ),
-            
           ],
         ),
       ],
-      
     );
   }
 }
-
