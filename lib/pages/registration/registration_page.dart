@@ -1,6 +1,7 @@
+import 'package:findnwalk/components/shared/app_button.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/form.dart';
-import 'package:findnwalk/components/shared/app_button.dart';
+import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 
 import '../login/login_page.dart';
@@ -111,11 +112,32 @@ class _RegistrationPageState extends State<RegistrationPage> {
             AppButton(
               label: 'Cadastrar-se',
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginPage(),
-                  ),
+                final name = _nameFieldController.text;
+                final birthday = _birthdayFieldController.text;
+                final email = _emailFieldController.text;
+                final password = _passwordFieldController.text;
+                final passwordAgain = _passwordAgainFieldController.text;
+
+                if (password != passwordAgain) {
+                  print('Senha não corresponde com a confirmação');
+                  return;
+                }
+
+                LoginController.register(name, email, birthday, password).then(
+                  (_) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
+                    );
+                  },
+                ).timeout(
+                  const Duration(seconds: 30),
+                  onTimeout: () {
+                    print('Erro! Demorou demais');
+                    return null;
+                  },
                 );
               },
             )

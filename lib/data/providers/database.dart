@@ -21,54 +21,52 @@ mixin Database {
 
   static Future<User?> getUser(String id) async {
     final dados = await _users.doc(id).get();
-    return dados.data();
+    if (!dados.exists) return null;
+    final user = dados.data();
+    if (user == null) return null;
+    user.id = dados.id;
+    return user;
   }
 
   static Future<User?> getUserBy(String property, String value) async {
     final dados = await _users.where(property, isEqualTo: value).get();
-    final userDoc = dados.docs.single;
-    if (!userDoc.exists) {
-      return null;
-    }
-    var user = userDoc.data();
+    final userDoc = dados.docs.first;
+    if (!userDoc.exists) return null;
+    final user = userDoc.data();
     user.id = userDoc.id;
     return user;
   }
 
+  // TODO deal with potential errors
   static Future<void> addUser(User user) async {
     final dados = await _users.add(user);
     user.id = dados.id;
   }
 
-  static Future<void> updateUser(
-      String id, Map<String, dynamic> data) async {
-    await _users
-        .doc(id)
-        .update(data)
-        .onError((error, stackTrace) => print('TODO lidar com esse erro'));
+  // TODO deal with potential errors
+  static Future<void> updateUser(String id, Map<String, dynamic> data) async {
+    await _users.doc(id).update(data);
   }
 
   // Operações sobre os lugares.
 
+  // TODO tornar os lugares identificados pelo id
+
   static Future<Place?> getPlace(String name) async {
     final dados = await _places.doc(name).get();
-    final place = dados.data();
-    return place;
+    if (!dados.exists) return null;
+    return dados.data();
   }
 
+  // TODO deal with potential errors
   static Future<void> addPlace(Place place) async {
-    await _places
-        .doc(place.name)
-        .set(place)
-        .onError((error, stackTrace) => print('TODO lidar com esse erro'));
+    await _places.doc(place.name).set(place);
   }
 
+  // TODO deal with potential errors
   static Future<void> updatePlace(
       String name, Map<String, dynamic> data) async {
-    await _places
-        .doc(name)
-        .update(data)
-        .onError((error, stackTrace) => print('TODO lidar com esse erro'));
+    await _places.doc(name).update(data);
   }
 
   // Ok, acredito que descobri como nós vamos armazenar as avaliações.
@@ -82,23 +80,20 @@ mixin Database {
         );
   }
 
+  // TODO improve this
   static Future<Iterable<Review?>> getReviews(Place place) async {
     final snapshot = await _reviewCollection(place).get();
     return snapshot.docs.map((doc) => doc.data() as Review?);
   }
 
+  // TODO deal with potential errors
   static Future<void> addReview(Place place, Review review) async {
-    await _reviewCollection(place)
-        .doc(review.userId)
-        .set(review)
-        .onError((error, stackTrace) => print('TODO lidar com esse erro'));
+    await _reviewCollection(place).doc(review.userId).set(review);
   }
 
+  // TODO deal with potential errors
   static Future<void> updateReview(
       Place place, String reviewId, Map<String, dynamic> data) async {
-    await _reviewCollection(place)
-        .doc(reviewId)
-        .update(data)
-        .onError((error, stackTrace) => print('TODO lidar com esse erro'));
+    await _reviewCollection(place).doc(reviewId).update(data);
   }
 }

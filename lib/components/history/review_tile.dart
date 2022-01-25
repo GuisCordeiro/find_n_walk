@@ -49,7 +49,7 @@ checkThumbnail(Place place) {
   if (place.thumbnail == null) {
     return const SizedBox(width: 10, height: 10);
   } else {
-    return Image.file(place.thumbnail!);
+    return Image.asset(place.thumbnail!);
   }
 }
 

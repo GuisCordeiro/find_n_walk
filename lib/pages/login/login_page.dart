@@ -1,9 +1,9 @@
-import 'package:findnwalk/controllers/login_controller.dart';
+import 'package:findnwalk/components/shared/app_button.dart';
+import 'package:findnwalk/components/shared/bottom_navigation_bar.dart';
 import 'package:findnwalk/components/shared/checkbox.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/form.dart';
-import 'package:findnwalk/components/shared/app_button.dart';
-import 'package:findnwalk/components/shared/bottom_navigation_bar.dart';
+import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 
 import '../registration/registration_page.dart';
@@ -120,11 +120,40 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                       AppButton(
                         label: 'Enviar',
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const BottomFNBar(),
-                            ),
+                          // TODO dar uma limpada nisso
+                          final email = _emailFieldController.text;
+                          final password = _passwordFieldController.text;
+                          final auth =
+                              LoginController.authenticate(email, password);
+                          auth.then(
+                            (result) {
+                              switch (result) {
+                                case AuthResult.success:
+                                  // Sucesso total
+                                  print('Sucesso total');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const BottomFNBar(),
+                                    ),
+                                  );
+                                  break;
+                                case AuthResult.wrongPassword:
+                                  // Senha errada
+                                  print('Senha errada');
+                                  break;
+                                case AuthResult.userNotFound:
+                                  // Usuário não encontrado
+                                  print('Usuário não encontrado');
+                                  break;
+                              }
+                            },
+                          ).timeout(
+                            const Duration(seconds: 30),
+                            onTimeout: () {
+                              print('Erro! Demorou demais');
+                              return null;
+                            },
                           );
                         },
                       ),
@@ -144,11 +173,14 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                             text: const TextSpan(
                               text: 'Não tem cadastro?',
                               style: TextStyle(
-                                  fontSize: 15, color: AppColors.grey),
+                                fontSize: 15,
+                                color: AppColors.grey,
+                              ),
                               children: <TextSpan>[
                                 TextSpan(
-                                    text: ' Cadastre-se',
-                                    style: TextStyle(color: AppColors.blue)),
+                                  text: ' Cadastre-se',
+                                  style: TextStyle(color: AppColors.blue),
+                                ),
                               ],
                             ),
                           ),
