@@ -5,7 +5,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../../pages/place/place_page.dart';
 import '../shared/colors.dart';
 
-//Este widget deve receber a nota da avaliação relacinada ao usuario e ao local, mas por enquanto está recebendo a nota geral do local
+//Este widget deve receber a nota da avaliação relacinada ao usuario e ao local,
+// mas por enquanto está recebendo a nota geral do local
 
 reviewTile(Place place, BuildContext context) {
   return ListTile(
@@ -46,7 +47,7 @@ checkThumbnail(Place place) {
   if (place.thumbnail == null) {
     return const SizedBox(width: 10, height: 10);
   } else {
-    return Image.file(place.thumbnail!);
+    return Image.asset(place.thumbnail!);
   }
 }
 

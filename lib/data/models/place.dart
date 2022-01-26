@@ -1,38 +1,39 @@
-import 'dart:io';
+// Classe que representa um lugar.
+// Seu id no banco de dados é gerado automaticamente
 
 class Place {
-  //ID do local
-  int id;
+  // id do local
+  String id;
 
-  //ID do criador
-  int creatorId;
+  // id do criador
+  String creatorId;
 
   //Nome do local
   String name;
 
-  //Local (trocar para "Location" ou outra classe que suporte cordenadas geográficas)
+  // Endereço (trocar para um tipo geográfico)
   String address;
 
-  //Descrição do local
+  // Descrição
   String description;
 
-  //Público (true) ou Privado (false)
+  // Público ou privado
   bool isPublic;
 
-  //Categorias esportivas
+  // Categorias esportivas
   List<String> cathegory;
 
-  //foto principal
-  File? thumbnail;
+  // Foto principal
+  String? thumbnail;
 
-  //fotos do local
-  List<File>? pictures;
+  // Demais fotos
+  List<String>? pictures;
 
-  //Nota do local --> 1 a 10 metades de estrela
+  // Nota, em meias-estrelas (0-10)
   int? rating;
 
-  //Capacidade de pessoas
-  int capacity;
+  // Capacidade de pessoas
+  int? capacity;
 
   Place(
       {required this.id,
@@ -42,12 +43,12 @@ class Place {
       required this.description,
       required this.isPublic,
       required this.cathegory,
-      required this.capacity,
+      this.capacity,
       this.pictures,
       this.thumbnail,
       this.rating});
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return {
       'id': id,
       'creatorId': creatorId,
@@ -61,13 +62,7 @@ class Place {
     };
   }
 
-  // NOTE esse monte de ?? serve para contornar
-  // a exigência do dart de que tudo seja null-safe, mas,
-  // na prática, nenhum deles deveria ser acionado. Isso
-  // porque os mapas que serão passados para essa função
-  // deveriam ser produzidos pela função acima, que não
-  // deixa nenhum campo faltando.
-  static Place fromMap(Map<String, dynamic> map) {
+  static Place fromJson(Map<String, dynamic> map) {
     return Place(
       id: map['id'],
       creatorId: map['creatorId'],

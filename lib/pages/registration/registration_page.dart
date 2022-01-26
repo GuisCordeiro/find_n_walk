@@ -1,6 +1,7 @@
+import 'package:findnwalk/components/shared/app_button.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/form.dart';
-import 'package:findnwalk/components/shared/orange_button.dart';
+import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 
 import '../login/login_page.dart';
@@ -17,7 +18,28 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> {
-  bool selecionado = false;
+  bool agreed = false;
+
+  final _nameFieldController = TextEditingController();
+
+  final _birthdayFieldController = TextEditingController();
+
+  final _emailFieldController = TextEditingController();
+
+  final _passwordFieldController = TextEditingController();
+
+  final _passwordAgainFieldController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameFieldController.dispose();
+    _birthdayFieldController.dispose();
+    _emailFieldController.dispose();
+    _passwordFieldController.dispose();
+    _passwordAgainFieldController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,21 +51,42 @@ class _RegistrationPageState extends State<RegistrationPage> {
         ),
       ),
       body: SafeArea(
-        child: ListView(children: [
-          AppForm('Nome do usuário', const Icon(Icons.people), false,
-              TextEditingController()),
-          AppForm('Data de nascimento', const Icon(Icons.date_range), false,
-              TextEditingController()),
-          AppForm('E-mail', const Icon(Icons.email), false,
-              TextEditingController()),
-          AppForm('Senha', const Icon(Icons.lock_open), false,
-              TextEditingController()),
-          AppForm('Confirme sua senha', const Icon(Icons.lock), false,
-              TextEditingController()),
-          CheckboxListTile(
-            title: RichText(
-              textAlign: TextAlign.start,
-              text: const TextSpan(
+        child: ListView(
+          children: [
+            AppForm(
+              label: 'Nome do usuário',
+              icon: const Icon(Icons.people),
+              decision: false,
+              controller: _nameFieldController,
+            ),
+            AppForm(
+              label: 'Data de nascimento',
+              icon: const Icon(Icons.date_range),
+              decision: false,
+              controller: _birthdayFieldController,
+            ),
+            AppForm(
+              label: 'E-mail',
+              icon: const Icon(Icons.email),
+              decision: false,
+              controller: _emailFieldController,
+            ),
+            AppForm(
+              label: 'Senha',
+              icon: const Icon(Icons.lock_open),
+              decision: false,
+              controller: _passwordFieldController,
+            ),
+            AppForm(
+              label: 'Confirme sua senha',
+              icon: const Icon(Icons.lock),
+              decision: false,
+              controller: _passwordAgainFieldController,
+            ),
+            CheckboxListTile(
+              title: RichText(
+                textAlign: TextAlign.start,
+                text: const TextSpan(
                   text: 'Li e concordo com os',
                   style: TextStyle(fontSize: 15, color: AppColors.grey),
                   children: <TextSpan>[
@@ -51,28 +94,55 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       text: ' termos de uso',
                       style: TextStyle(color: AppColors.blue),
                     ),
-                  ]),
-            ),
-            activeColor: AppColors.orange,
-            checkColor: AppColors.white,
-            controlAffinity: ListTileControlAffinity.leading,
-            value: selecionado,
-            onChanged: (bool? value) {
-              setState(() {
-                selecionado = value!;
-              });
-            },
-          ),
-          InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginPage(),
-                    ));
+                  ],
+                ),
+              ),
+              activeColor: AppColors.orange,
+              checkColor: AppColors.white,
+              controlAffinity: ListTileControlAffinity.leading,
+              value: agreed,
+              onChanged: (bool? value) {
+                setState(
+                  () {
+                    agreed = value ?? false;
+                  },
+                );
               },
-              child: const Botao('Cadastrar-se'))
-        ]),
+            ),
+            AppButton(
+              label: 'Cadastrar-se',
+              onTap: () {
+                final name = _nameFieldController.text;
+                final birthday = _birthdayFieldController.text;
+                final email = _emailFieldController.text;
+                final password = _passwordFieldController.text;
+                final passwordAgain = _passwordAgainFieldController.text;
+
+                if (password != passwordAgain) {
+                  print('Senha não corresponde com a confirmação');
+                  return;
+                }
+
+                LoginController.register(name, email, birthday, password).then(
+                  (_) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
+                    );
+                  },
+                ).timeout(
+                  const Duration(seconds: 30),
+                  onTimeout: () {
+                    print('Erro! Demorou demais');
+                    return null;
+                  },
+                );
+              },
+            )
+          ],
+        ),
       ),
     );
   }

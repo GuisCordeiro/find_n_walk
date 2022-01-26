@@ -1,12 +1,10 @@
-import 'package:findnwalk/data/models/user.dart';
-import 'package:flutter/material.dart';
-
+import '../models/user.dart';
 import '../models/place.dart';
 
 var usuariosDeTeste = [
   User(
-      id: 1,
-      userName: "admin",
+      id: 'Aaaaa',
+      name: "admin",
       email: "admin@gmail.com",
       birthday: DateTime(2010),
       passwordHash: "hfiashfoiahfiahfoa"),
@@ -14,8 +12,8 @@ var usuariosDeTeste = [
 
 var lugaresDeTeste = [
   Place(
-    id: 1,
-    creatorId: 1,
+    id: 'Bbbbbb',
+    creatorId: 'Aaaaa',
     name: 'Poliesportivo claudomiro',
     address: 'Rua dos Bobos, n 0, Bairro do Limoeiro',
     description: 'O melhor poliesportivo',
@@ -25,8 +23,8 @@ var lugaresDeTeste = [
     capacity: 300,
   ),
   Place(
-    id: 2,
-    creatorId: 1,
+    id: 'Ccccccc',
+    creatorId: 'Aaaaa',
     name: 'Quadra de futebas do marcola',
     address: 'Rua Juquinha, nº143, Centro',
     description: 'Bão que só',

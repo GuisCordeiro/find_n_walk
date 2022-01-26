@@ -35,10 +35,11 @@ class FNAppBar extends StatelessWidget {
             icon: icon,
             onPressed: () {
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => page,
-                  ));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => page,
+                ),
+              );
             },
           )
         ],

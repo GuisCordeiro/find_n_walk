@@ -19,29 +19,32 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(primaryColor: AppColors.orange),
-        home: Scaffold(
-            appBar: AppBar(
-              backgroundColor: AppColors.orange,
-              title: const Text(
-                'Minhas Avaliações',
-                style: TextStyle(color: AppColors.black),
-              ),
-              actions: [
-                IconButton(
-                  color: AppColors.black,
-                  icon: const Icon(Icons.person),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const PerfilPage(),
-                        ));
-                  },
-                )
-              ],
-            ),
-            body: reviewedPlaces()));
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primaryColor: AppColors.orange),
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.orange,
+          title: const Text(
+            'Minhas Avaliações',
+            style: TextStyle(color: AppColors.black),
+          ),
+          actions: [
+            IconButton(
+              color: AppColors.black,
+              icon: const Icon(Icons.person),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PerfilPage(),
+                  ),
+                );
+              },
+            )
+          ],
+        ),
+        body: reviewedPlaces(),
+      ),
+    );
   }
 }

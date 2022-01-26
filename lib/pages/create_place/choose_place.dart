@@ -1,18 +1,25 @@
 import 'package:findnwalk/components/markers/marker_place.dart';
 import 'package:findnwalk/components/shared/colors.dart';
-import 'package:findnwalk/controllers/variables.dart';
 import 'package:findnwalk/pages/map/home_page.dart';
+import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:findnwalk/controllers/temp.dart';
+
+import '../map/home_page.dart';
 
 class ChoosePlace extends StatefulWidget {
   final String placeName;
+
   final String placeAddress;
+
   final String placeDescription;
+
   const ChoosePlace(this.placeName, this.placeAddress, this.placeDescription,
       {Key? key})
       : super(key: key);
+
   @override
   _ChoosePlaceState createState() =>
       _ChoosePlaceState(placeName, placeAddress, placeDescription);
@@ -35,16 +42,18 @@ class _ChoosePlaceState extends State<ChoosePlace> {
       ),
       body: FlutterMap(
         options: MapOptions(
-          onLongPress: (tappedPoint, LatLng) {
+          onLongPress: (tappedPoint, LatLng thing) {
             _handleTap;
             Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const HomePage(),
-            ),
-          ).then((value) => setState((){}));
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomePage(),
+              ),
+            ).then(
+              (value) => setState(() {}),
+            );
           },
-          center: LatLng(lat, lng),
+          center: LoginController.location,
           zoom: 16.0,
           maxZoom: 18,
           minZoom: 5,
@@ -54,16 +63,14 @@ class _ChoosePlaceState extends State<ChoosePlace> {
             urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
             subdomains: ['a', 'b', 'c'],
           ),
-          MarkerLayerOptions(
-            markers: listPlaceMarkers.placesMarker
-          ),
-
+          MarkerLayerOptions(markers: ListPlaceMarkers.placesMarker),
           MarkerLayerOptions(
             markers: [
               Marker(
                 width: 130.0,
                 height: 130.0,
-                point: LatLng(lat, lng),
+                // TODO make this better
+                point: LoginController.location ?? LatLng(0, 0),
                 builder: (ctx) => GestureDetector(
                   onTap: () {
                     showModalBottomSheet(
@@ -103,9 +110,10 @@ class _ChoosePlaceState extends State<ChoosePlace> {
                                           "Endereço",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColors.white,
-                                              fontSize: 12),
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.white,
+                                            fontSize: 12,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -141,10 +149,11 @@ class _ChoosePlaceState extends State<ChoosePlace> {
   }
 
   _handleTap(LatLng tappedPoint) {
-    setState(() {
-      listPlaceMarkers.placesMarker.add(
-        createmarker(tappedPoint, context, placeName, placeAddress, placeDescription)
-      );
-    });
+    setState(
+      () {
+        ListPlaceMarkers.placesMarker.add(createmarker(
+            tappedPoint, context, placeName, placeAddress, placeDescription));
+      },
+    );
   }
 }

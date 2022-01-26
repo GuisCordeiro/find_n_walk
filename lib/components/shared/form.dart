@@ -3,43 +3,58 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 /*
-  Esse é o campo de preenchimento dos formulários, você só precisa passar a string
-  que ficará dentro do campo de preenchimeto (o placeholder).
-  A chamada desse componente é: Formulário('string')
+  Formulário genérico utilizado no aplicativo
 */
 
-class AppForm extends StatelessWidget {
+class AppForm extends StatefulWidget {
   final String label;
   final bool decision;
   final Icon icon;
-  final TextEditingController formController;
+  final TextEditingController controller;
 
-  const AppForm(this.label, this.icon, this.decision, this.formController,
-      {Key? key})
+  const AppForm(
+      {required this.label,
+      required this.icon,
+      required this.decision,
+      required this.controller,
+      Key? key})
       : super(key: key);
 
+  @override
+  _AppFormState createState() => _AppFormState();
+}
+
+class _AppFormState extends State<AppForm> {
+  @override
   void dispose() {
-    formController.dispose();
+    widget.controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
+      padding: const EdgeInsets.only(
+        left: 20,
+        right: 20,
+        top: 10,
+      ),
       child: TextField(
-        controller: formController,
-        obscureText: decision,
+        controller: widget.controller,
+        obscureText: widget.decision,
         cursorColor: AppColors.orange,
         decoration: InputDecoration(
-          prefixIcon: icon,
+          prefixIcon: widget.icon,
           focusColor: AppColors.orange,
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(color: AppColors.grey)),
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: AppColors.grey),
+          ),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(color: AppColors.orange)),
-          hintText: label,
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: AppColors.orange),
+          ),
+          hintText: widget.label,
         ),
       ),
     );

@@ -22,12 +22,13 @@ class _FavoriteButtonState extends State<FavoriteButton> {
           icon: const Icon(Icons.favorite_border));
     } else {
       return IconButton(
-          color: Colors.red,
-          onPressed: () {
-            isFavorite = false;
-            setState(() {});
-          },
-          icon: const Icon(Icons.favorite, color: Colors.red));
+        color: Colors.red,
+        onPressed: () {
+          isFavorite = false;
+          setState(() {});
+        },
+        icon: const Icon(Icons.favorite, color: Colors.red),
+      );
     }
   }
 }

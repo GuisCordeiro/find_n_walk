@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class AuthorBlock extends StatelessWidget {
   final User user;
+
   const AuthorBlock({Key? key, required this.user}) : super(key: key);
 
   @override
@@ -15,9 +16,10 @@ class AuthorBlock extends StatelessWidget {
               context: context,
               builder: (context) {
                 return UserCard(user: user);
-              });
+              },
+            );
         },
         child: TextBlock(
-            title: "Criado por", subtitle: user.userName, context: context));
+            title: "Criado por", subtitle: user.name, context: context));
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:findnwalk/components/places_listviews/all_places_list_view.dart';
 import 'package:findnwalk/components/places_listviews/favorite_places_list_view.dart';
 import 'package:findnwalk/components/shared/colors.dart';
@@ -21,27 +20,30 @@ class _PlacesPageState extends State<PlacesPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(primaryColor: AppColors.orange),
-        home: DefaultTabController(
-          length: 2,
-          child: Scaffold(
-              appBar: const PreferredSize(
-                  preferredSize: Size.fromHeight(70),
-                  child: TabFNAppBar(
-                    'Lugares',
-                    Icon(Icons.person),
-                    PerfilPage(),
-                    false,
-                    'Lugares perto de você',
-                    'Lugares favoritos',
-                  )),
-              body: TabBarView(
-                children: <Widget>[
-                  allPlaces(),
-                  favoritePlaces(),
-                ],
-              )),
-        ));
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primaryColor: AppColors.orange),
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: const PreferredSize(
+            preferredSize: Size.fromHeight(70),
+            child: TabFNAppBar(
+              'Lugares',
+              Icon(Icons.person),
+              PerfilPage(),
+              false,
+              'Lugares perto de você',
+              'Lugares favoritos',
+            ),
+          ),
+          body: TabBarView(
+            children: <Widget>[
+              allPlaces(),
+              favoritePlaces(),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

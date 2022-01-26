@@ -2,55 +2,98 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../models/place.dart';
 import '../models/user.dart';
+import '../models/review.dart';
 
-class Database {
-  get _source => FirebaseFirestore.instance;
+mixin Database {
+  static final _source = FirebaseFirestore.instance;
 
-  CollectionReference get _users => _source.collection('users');
-  CollectionReference get _places => _source.collection('places');
+  static final _users = _source.collection('users').withConverter<User>(
+        fromFirestore: (snapshots, _) => User.fromJson(snapshots.data()!),
+        toFirestore: (user, _) => user.toJson(),
+      );
+
+  static final _places = _source.collection('places').withConverter<Place>(
+        fromFirestore: (snapshots, _) => Place.fromJson(snapshots.data()!),
+        toFirestore: (place, _) => place.toJson(),
+      );
 
   // Operações sobre os usuários.
-  // A chave primária para a coleção users é o e-mail.
 
-  // NOTE Posteriormente, nós podemos mudar isso para um id numérico.
-  // Isso introduziria um cado bom de complexidade, mas também
-  // permitiria que os usuários mudassem o e-mail associado a
-  // conta a qualquer momento, o que seria bem bacana.
-
-  Future<User> getUser(String email) async {
-    var dados = await _users.doc(email).get();
-    return User.fromMap(dados.data() as Map<String, String>);
+  static Future<User?> getUser(String id) async {
+    final dados = await _users.doc(id).get();
+    if (!dados.exists) return null;
+    final user = dados.data();
+    if (user == null) return null;
+    user.id = dados.id;
+    return user;
   }
 
-  Future<void> addUser(User user) async {
-    _users.doc(user.email).set(user.toMap());
+  static Future<User?> getUserBy(String property, String value) async {
+    final dados = await _users.where(property, isEqualTo: value).get();
+    final userDoc = dados.docs.first;
+    if (!userDoc.exists) return null;
+    final user = userDoc.data();
+    user.id = userDoc.id;
+    return user;
   }
 
-  Future<void> updateUser(User updated) async {
-    _users.doc(updated.email).set(updated.toMap());
+  // TODO deal with potential errors
+  static Future<void> addUser(User user) async {
+    final dados = await _users.add(user);
+    user.id = dados.id;
+  }
+
+  // TODO deal with potential errors
+  static Future<void> updateUser(String id, Map<String, dynamic> data) async {
+    await _users.doc(id).update(data);
   }
 
   // Operações sobre os lugares.
-  // A chave primária para a coleção places é o endereço.
 
-  // NOTE No momento, o endereço está na forma de string,
-  // mas posteriormente, vamos substituí-lo por um tipo geográfico.
-  // Quando isso acontecer, teremos que armazenar um geopoint no BD.
+  // TODO tornar os lugares identificados pelo id
 
-  Future<Place> getPlace(String address) async {
-    var dados = await _places.doc(address).get();
-    return Place.fromMap(dados.data() as Map<String, dynamic>);
+  static Future<Place?> getPlace(String name) async {
+    final dados = await _places.doc(name).get();
+    if (!dados.exists) return null;
+    return dados.data();
   }
 
-  Future<void> addPlace(Place place) async {
-    _places.doc(place.address).set(place.toMap());
+  // TODO deal with potential errors
+  static Future<void> addPlace(Place place) async {
+    await _places.doc(place.name).set(place);
   }
 
-  Future<void> updatePlace(Place updated) async {
-    _places.doc(updated.address).set(updated.toMap());
+  // TODO deal with potential errors
+  static Future<void> updatePlace(
+      String name, Map<String, dynamic> data) async {
+    await _places.doc(name).update(data);
   }
 
-  // TODO operações sobre as avaliações. O armazenamento
-  // delas é ligeiramente mais complexo que o de usuários
-  // e lugares, pois envolve subcoleções e gerência de redundância.
+  // Ok, acredito que descobri como nós vamos armazenar as avaliações.
+  // As avaliações associadas a um certo lugar serão armazenadas como uma
+  // subcoleção desse lugar. Certo? ;)
+
+  static CollectionReference _reviewCollection(Place place) {
+    return _places.doc(place.name).collection('reviews').withConverter<Review>(
+          fromFirestore: (snapshots, _) => Review.fromJson(snapshots.data()!),
+          toFirestore: (review, _) => review.toJson(),
+        );
+  }
+
+  // TODO improve this
+  static Future<Iterable<Review?>> getReviews(Place place) async {
+    final snapshot = await _reviewCollection(place).get();
+    return snapshot.docs.map((doc) => doc.data() as Review?);
+  }
+
+  // TODO deal with potential errors
+  static Future<void> addReview(Place place, Review review) async {
+    await _reviewCollection(place).doc(review.userId).set(review);
+  }
+
+  // TODO deal with potential errors
+  static Future<void> updateReview(
+      Place place, String reviewId, Map<String, dynamic> data) async {
+    await _reviewCollection(place).doc(reviewId).update(data);
+  }
 }

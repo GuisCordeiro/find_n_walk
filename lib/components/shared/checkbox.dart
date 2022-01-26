@@ -30,9 +30,11 @@ class _CheckboxLaranjaState extends State<CheckboxLaranja> {
       controlAffinity: ListTileControlAffinity.leading,
       value: selecionado,
       onChanged: (bool? value) {
-        setState(() {
-          selecionado = value!;
-        });
+        setState(
+          () {
+            selecionado = value!;
+          },
+        );
       },
     );
   }
