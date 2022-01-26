@@ -55,7 +55,7 @@ class User {
       name: map['user_name'],
       birthday: DateTime.parse(map['birthday']),
       passwordHash: map['password_hash'],
-      favoritePlaces: map['favorite_places'],
+      favoritePlaces: (map['favorite_places'] as List).map((item) => item as String).toList(),
       bio: map['bio'],
     );
   }

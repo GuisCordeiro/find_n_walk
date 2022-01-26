@@ -3,7 +3,6 @@ import 'package:findnwalk/components/shared/bottom_navigation_bar.dart';
 import 'package:findnwalk/components/shared/checkbox.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/form.dart';
-import 'package:findnwalk/controllers/bottom_navigation_bar.dart';
 import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 
