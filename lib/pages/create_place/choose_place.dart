@@ -10,9 +10,12 @@ class ChoosePlace extends StatefulWidget {
   final String placeName;
   final String placeAddress;
   final String placeDescription;
-  const ChoosePlace(this.placeName, this.placeAddress, this.placeDescription);
+  const ChoosePlace(this.placeName, this.placeAddress, this.placeDescription,
+      {Key? key})
+      : super(key: key);
   @override
-  _ChoosePlaceState createState() => _ChoosePlaceState(placeName, placeAddress, placeDescription);
+  _ChoosePlaceState createState() =>
+      _ChoosePlaceState(placeName, placeAddress, placeDescription);
 }
 
 class _ChoosePlaceState extends State<ChoosePlace> {
@@ -25,11 +28,9 @@ class _ChoosePlaceState extends State<ChoosePlace> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.orange,
-        title: Text(
-          "Pressione o local desejado",
-          style: TextStyle(
-            color: AppColors.black
-          ),
+        title: const Text(
+          "Escolha o local",
+          style: TextStyle(color: AppColors.black),
         ),
       ),
       body: FlutterMap(
@@ -39,7 +40,7 @@ class _ChoosePlaceState extends State<ChoosePlace> {
             Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => HomePage(),
+              builder: (context) => const HomePage(),
             ),
           ).then((value) => setState((){}));
           },
@@ -56,7 +57,7 @@ class _ChoosePlaceState extends State<ChoosePlace> {
           MarkerLayerOptions(
             markers: listPlaceMarkers.placesMarker
           ),
-          
+
           MarkerLayerOptions(
             markers: [
               Marker(
@@ -64,12 +65,12 @@ class _ChoosePlaceState extends State<ChoosePlace> {
                 height: 130.0,
                 point: LatLng(lat, lng),
                 builder: (ctx) => GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     showModalBottomSheet(
-                      context: context, 
-                      builder: (builder){
+                      context: context,
+                      builder: (builder) {
                         return Container(
-                          height: MediaQuery.of(context).size.height/3,
+                          height: MediaQuery.of(context).size.height / 3,
                           color: AppColors.white,
                           child: Column(
                             children: [
@@ -77,43 +78,42 @@ class _ChoosePlaceState extends State<ChoosePlace> {
                                 children: [
                                   Container(
                                     color: AppColors.orange,
-                                    height: MediaQuery.of(context).size.height/12,
+                                    height:
+                                        MediaQuery.of(context).size.height / 12,
                                   ),
                                   Column(
-                                    children: [
+                                    children: const [
                                       Padding(
-                                        padding: const EdgeInsets.all(8.0),
+                                        padding: EdgeInsets.all(8.0),
                                         child: Align(
                                           alignment: Alignment.center,
-                                          child: const Text(
+                                          child: Text(
                                             "Nome do Local",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColors.white,
-                                              fontSize: 26
-                                            ),
+                                                fontWeight: FontWeight.bold,
+                                                color: AppColors.white,
+                                                fontSize: 26),
                                           ),
                                         ),
                                       ),
                                       Align(
                                         alignment: Alignment.center,
-                                        child: const Text(
+                                        child: Text(
                                           "Endereço",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.white,
-                                            fontSize: 12
-                                          ),
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.white,
+                                              fontSize: 12),
                                         ),
                                       ),
                                     ],
                                   )
                                 ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
                                 child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
@@ -130,24 +130,21 @@ class _ChoosePlaceState extends State<ChoosePlace> {
                       },
                     );
                   },
-                  child: Container(
-                    child: Image.asset('assets/images/cursor.png'),
-                  ),
+                  child: Image.asset('assets/images/cursor.png'),
                 ),
               ),
-              
             ],
           ),
         ],
-        
       ),
     );
   }
-   _handleTap(LatLng tappedPoint){
+
+  _handleTap(LatLng tappedPoint) {
     setState(() {
       listPlaceMarkers.placesMarker.add(
         createmarker(tappedPoint, context, placeName, placeAddress, placeDescription)
-      );     
+      );
     });
   }
 }

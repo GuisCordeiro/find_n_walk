@@ -2,7 +2,7 @@ import 'package:findnwalk/data/models/place.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import '../places/place_page.dart';
+import '../../pages/place/place_page.dart';
 import '../shared/colors.dart';
 
 //Este widget deve receber a nota da avaliação relacinada ao usuario e ao local, mas por enquanto está recebendo a nota geral do local

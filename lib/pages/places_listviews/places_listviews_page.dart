@@ -1,12 +1,13 @@
-import 'package:findnwalk/components/places/all_places_list_view.dart';
-import 'package:findnwalk/components/places/favorite_places_list_view.dart';
+
+import 'package:findnwalk/components/places_listviews/all_places_list_view.dart';
+import 'package:findnwalk/components/places_listviews/favorite_places_list_view.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/tab_app_bar.dart';
 import 'package:findnwalk/pages/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 
 /*
-  Página de eventos do aplicativo
+  Página de lugares do aplicativo
 */
 
 class PlacesPage extends StatefulWidget {

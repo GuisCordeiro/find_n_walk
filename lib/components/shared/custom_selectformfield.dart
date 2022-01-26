@@ -15,7 +15,7 @@ class CustomSelectFormField extends StatelessWidget {
   final TextEditingController formController;
   final List<Map<String, dynamic>> _items;
 
-  const CustomSelectFormField(this.label, this.icon, this.formController, this._items);
+   const CustomSelectFormField(this.label, this.icon, this.formController, this._items, {Key? key}) : super(key: key);
 
   void dispose() {
     formController.dispose();

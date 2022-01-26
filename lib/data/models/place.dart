@@ -1,6 +1,12 @@
 import 'dart:io';
 
 class Place {
+  //ID do local
+  int id;
+
+  //ID do criador
+  int creatorId;
+
   //Nome do local
   String name;
 
@@ -29,7 +35,9 @@ class Place {
   int capacity;
 
   Place(
-      {required this.name,
+      {required this.id,
+      required this.creatorId,
+      required this.name,
       required this.address,
       required this.description,
       required this.isPublic,
@@ -41,6 +49,8 @@ class Place {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
+      'creatorId': creatorId,
       'name': name,
       'address': address,
       'description': description,
@@ -59,6 +69,8 @@ class Place {
   // deixa nenhum campo faltando.
   static Place fromMap(Map<String, dynamic> map) {
     return Place(
+      id: map['id'],
+      creatorId: map['creatorId'],
       name: map['name'],
       address: map['address'],
       description: map['description'],

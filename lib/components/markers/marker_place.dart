@@ -31,9 +31,9 @@ createmarker(LatLng tappedPoint, context,String placeName, String placeAdress, S
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            "$placeName",
+                                            placeName,
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: AppColors.white,
                                               fontSize: 26
@@ -44,9 +44,9 @@ createmarker(LatLng tappedPoint, context,String placeName, String placeAdress, S
                                       Align(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          "$placeAdress",
+                                          placeAdress,
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: AppColors.white,
                                             fontSize: 12
@@ -62,8 +62,8 @@ createmarker(LatLng tappedPoint, context,String placeName, String placeAdress, S
                                 child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Text(
-                                    "$placeDescription",
-                                    style: TextStyle(
+                                    placeDescription,
+                                    style: const TextStyle(
                                       color: AppColors.black,
                                     ),
                                   ),
@@ -75,7 +75,7 @@ createmarker(LatLng tappedPoint, context,String placeName, String placeAdress, S
                       },
                     );
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.place,
                     color: AppColors.orange,
                   )),

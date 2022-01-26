@@ -1,7 +1,7 @@
 import 'package:findnwalk/data/models/place.dart';
 import 'package:flutter/material.dart';
 
-import 'place_page.dart';
+import '../../pages/place/place_page.dart';
 
 placeTile(Place place, BuildContext context) {
   return ListTile(

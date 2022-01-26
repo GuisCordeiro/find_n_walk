@@ -1,7 +1,8 @@
 // Classe que representa um usuário
 
 class User {
-  // TODO  falta o campo de foto.
+  //ID do Usuário
+  int id;
 
   // Nome de Usuário
   String userName;
@@ -19,7 +20,8 @@ class User {
   String? bio;
 
   User(
-      {required this.userName,
+      {required this.id,
+      required this.userName,
       required this.email,
       required this.birthday,
       required this.passwordHash,
@@ -27,6 +29,7 @@ class User {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'email': email,
       'user_name': userName,
       'birthday': birthday.toString(),
@@ -37,6 +40,7 @@ class User {
 
   static User fromMap(Map<String, dynamic> map) {
     return User(
+      id: map['id'],
       email: map['email'],
       userName: map['user_name'],
       birthday: DateTime.parse(map['birthday']),
