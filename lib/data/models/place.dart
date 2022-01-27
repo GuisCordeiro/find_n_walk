@@ -1,9 +1,11 @@
 // Classe que representa um lugar.
 // Seu id no banco de dados é gerado automaticamente
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Place {
   // id do local
-  String id;
+  String? id;
 
   // id do criador
   String creatorId;
@@ -12,7 +14,7 @@ class Place {
   String name;
 
   // Endereço (trocar para um tipo geográfico)
-  String address;
+  GeoPoint address;
 
   // Descrição
   String description;
@@ -36,13 +38,14 @@ class Place {
   int? capacity;
 
   Place(
-      {required this.id,
+      {
       required this.creatorId,
       required this.name,
       required this.address,
       required this.description,
       required this.isPublic,
       required this.cathegory,
+      this.id,
       this.capacity,
       this.pictures,
       this.thumbnail,

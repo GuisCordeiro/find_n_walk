@@ -16,24 +16,25 @@ class PlacePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: AppColors.orange,
-          title: Row(
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.63,
-                child: Flexible(
-                  child: Text(place.name,
-                      style: const TextStyle(
-                        color: AppColors.black,
-                        fontWeight: FontWeight.bold,
-                      )),
-                ),
+        backgroundColor: AppColors.orange,
+        title: Row(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.63,
+              child: Flexible(
+                child: Text(place.name,
+                    style: const TextStyle(
+                      color: AppColors.black,
+                      fontWeight: FontWeight.bold,
+                    )),
               ),
-              const Spacer(),
-              //TODO adicionar controlador do botão de favorito
-              const FavoriteButton(favorite: false),
-            ],
-          )),
+            ),
+            const Spacer(),
+            //TODO adicionar controlador do botão de favorito
+            const FavoriteButton(favorite: false),
+          ],
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -50,7 +51,7 @@ class PlacePage extends StatelessWidget {
             ),
             TextBlock(
               title: "Local",
-              subtitle: place.address,
+              subtitle: place.address.toString(),
               context: context,
             ),
             TextBlock(
