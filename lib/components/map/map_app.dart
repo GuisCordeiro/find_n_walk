@@ -39,11 +39,11 @@ class _MapAppState extends State<MapApp> {
               builder: (ctx) => GestureDetector(
                 onTap: () {
                   showModalBottomSheet(
-                    context: context,
-                    builder: (builder) {
+                      context: context,
+                      builder: (builder) {
                         return Container(
-                          height: MediaQuery.of(context).size.height / 3,
-                          color: AppColors.white,
+                          height: MediaQuery.of(context).size.height / 5,
+                          color: AppColors.orange,
                           child: Column(
                             children: [
                               Stack(
@@ -52,57 +52,28 @@ class _MapAppState extends State<MapApp> {
                                     color: AppColors.orange,
                                     height:
                                         MediaQuery.of(context).size.height / 12,
-                                  ),
-                                  Column(
-                                    children: const [
-                                      Padding(
+                                    child: Padding(
                                         padding: EdgeInsets.all(8.0),
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            "Nome do Local",
+                                            "Esta é a sua localização atual",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 color: AppColors.white,
-                                                fontSize: 26,
-                                              ),
+                                                fontSize: 26),
                                           ),
                                         ),
                                       ),
-                                      Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          "Endereço",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColors.white,
-                                              fontSize: 12,
-                                            ),
-                                        ),
-                                      ),
-                                    ],
-                                  )
+                                  ),
                                 ],
                               ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    "Descrição",
-                                    style: TextStyle(
-                                      color: AppColors.black,
-                                    ),
-                                  ),
-                                ),
-                              )
                             ],
                           ),
                         );
-                    },
-                  );
+                      },
+                    );
                 },
                 child: Image.asset('assets/images/cursor.png'),
               ),

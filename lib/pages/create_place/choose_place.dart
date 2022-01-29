@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:findnwalk/components/markers/marker_place.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/pages/map/home_page.dart';
@@ -69,7 +71,6 @@ class _ChoosePlaceState extends State<ChoosePlace> {
               Marker(
                 width: 130.0,
                 height: 130.0,
-                // TODO make this better
                 point: LoginController.location ?? LatLng(0, 0),
                 builder: (ctx) => GestureDetector(
                   onTap: () {
@@ -77,8 +78,8 @@ class _ChoosePlaceState extends State<ChoosePlace> {
                       context: context,
                       builder: (builder) {
                         return Container(
-                          height: MediaQuery.of(context).size.height / 3,
-                          color: AppColors.white,
+                          height: MediaQuery.of(context).size.height / 5,
+                          color: AppColors.orange,
                           child: Column(
                             children: [
                               Stack(
@@ -87,15 +88,12 @@ class _ChoosePlaceState extends State<ChoosePlace> {
                                     color: AppColors.orange,
                                     height:
                                         MediaQuery.of(context).size.height / 12,
-                                  ),
-                                  Column(
-                                    children: const [
-                                      Padding(
+                                    child: Padding(
                                         padding: EdgeInsets.all(8.0),
                                         child: Align(
                                           alignment: Alignment.center,
                                           child: Text(
-                                            "Nome do Local",
+                                            "Esta é a sua localização atual",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
@@ -104,34 +102,9 @@ class _ChoosePlaceState extends State<ChoosePlace> {
                                           ),
                                         ),
                                       ),
-                                      Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          "Endereço",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.white,
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  )
+                                  ),
                                 ],
                               ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    "Descrição",
-                                    style: TextStyle(
-                                      color: AppColors.black,
-                                    ),
-                                  ),
-                                ),
-                              )
                             ],
                           ),
                         );
