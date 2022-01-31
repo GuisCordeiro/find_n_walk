@@ -2,7 +2,6 @@ import 'package:findnwalk/components/shared/app_button.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/custom_select_form_field.dart';
 import 'package:findnwalk/components/shared/form.dart';
-import 'package:findnwalk/controllers/create_place_controller.dart';
 import 'package:findnwalk/pages/create_place/choose_place.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +13,27 @@ class CreatePlace extends StatefulWidget {
 }
 
 class _CreatePlaceState extends State<CreatePlace> {
-  final createPlace = CreatePlaceController();
+  final name = TextEditingController();
+
+  final address = TextEditingController();
+
+  final description = TextEditingController();
+
+  final cathegories = TextEditingController();
+
+  final capacity = TextEditingController();
+
+  bool isPublic = true;
+
+  @override
+  void dispose() {
+    name.dispose();
+    address.dispose();
+    description.dispose();
+    cathegories.dispose();
+    capacity.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,47 +71,51 @@ class _CreatePlaceState extends State<CreatePlace> {
               label: 'Nome do local',
               icon: const Icon(Icons.event),
               decision: false,
-              controller: createPlace.name,
+              controller: name,
             ),
             AppForm(
               label: 'Endereço',
               icon: const Icon(Icons.place),
               decision: false,
-              controller: createPlace.address,
+              controller: address,
             ),
             AppForm(
               label: 'Categorias',
               icon: const Icon(Icons.sports_soccer),
               decision: false,
-              controller: createPlace.cathegories,
+              controller: cathegories,
             ),
             AppForm(
               label: 'Descrição',
               icon: const Icon(Icons.view_list),
               decision: false,
-              controller: createPlace.description,
+              controller: description,
             ),
             CustomSelectFormField(
               label: 'Capacidade de Pessoas',
               icon: const Icon(Icons.person),
-              controller: createPlace.address,
+              controller: address,
             ),
             SwitchListTile(
-              value: true,
+              value: isPublic,
               title: const Text('É público?'),
               onChanged: (bool state) {
-                createPlace.isPublic = state;
+                setState(
+                  () {
+                    isPublic = state;
+                  },
+                );
               },
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: AppButton(
                 label: 'Marcar local no mapa',
-                onTap: () => () {
-                  if (createPlace.name.text == '' ||
-                      createPlace.address.text == '' ||
-                      createPlace.cathegories.text == '' ||
-                      createPlace.description.text == '') {
+                onTap: () {
+                  if (name.text == '' ||
+                      address.text == '' ||
+                      cathegories.text == '' ||
+                      description.text == '') {
                     const AlertDialog(
                       title: Text("Preencha todos os campos!"),
                     );
@@ -100,7 +123,14 @@ class _CreatePlaceState extends State<CreatePlace> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ChoosePlace(createPlace),
+                        builder: (context) => ChoosePlace(
+                          name: name.text,
+                          address: address.text,
+                          capacity: capacity.text,
+                          description: description.text,
+                          cathegories: cathegories.text,
+                          isPublic: isPublic,
+                        ),
                       ),
                     );
                   }

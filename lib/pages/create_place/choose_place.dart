@@ -14,15 +14,37 @@ import '../map/home_page.dart';
 // pela página de cadastro.
 
 class ChoosePlace extends StatefulWidget {
-  final CreatePlaceController createPlace;
+  final String name;
 
-  const ChoosePlace(this.createPlace, {Key? key}) : super(key: key);
+  final String address;
+
+  final String description;
+
+  final String cathegories;
+
+  final String capacity;
+
+  final bool isPublic;
+
+  const ChoosePlace(
+      {required this.name,
+      required this.address,
+      required this.description,
+      required this.cathegories,
+      required this.capacity,
+      required this.isPublic,
+      Key? key})
+      : super(key: key);
 
   @override
-  _ChoosePlaceState createState() => _ChoosePlaceState();
+  _ChoosePlaceState createState() => _ChoosePlaceState(isPublic);
 }
 
 class _ChoosePlaceState extends State<ChoosePlace> {
+  bool isPublic;
+
+  _ChoosePlaceState(this.isPublic);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +58,7 @@ class _ChoosePlaceState extends State<ChoosePlace> {
       body: FlutterMap(
         options: MapOptions(
           onLongPress: (tappedPoint, LatLng thing) {
-            _handleTap;
+            _handleTap(thing);
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -91,9 +113,10 @@ class _ChoosePlaceState extends State<ChoosePlace> {
                                             "Nome do Local",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: AppColors.white,
-                                                fontSize: 26),
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.white,
+                                              fontSize: 26,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -142,16 +165,24 @@ class _ChoosePlaceState extends State<ChoosePlace> {
   }
 
   Future<void> _handleTap(LatLng tappedPoint) async {
-    await widget.createPlace.create(tappedPoint);
+    await CreatePlaceController.create(
+      latLng: tappedPoint,
+      name: widget.name,
+      address: widget.address,
+      capacity: widget.capacity,
+      description: widget.description,
+      cathegories: widget.cathegories,
+      isPublic: isPublic,
+    );
     setState(
       () {
         ListPlaceMarkers.placesMarker.add(
           createmarker(
             tappedPoint,
             context,
-            widget.createPlace.name.text,
-            widget.createPlace.address.text,
-            widget.createPlace.description.text,
+            widget.name,
+            widget.address,
+            widget.description,
           ),
         );
       },
