@@ -15,6 +15,7 @@ dependencies:
   flutter_map: ^0.14.0
   anim_search_bar: ^2.0.2
   curved_navigation_bar: ^1.0.1
+  geopoint: ^1.0.0
   latlong2: ^0.8.1
   intl: ^0.17.0
   flutter_rating_bar: ^4.0.0

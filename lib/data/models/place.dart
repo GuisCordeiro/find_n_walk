@@ -10,11 +10,14 @@ class Place {
   // id do criador
   String creatorId;
 
-  //Nome do local
+  // Nome do local
   String name;
 
-  // Endereço (trocar para um tipo geográfico)
-  GeoPoint address;
+  // Localização exata, em coordenadas
+  GeoPoint exactLocation;
+
+  // Descrição textual da localização
+  String address;
 
   // Descrição
   String description;
@@ -26,9 +29,11 @@ class Place {
   List<String> cathegory;
 
   // Foto principal
+  // Armazenada como o caminho até a imagem no storage remoto
   String? thumbnail;
 
   // Demais fotos
+  // Armazenadas como os caminhos até as imagens no storage remoto
   List<String>? pictures;
 
   // Nota, em meias-estrelas (0-10)
@@ -38,9 +43,9 @@ class Place {
   int? capacity;
 
   Place(
-      {
-      required this.creatorId,
+      {required this.creatorId,
       required this.name,
+      required this.exactLocation,
       required this.address,
       required this.description,
       required this.isPublic,
@@ -53,13 +58,15 @@ class Place {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
       'creatorId': creatorId,
       'name': name,
+      'exact_location': exactLocation,
       'address': address,
       'description': description,
       'is_public': isPublic,
       'cathegory': cathegory,
+      'thumbnail': thumbnail,
+      'pictures': pictures,
       'capacity': capacity,
       'rating': rating ?? 5,
     };
@@ -67,19 +74,18 @@ class Place {
 
   static Place fromJson(Map<String, dynamic> map) {
     return Place(
-      id: map['id'],
       creatorId: map['creatorId'],
       name: map['name'],
+      exactLocation: map['exact_location'],
       address: map['address'],
       description: map['description'],
       isPublic: map['is_public'],
       cathegory: map['cathegory'],
+      thumbnail: map['thumbnail'],
+      pictures:
+          (map['thumbnail'] as List).map((item) => item as String).toList(),
       capacity: map['capacity'],
       rating: map['rating'],
-      // TODO carregar outros campos. Não sei ainda
-      // como nós vamos lidar com os outros tipos diferenciados,
-      // mas o meu palpite é de que eles teriam que ser convertidos em
-      // strings. Vou trabalhar nisso em breve.
     );
   }
 }

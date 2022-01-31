@@ -1,13 +1,17 @@
 import 'package:findnwalk/components/markers/marker_place.dart';
 import 'package:findnwalk/components/shared/colors.dart';
-import 'package:findnwalk/pages/map/home_page.dart';
 import 'package:findnwalk/controllers/login_controller.dart';
+import 'package:findnwalk/controllers/temp.dart';
+import 'package:findnwalk/pages/map/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:findnwalk/controllers/temp.dart';
 
 import '../map/home_page.dart';
+
+// Página que permite ao usuário precisar a localização do lugar sendo
+// cadastrado. É carregada logo após o envio das informações esperadas
+// pela página de cadastro.
 
 class ChoosePlace extends StatefulWidget {
   final String placeName;
@@ -58,14 +62,14 @@ class _ChoosePlaceState extends State<ChoosePlace> {
           maxZoom: 18,
           minZoom: 5,
         ),
-        layers: [
+        layers: <LayerOptions>[
           TileLayerOptions(
             urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
             subdomains: ['a', 'b', 'c'],
           ),
           MarkerLayerOptions(markers: ListPlaceMarkers.placesMarker),
           MarkerLayerOptions(
-            markers: [
+            markers: <Marker>[
               Marker(
                 width: 130.0,
                 height: 130.0,
@@ -80,16 +84,16 @@ class _ChoosePlaceState extends State<ChoosePlace> {
                           height: MediaQuery.of(context).size.height / 3,
                           color: AppColors.white,
                           child: Column(
-                            children: [
+                            children: <Widget>[
                               Stack(
-                                children: [
+                                children: <Widget>[
                                   Container(
                                     color: AppColors.orange,
                                     height:
                                         MediaQuery.of(context).size.height / 12,
                                   ),
                                   Column(
-                                    children: const [
+                                    children: const <Widget>[
                                       Padding(
                                         padding: EdgeInsets.all(8.0),
                                         child: Align(
@@ -117,7 +121,7 @@ class _ChoosePlaceState extends State<ChoosePlace> {
                                         ),
                                       ),
                                     ],
-                                  )
+                                  ),
                                 ],
                               ),
                               const Padding(
@@ -148,7 +152,7 @@ class _ChoosePlaceState extends State<ChoosePlace> {
     );
   }
 
-  _handleTap(LatLng tappedPoint) {
+  void _handleTap(LatLng tappedPoint) {
     setState(
       () {
         ListPlaceMarkers.placesMarker.add(createmarker(

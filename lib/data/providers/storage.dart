@@ -9,12 +9,7 @@ mixin Storage {
   // por meio de algo como o Image.network.
   static Future<String> uploadFile(File localPath, String storagePath) async {
     final storageReference = _storage.ref(storagePath);
-    final task = storageReference.putFile(localPath);
-    try {
-      await task;
-    } on FirebaseException {
-      print(task.snapshot);
-    }
+    await storageReference.putFile(localPath);
     return storageReference.getDownloadURL();
   }
 

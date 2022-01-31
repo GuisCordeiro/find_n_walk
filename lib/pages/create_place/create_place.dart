@@ -1,6 +1,6 @@
+import 'package:findnwalk/components/shared/app_button.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/form.dart';
-import 'package:findnwalk/components/shared/app_button.dart';
 import 'package:findnwalk/controllers/create_place_controller.dart';
 import 'package:findnwalk/pages/create_place/choose_place.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,8 @@ class CreatePlace extends StatefulWidget {
 }
 
 class _CreatePlaceState extends State<CreatePlace> {
-  PlaceController createPlace = PlaceController();
+  final createPlace = CreatePlaceController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +51,7 @@ class _CreatePlaceState extends State<CreatePlace> {
                 label: 'Nome do local',
                 icon: const Icon(Icons.event),
                 decision: false,
-                controller: createPlace.local),
+                controller: createPlace.name),
             AppForm(
                 label: 'Endereço',
                 icon: const Icon(Icons.place),
@@ -66,7 +67,7 @@ class _CreatePlaceState extends State<CreatePlace> {
               child: AppButton(
                 label: 'Marcar local no mapa',
                 onTap: () => () {
-                  if (createPlace.local.text == '' ||
+                  if (createPlace.name.text == '' ||
                       createPlace.address.text == '' ||
                       createPlace.description.text == '') {
                     const AlertDialog(
@@ -77,9 +78,10 @@ class _CreatePlaceState extends State<CreatePlace> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ChoosePlace(
-                            createPlace.local.text,
-                            createPlace.address.text,
-                            createPlace.description.text),
+                          createPlace.name.text,
+                          createPlace.address.text,
+                          createPlace.description.text,
+                        ),
                       ),
                     );
                   }
