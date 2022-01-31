@@ -46,7 +46,7 @@ class PlacePage extends StatelessWidget {
             AuthorBlock(user: usuariosDeTeste[0]),
             TextBlock(
               title: "Categorias",
-              subtitle: place.cathegory.toString(),
+              subtitle: place.cathegories.toString(),
               context: context,
             ),
             TextBlock(

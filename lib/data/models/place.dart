@@ -26,7 +26,7 @@ class Place {
   bool isPublic;
 
   // Categorias esportivas
-  List<String> cathegory;
+  List<String> cathegories;
 
   // Foto principal
   // Armazenada como o caminho até a imagem no storage remoto
@@ -49,7 +49,7 @@ class Place {
       required this.address,
       required this.description,
       required this.isPublic,
-      required this.cathegory,
+      required this.cathegories,
       this.id,
       this.capacity,
       this.pictures,
@@ -64,11 +64,11 @@ class Place {
       'address': address,
       'description': description,
       'is_public': isPublic,
-      'cathegory': cathegory,
+      'cathegories': cathegories,
       'thumbnail': thumbnail,
       'pictures': pictures,
       'capacity': capacity,
-      'rating': rating ?? 5,
+      'rating': rating ?? 10,
     };
   }
 
@@ -80,7 +80,7 @@ class Place {
       address: map['address'],
       description: map['description'],
       isPublic: map['is_public'],
-      cathegory: map['cathegory'],
+      cathegories: map['cathegories'],
       thumbnail: map['thumbnail'],
       pictures:
           (map['thumbnail'] as List).map((item) => item as String).toList(),

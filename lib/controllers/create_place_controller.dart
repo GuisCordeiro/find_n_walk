@@ -3,6 +3,7 @@ import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:findnwalk/data/models/place.dart';
 import 'package:findnwalk/data/providers/database.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:latlong2/latlong.dart';
 
 // Controlador que gerencia o cadastro de lugares.
 
@@ -13,20 +14,22 @@ class CreatePlaceController {
 
   final description = TextEditingController();
 
-  final cathegory = TextEditingController();
+  final cathegories = TextEditingController();
 
   final capacity = TextEditingController();
 
+  bool isPublic = true;
+
   // Protótipo
-  Future<void> create() async {
+  Future<void> create(LatLng exactLocation) async {
     final place = Place(
       creatorId: LoginController.user!.id!,
       name: name.text,
       address: address.text,
-      exactLocation: GeoPoint(LoginController.location!.latitude, LoginController.location!.longitude),
+      exactLocation: GeoPoint(exactLocation.latitude, exactLocation.longitude),
       description: description.text,
-      cathegory: [cathegory.text],
-      isPublic: true,
+      cathegories: cathegories.text.split(', '),
+      isPublic: isPublic,
     );
     await Database.addPlace(place);
   }

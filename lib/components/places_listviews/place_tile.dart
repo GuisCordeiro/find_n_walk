@@ -6,7 +6,7 @@ import '../../pages/place/place_page.dart';
 placeTile(Place place, BuildContext context) {
   return ListTile(
     title: Text(place.name),
-    subtitle: Text(place.cathegory.toString()),
+    subtitle: Text(place.cathegories.toString()),
     leading: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

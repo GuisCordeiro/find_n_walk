@@ -1,8 +1,8 @@
 import 'package:findnwalk/components/markers/marker_place.dart';
 import 'package:findnwalk/components/shared/colors.dart';
+import 'package:findnwalk/controllers/create_place_controller.dart';
 import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:findnwalk/controllers/temp.dart';
-import 'package:findnwalk/pages/map/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -14,26 +14,15 @@ import '../map/home_page.dart';
 // pela página de cadastro.
 
 class ChoosePlace extends StatefulWidget {
-  final String placeName;
+  final CreatePlaceController createPlace;
 
-  final String placeAddress;
-
-  final String placeDescription;
-
-  const ChoosePlace(this.placeName, this.placeAddress, this.placeDescription,
-      {Key? key})
-      : super(key: key);
+  const ChoosePlace(this.createPlace, {Key? key}) : super(key: key);
 
   @override
-  _ChoosePlaceState createState() =>
-      _ChoosePlaceState(placeName, placeAddress, placeDescription);
+  _ChoosePlaceState createState() => _ChoosePlaceState();
 }
 
 class _ChoosePlaceState extends State<ChoosePlace> {
-  final String placeName;
-  final String placeAddress;
-  final String placeDescription;
-  _ChoosePlaceState(this.placeName, this.placeAddress, this.placeDescription);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -152,11 +141,19 @@ class _ChoosePlaceState extends State<ChoosePlace> {
     );
   }
 
-  void _handleTap(LatLng tappedPoint) {
+  Future<void> _handleTap(LatLng tappedPoint) async {
+    await widget.createPlace.create(tappedPoint);
     setState(
       () {
-        ListPlaceMarkers.placesMarker.add(createmarker(
-            tappedPoint, context, placeName, placeAddress, placeDescription));
+        ListPlaceMarkers.placesMarker.add(
+          createmarker(
+            tappedPoint,
+            context,
+            widget.createPlace.name.text,
+            widget.createPlace.address.text,
+            widget.createPlace.description.text,
+          ),
+        );
       },
     );
   }
