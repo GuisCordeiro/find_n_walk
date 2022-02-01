@@ -1,4 +1,5 @@
 import 'package:findnwalk/components/markers/marker_place.dart';
+import 'package:findnwalk/components/shared/bottom_navigation_bar.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/controllers/create_place_controller.dart';
 import 'package:findnwalk/controllers/login_controller.dart';
@@ -6,8 +7,6 @@ import 'package:findnwalk/controllers/temp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-
-import '../map/home_page.dart';
 
 // Página que permite ao usuário precisar a localização do lugar sendo
 // cadastrado. É carregada logo após o envio das informações esperadas
@@ -62,7 +61,11 @@ class _ChoosePlaceState extends State<ChoosePlace> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const HomePage(),
+                // Versão que faria sentido:
+                // builder: (context) => const HomePage(),
+                // HACK versão que de fato funciona:
+                builder: (context) => const BottomFNBar(),
+                // É, depressão e lágrimas
               ),
             ).then(
               (value) => setState(() {}),

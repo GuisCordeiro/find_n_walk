@@ -94,7 +94,7 @@ class _CreatePlaceState extends State<CreatePlace> {
             CustomSelectFormField(
               label: 'Capacidade de Pessoas',
               icon: const Icon(Icons.person),
-              controller: address,
+              controller: capacity,
             ),
             SwitchListTile(
               value: isPublic,
@@ -115,6 +115,7 @@ class _CreatePlaceState extends State<CreatePlace> {
                   if (name.text == '' ||
                       address.text == '' ||
                       cathegories.text == '' ||
+                      capacity.text == '' ||
                       description.text == '') {
                     const AlertDialog(
                       title: Text("Preencha todos os campos!"),

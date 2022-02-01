@@ -24,7 +24,7 @@ mixin CreatePlaceController {
       exactLocation: GeoPoint(latLng.latitude, latLng.longitude),
       description: description,
       cathegories: cathegories.split(', '),
-      capacity: int.parse(capacity),
+      capacity: int.tryParse(capacity) ?? 0, // Se algo der errado, assuma não informado
       isPublic: isPublic,
       rating: 10,
     );
