@@ -22,6 +22,7 @@ mixin LoginController {
     return passwordHash.toString();
   }
 
+  //TODO quando não encontra o email, o app trava
   static Future<AuthResult> authenticate(
       String nameOrEmail, String password) async {
     // If what the user provided to identify themselves fits

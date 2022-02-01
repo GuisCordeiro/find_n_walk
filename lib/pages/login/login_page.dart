@@ -24,6 +24,14 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
   final _passwordFieldController = TextEditingController();
 
+  bool _passwordValidate = false;
+
+  bool _emailValidate = false;
+
+  String? _emailError = null;
+
+  String? _passwordError = null;
+
   late final AnimationController _controller = AnimationController(
     lowerBound: 0.5,
     duration: const Duration(seconds: 2),
@@ -109,17 +117,29 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                         icon: const Icon(Icons.email),
                         decision: false,
                         controller: _emailFieldController,
+                        validate: _emailValidate,
+                        errorMessage: _emailError,
                       ),
                       AppForm(
                         label: 'Digite sua senha',
                         icon: const Icon(Icons.lock),
                         decision: true,
                         controller: _passwordFieldController,
+                        validate: _passwordValidate,
+                        errorMessage: _passwordError,
                       ),
                       const CheckboxLaranja('lembre-se de mim'),
                       AppButton(
                         label: 'Enviar',
                         onTap: () {
+                          setState(() {
+                            _emailFieldController.text.isEmpty
+                                ? _emailValidate = true
+                                : _emailValidate = false;
+                            _passwordFieldController.text.isEmpty
+                                ? _passwordValidate = true
+                                : _passwordValidate = false;
+                          });
                           // TODO dar uma limpada nisso
                           final email = _emailFieldController.text;
                           final password = _passwordFieldController.text;
@@ -131,6 +151,12 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                 case AuthResult.success:
                                   // Sucesso total
                                   print('Sucesso total');
+                                  setState(() {
+                                    _passwordValidate = false;
+                                    _passwordError = null;
+                                    _emailValidate = false;
+                                    _emailError = null;
+                                  });
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -140,11 +166,17 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                                   break;
                                 case AuthResult.wrongPassword:
                                   // Senha errada
-                                  print('Senha errada');
+                                  setState(() {
+                                    _passwordValidate = true;
+                                    _passwordError = "Senha Incorreta";
+                                  });
                                   break;
                                 case AuthResult.userNotFound:
                                   // Usuário não encontrado
-                                  print('Usuário não encontrado');
+                                  setState(() {
+                                    _emailValidate = true;
+                                    _emailError = "Usuário não encontrado";
+                                  });
                                   break;
                               }
                             },

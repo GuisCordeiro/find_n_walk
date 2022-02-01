@@ -11,12 +11,16 @@ class AppForm extends StatefulWidget {
   final bool decision;
   final Icon icon;
   final TextEditingController controller;
+  final bool? validate;
+  final String? errorMessage;
 
   const AppForm(
       {required this.label,
       required this.icon,
       required this.decision,
       required this.controller,
+      this.validate,
+      this.errorMessage,
       Key? key})
       : super(key: key);
 
@@ -25,6 +29,22 @@ class AppForm extends StatefulWidget {
 }
 
 class _AppFormState extends State<AppForm> {
+  bool getValidate() {
+    bool validate = false;
+    if (widget.validate != null) {
+      validate = widget.validate!;
+    }
+    return validate;
+  }
+
+  String getErrorMessage() {
+    String message = "Dado incorreto ou faltante";
+    if (widget.errorMessage != null) {
+      message = widget.errorMessage!;
+    }
+    return message;
+  }
+
   @override
   void dispose() {
     widget.controller.dispose();
@@ -55,6 +75,10 @@ class _AppFormState extends State<AppForm> {
             borderSide: const BorderSide(color: AppColors.orange),
           ),
           hintText: widget.label,
+          errorText: getValidate() ? getErrorMessage() : null,
+          errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(color: AppColors.grey)),
         ),
       ),
     );
