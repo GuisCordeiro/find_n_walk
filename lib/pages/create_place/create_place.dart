@@ -1,7 +1,8 @@
-import 'package:findnwalk/components/shared/colors.dart';
-import 'package:findnwalk/components/shared/form.dart';
+import 'package:findnwalk/components/create_place/picture_button.dart';
 import 'package:findnwalk/components/shared/app_button.dart';
-import 'package:findnwalk/controllers/create_place_controller.dart';
+import 'package:findnwalk/components/shared/colors.dart';
+import 'package:findnwalk/components/shared/custom_select_form_field.dart';
+import 'package:findnwalk/components/shared/form.dart';
 import 'package:findnwalk/pages/create_place/choose_place.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,30 @@ class CreatePlace extends StatefulWidget {
 }
 
 class _CreatePlaceState extends State<CreatePlace> {
-  PlaceController createPlace = PlaceController();
+  final name = TextEditingController();
+
+  final address = TextEditingController();
+
+  final description = TextEditingController();
+
+  final cathegories = TextEditingController();
+
+  final capacity = TextEditingController();
+
+  final pictureButton = PictureButton();
+
+  bool isPublic = true;
+
+  @override
+  void dispose() {
+    name.dispose();
+    address.dispose();
+    description.dispose();
+    cathegories.dispose();
+    capacity.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +50,7 @@ class _CreatePlaceState extends State<CreatePlace> {
         ),
         color: AppColors.white,
         child: ListView(
-          children: [
+          children: <Widget>[
             RichText(
               textAlign: TextAlign.center,
               text: const TextSpan(
@@ -47,28 +71,60 @@ class _CreatePlaceState extends State<CreatePlace> {
               ),
             ),
             AppForm(
-                label: 'Nome do local',
-                icon: const Icon(Icons.event),
-                decision: false,
-                controller: createPlace.local),
+              label: 'Nome do local',
+              icon: const Icon(Icons.event),
+              decision: false,
+              controller: name,
+            ),
             AppForm(
-                label: 'Endereço',
-                icon: const Icon(Icons.place),
-                decision: false,
-                controller: createPlace.address),
+              label: 'Endereço',
+              icon: const Icon(Icons.place),
+              decision: false,
+              controller: address,
+            ),
             AppForm(
-                label: 'Descrição',
-                icon: const Icon(Icons.view_list),
-                decision: false,
-                controller: createPlace.description),
+              label: 'Categorias',
+              icon: const Icon(Icons.sports_soccer),
+              decision: false,
+              controller: cathegories,
+            ),
+            AppForm(
+              label: 'Descrição',
+              icon: const Icon(Icons.view_list),
+              decision: false,
+              controller: description,
+            ),
+            CustomSelectFormField(
+              label: 'Capacidade de Pessoas',
+              icon: const Icon(Icons.person),
+              controller: capacity,
+            ),
+            pictureButton, // botão simples para seleção de imagens
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0),
+              child: SwitchListTile(
+                value: isPublic,
+                title: const Text('É público?'),
+                onChanged: (bool state) {
+                  setState(
+                    () {
+                      isPublic = state;
+                    },
+                  );
+                },
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: AppButton(
                 label: 'Marcar local no mapa',
-                onTap: () => () {
-                  if (createPlace.local.text == '' ||
-                      createPlace.address.text == '' ||
-                      createPlace.description.text == '') {
+                onTap: () {
+                  if (name.text == '' ||
+                      address.text == '' ||
+                      cathegories.text == '' ||
+                      capacity.text == '' ||
+                      description.text == '' ||
+                      !pictureButton.usedOnce) {
                     const AlertDialog(
                       title: Text("Preencha todos os campos!"),
                     );
@@ -77,9 +133,14 @@ class _CreatePlaceState extends State<CreatePlace> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ChoosePlace(
-                            createPlace.local.text,
-                            createPlace.address.text,
-                            createPlace.description.text),
+                          name: name.text,
+                          address: address.text,
+                          capacity: capacity.text,
+                          description: description.text,
+                          cathegories: cathegories.text,
+                          isPublic: isPublic,
+                          // Lidar com as fotos...
+                        ),
                       ),
                     );
                   }
