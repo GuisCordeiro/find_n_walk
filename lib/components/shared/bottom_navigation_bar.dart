@@ -21,14 +21,15 @@ class _BottomFNBarState extends State<BottomFNBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-          controller: pageController,
-          children: const [
-            PlacesPage(),
-            HomePage(),
-            HistoryPage(),
-          ],
-          onPageChanged: (index) {
-            setState(() {
+        controller: pageController,
+        children: const [
+          PlacesPage(),
+          HomePage(),
+          FavoriesPage(),
+        ],
+        onPageChanged: (index) {
+          setState(
+            () {
               listIndex = index;
             },
           );
@@ -50,7 +51,7 @@ class _BottomFNBarState extends State<BottomFNBar> {
             color: AppColors.black,
           ),
           Icon(
-            Icons.history,
+            Icons.favorite,
             size: 30,
             color: AppColors.black,
           ),
@@ -63,7 +64,8 @@ class _BottomFNBarState extends State<BottomFNBar> {
           );
           pageController.jumpToPage(listIndex);
           pageController.animateToPage(listIndex,
-              duration: const Duration(microseconds: 800), curve: Curves.easeInOut);
+              duration: const Duration(microseconds: 800),
+              curve: Curves.easeInOut);
           pageController.animateToPage(
             listIndex,
             duration: const Duration(microseconds: 800),

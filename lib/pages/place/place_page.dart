@@ -45,7 +45,7 @@ class PlacePage extends StatelessWidget {
             AuthorBlock(user: usuariosDeTeste[0]),
             TextBlock(
               title: "Categorias",
-              subtitle: place.cathegory.toString(),
+              subtitle: splitString(place.cathegory.toString()),
               context: context,
             ),
             TextBlock(
@@ -64,14 +64,19 @@ class PlacePage extends StatelessWidget {
               context: context,
               height: 200,
             ),
+            space()
           ],
         ),
       ),
     );
   }
 
-  space({double? height}) {
+  String splitString(String list) {
+    return list.split('[')[1].split(']')[0];
+  }
+
+  SizedBox space({double? height}) {
     height ??= 10;
-    return Container(height: height);
+    return SizedBox(height: height);
   }
 }

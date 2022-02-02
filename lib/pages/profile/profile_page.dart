@@ -41,7 +41,8 @@ class _PerfilPageState extends State<PerfilPage> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                Text(LoginController.user!.bio ?? "Hello there, I am using Find N'Walk!"),
+                Text(LoginController.user!.bio ??
+                    "Hello there, I am using Find N'Walk!"),
                 GestureDetector(
                   child: Container(
                     height: 100,
@@ -55,7 +56,7 @@ class _PerfilPageState extends State<PerfilPage> {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return editBioCard();
+                        return const EditBioCard();
                       },
                     );
                   },

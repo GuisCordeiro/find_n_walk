@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
   Cores do app, deve ser chamado assim: AppColors.corDesejada
 */
 
-class AppColors{
+class AppColors {
   static const orange = Color(0xffF5A732);
   static const grey = Color(0xff707070);
   static const black = Color(0xff3f3f3f);

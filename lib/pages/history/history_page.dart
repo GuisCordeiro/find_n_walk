@@ -1,4 +1,4 @@
-import 'package:findnwalk/components/history/reviews_list_view.dart';
+import 'package:findnwalk/components/places_listviews/favorite_places_list_view.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -8,14 +8,14 @@ import '../profile/profile_page.dart';
   Página de histórico de eventos
 */
 
-class HistoryPage extends StatefulWidget {
-  const HistoryPage({Key? key}) : super(key: key);
+class FavoriesPage extends StatefulWidget {
+  const FavoriesPage({Key? key}) : super(key: key);
 
   @override
-  _HistoryPageState createState() => _HistoryPageState();
+  _FavoriesPageState createState() => _FavoriesPageState();
 }
 
-class _HistoryPageState extends State<HistoryPage> {
+class _FavoriesPageState extends State<FavoriesPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +25,7 @@ class _HistoryPageState extends State<HistoryPage> {
         appBar: AppBar(
           backgroundColor: AppColors.orange,
           title: const Text(
-            'Minhas Avaliações',
+            'Lugares Favoritos',
             style: TextStyle(color: AppColors.black),
           ),
           actions: [
@@ -43,7 +43,7 @@ class _HistoryPageState extends State<HistoryPage> {
             )
           ],
         ),
-        body: reviewedPlaces(),
+        body: const FavoritePlaces(),
       ),
     );
   }

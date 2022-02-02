@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 
 import 'place_tile.dart';
 
-favoritePlaces() {
-  //gera dinamicamente uma lista de eventTiles com o arquivo de teste eventsArray.dart (Basta puxar do Firebase ao inves de eventosDeTeste, após implementado)
-  return ListView.separated(
-    itemCount: lugaresDeTeste.length,
-    itemBuilder: (context, index) => placeTile(lugaresDeTeste[index], context),
-    separatorBuilder: (context, index) => const Divider(),
-  );
+class FavoritePlaces extends StatelessWidget {
+  const FavoritePlaces({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      itemCount: lugaresDeTeste.length,
+      itemBuilder: (context, index) => PlaceTile(place: lugaresDeTeste[index]),
+      separatorBuilder: (context, index) => const Divider(),
+    );
+  }
 }

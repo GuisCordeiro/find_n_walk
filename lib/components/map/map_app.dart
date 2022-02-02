@@ -39,41 +39,41 @@ class _MapAppState extends State<MapApp> {
               builder: (ctx) => GestureDetector(
                 onTap: () {
                   showModalBottomSheet(
-                      context: context,
-                      builder: (builder) {
-                        return Container(
-                          height: MediaQuery.of(context).size.height / 5,
-                          color: AppColors.orange,
-                          child: Column(
-                            children: [
-                              Stack(
-                                children: [
-                                  Container(
-                                    color: AppColors.orange,
-                                    height:
-                                        MediaQuery.of(context).size.height / 12,
-                                    child: Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            "Esta é a sua localização atual",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: AppColors.white,
-                                                fontSize: 26),
-                                          ),
-                                        ),
+                    context: context,
+                    builder: (builder) {
+                      return Container(
+                        height: MediaQuery.of(context).size.height / 5,
+                        color: AppColors.orange,
+                        child: Column(
+                          children: [
+                            Stack(
+                              children: [
+                                Container(
+                                  color: AppColors.orange,
+                                  height:
+                                      MediaQuery.of(context).size.height / 12,
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "Esta é a sua localização atual",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.white,
+                                            fontSize: 26),
                                       ),
+                                    ),
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
                 },
                 child: Image.asset('assets/images/cursor.png'),
               ),

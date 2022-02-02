@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:findnwalk/components/markers/marker_place.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/pages/map/home_page.dart';
@@ -23,15 +21,11 @@ class ChoosePlace extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ChoosePlaceState createState() =>
-      _ChoosePlaceState(placeName, placeAddress, placeDescription);
+  _ChoosePlaceState createState() => _ChoosePlaceState();
 }
 
 class _ChoosePlaceState extends State<ChoosePlace> {
-  final String placeName;
-  final String placeAddress;
-  final String placeDescription;
-  _ChoosePlaceState(this.placeName, this.placeAddress, this.placeDescription);
+  _ChoosePlaceState();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,20 +82,20 @@ class _ChoosePlaceState extends State<ChoosePlace> {
                                     color: AppColors.orange,
                                     height:
                                         MediaQuery.of(context).size.height / 12,
-                                    child: Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            "Esta é a sua localização atual",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                color: AppColors.white,
-                                                fontSize: 26),
-                                          ),
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "Esta é a sua localização atual",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.white,
+                                              fontSize: 26),
                                         ),
                                       ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -124,8 +118,8 @@ class _ChoosePlaceState extends State<ChoosePlace> {
   _handleTap(LatLng tappedPoint) {
     setState(
       () {
-        ListPlaceMarkers.placesMarker.add(createmarker(
-            tappedPoint, context, placeName, placeAddress, placeDescription));
+        ListPlaceMarkers.placesMarker.add(createmarker(tappedPoint, context,
+            widget.placeName, widget.placeAddress, widget.placeDescription));
       },
     );
   }
