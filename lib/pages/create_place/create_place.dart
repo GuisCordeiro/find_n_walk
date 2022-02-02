@@ -1,3 +1,4 @@
+import 'package:findnwalk/components/create_place/picture_button.dart';
 import 'package:findnwalk/components/shared/app_button.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/custom_select_form_field.dart';
@@ -22,6 +23,8 @@ class _CreatePlaceState extends State<CreatePlace> {
   final cathegories = TextEditingController();
 
   final capacity = TextEditingController();
+
+  final pictureButton = PictureButton();
 
   bool isPublic = true;
 
@@ -96,16 +99,20 @@ class _CreatePlaceState extends State<CreatePlace> {
               icon: const Icon(Icons.person),
               controller: capacity,
             ),
-            SwitchListTile(
-              value: isPublic,
-              title: const Text('É público?'),
-              onChanged: (bool state) {
-                setState(
-                  () {
-                    isPublic = state;
-                  },
-                );
-              },
+            pictureButton, // botão simples para seleção de imagens
+            Padding(
+              padding: const EdgeInsets.only(top: 5.0),
+              child: SwitchListTile(
+                value: isPublic,
+                title: const Text('É público?'),
+                onChanged: (bool state) {
+                  setState(
+                    () {
+                      isPublic = state;
+                    },
+                  );
+                },
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10),
@@ -116,7 +123,8 @@ class _CreatePlaceState extends State<CreatePlace> {
                       address.text == '' ||
                       cathegories.text == '' ||
                       capacity.text == '' ||
-                      description.text == '') {
+                      description.text == '' ||
+                      !pictureButton.usedOnce) {
                     const AlertDialog(
                       title: Text("Preencha todos os campos!"),
                     );
@@ -131,6 +139,7 @@ class _CreatePlaceState extends State<CreatePlace> {
                           description: description.text,
                           cathegories: cathegories.text,
                           isPublic: isPublic,
+                          // Lidar com as fotos...
                         ),
                       ),
                     );
