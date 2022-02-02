@@ -1,5 +1,6 @@
 import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:findnwalk/controllers/temp.dart';
+import 'package:findnwalk/pages/create_place/create_place.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -28,7 +29,9 @@ class _MapAppState extends State<MapApp> {
           urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
           subdomains: ['a', 'b', 'c'],
         ),
-        MarkerLayerOptions(markers: ListPlaceMarkers.placesMarker),
+        MarkerLayerOptions(
+          markers: ListPlaceMarkers.placesMarker
+        ),
         MarkerLayerOptions(
           markers: [
             Marker(
@@ -78,8 +81,8 @@ class _MapAppState extends State<MapApp> {
                 child: Image.asset('assets/images/cursor.png'),
               ),
             ),
-          ],
-        ),
+          ]
+        )
       ],
     );
   }

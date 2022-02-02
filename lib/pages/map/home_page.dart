@@ -18,6 +18,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+    refreshMap(){
+    setState(() {
+      
+    });
+  }
 
   TextEditingController textController = TextEditingController();
   @override
@@ -28,7 +33,7 @@ class _HomePageState extends State<HomePage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CreatePlace(),
+              builder: (context) => CreatePlace(refreshMap),
             ),
           );
         },
@@ -47,21 +52,6 @@ class _HomePageState extends State<HomePage> {
               return Stack(
                 children: [
                   const MapApp(),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 10),
-                    child: AnimSearchBar(
-                      helpText: 'Pesquisar...',
-                      width: MediaQuery.of(context).size.width,
-                      textController: textController,
-                      onSuffixTap: () {
-                        setState(
-                          () {
-                            textController.clear();
-                          },
-                        );
-                      },
-                    ),
-                  ),
                 ],
               );
             } else {

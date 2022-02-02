@@ -1,3 +1,4 @@
+import 'package:findnwalk/components/map/map_app.dart';
 import 'package:findnwalk/components/markers/marker_place.dart';
 import 'package:findnwalk/components/shared/bottom_navigation_bar.dart';
 import 'package:findnwalk/components/shared/colors.dart';
@@ -13,6 +14,8 @@ import 'package:latlong2/latlong.dart';
 // pela página de cadastro.
 
 class ChoosePlace extends StatefulWidget {
+  final VoidCallback refreshMap;
+
   final String name;
 
   final String address;
@@ -26,7 +29,10 @@ class ChoosePlace extends StatefulWidget {
   final bool isPublic;
 
   const ChoosePlace(
-      {required this.name,
+       
+      {
+      required this.refreshMap,
+      required this.name,
       required this.address,
       required this.description,
       required this.cathegories,
@@ -43,7 +49,6 @@ class _ChoosePlaceState extends State<ChoosePlace> {
   bool isPublic;
 
   _ChoosePlaceState(this.isPublic);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,18 +63,24 @@ class _ChoosePlaceState extends State<ChoosePlace> {
         options: MapOptions(
           onLongPress: (tappedPoint, LatLng thing) {
             _handleTap(thing);
-            Navigator.push(
+            widget.refreshMap();
+            int count = 0;
+            Navigator.of(context).popUntil((_) => count++ >= 2);
+            /* Navigator.push(
               context,
               MaterialPageRoute(
                 // Versão que faria sentido:
                 // builder: (context) => const HomePage(),
                 // HACK versão que de fato funciona:
-                builder: (context) => const BottomFNBar(),
+                builder: (context){
+                  widget.refreshMap();
+                  return const BottomFNBar();
+                } 
                 // É, depressão e lágrimas
               ),
             ).then(
               (value) => setState(() {}),
-            );
+            ); */
           },
           center: LoginController.location,
           zoom: 16.0,
@@ -83,56 +94,56 @@ class _ChoosePlaceState extends State<ChoosePlace> {
           ),
           MarkerLayerOptions(markers: ListPlaceMarkers.placesMarker),
           MarkerLayerOptions(
-            markers: <Marker>[
+            markers: [
               Marker(
-                width: 130.0,
-                height: 130.0,
-                point: LoginController.location ?? LatLng(0, 0),
-                builder: (ctx) => GestureDetector(
-                  onTap: () {
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (builder) {
-                        return Container(
-                          height: MediaQuery.of(context).size.height / 5,
-                          color: AppColors.orange,
-                          child: Column(
-                            children: <Widget>[
-                              Stack(
-                                children: <Widget>[
-                                  Container(
-                                    color: AppColors.orange,
-                                    height:
-                                        MediaQuery.of(context).size.height / 12,
-                                    child: const Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          "Esta é a sua localização atual",
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
+              width: 130.0,
+              height: 130.0,
+              // TODO make this better
+              point: LoginController.location ?? LatLng(0, 0),
+              builder: (ctx) => GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (builder) {
+                      return Container(
+                        height: MediaQuery.of(context).size.height / 5,
+                        color: AppColors.orange,
+                        child: Column(
+                          children: [
+                            Stack(
+                              children: [
+                                Container(
+                                  color: AppColors.orange,
+                                  height:
+                                      MediaQuery.of(context).size.height / 12,
+                                  child: const Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "Esta é a sua localização atual",
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: AppColors.white,
-                                            fontSize: 26,
-                                          ),
-                                        ),
+                                            fontSize: 26),
                                       ),
                                     ),
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  child: Image.asset('assets/images/cursor.png'),
-                ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: Image.asset('assets/images/cursor.png'),
               ),
-            ],
-          ),
+            ),
+            ]
+          )
         ],
       ),
     );
@@ -150,6 +161,8 @@ class _ChoosePlaceState extends State<ChoosePlace> {
     );
     setState(
       () {
+        print('Local adicionado');
+        widget.refreshMap();
         ListPlaceMarkers.placesMarker.add(
           createmarker(
             tappedPoint,

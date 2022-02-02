@@ -76,6 +76,7 @@ createmarker(LatLng tappedPoint, context, String placeName, String placeAdress,
       },
       child: const Icon(
         Icons.place,
+        size: 60,
         color: AppColors.orange,
       ),
     ),

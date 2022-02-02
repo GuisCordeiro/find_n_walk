@@ -7,13 +7,15 @@ import 'package:findnwalk/pages/create_place/choose_place.dart';
 import 'package:flutter/material.dart';
 
 class CreatePlace extends StatefulWidget {
-  const CreatePlace({Key? key}) : super(key: key);
+  final VoidCallback refreshMap;
+  const CreatePlace(this.refreshMap, {Key? key}) : super(key: key);
 
   @override
   _CreatePlaceState createState() => _CreatePlaceState();
 }
 
 class _CreatePlaceState extends State<CreatePlace> {
+
   final name = TextEditingController();
 
   final address = TextEditingController();
@@ -133,6 +135,7 @@ class _CreatePlaceState extends State<CreatePlace> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ChoosePlace(
+                          refreshMap: widget.refreshMap,
                           name: name.text,
                           address: address.text,
                           capacity: capacity.text,
