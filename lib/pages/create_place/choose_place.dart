@@ -1,31 +1,49 @@
 import 'package:findnwalk/components/markers/marker_place.dart';
+import 'package:findnwalk/components/shared/bottom_navigation_bar.dart';
 import 'package:findnwalk/components/shared/colors.dart';
-import 'package:findnwalk/pages/map/home_page.dart';
+import 'package:findnwalk/controllers/create_place_controller.dart';
 import 'package:findnwalk/controllers/login_controller.dart';
+import 'package:findnwalk/controllers/temp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:findnwalk/controllers/temp.dart';
 
-import '../map/home_page.dart';
+// Página que permite ao usuário precisar a localização do lugar sendo
+// cadastrado. É carregada logo após o envio das informações esperadas
+// pela página de cadastro.
 
 class ChoosePlace extends StatefulWidget {
-  final String placeName;
+  final String name;
 
-  final String placeAddress;
+  final String address;
 
-  final String placeDescription;
+  final String description;
 
-  const ChoosePlace(this.placeName, this.placeAddress, this.placeDescription,
-      {Key? key})
+  final String cathegories;
+
+  final String capacity;
+
+  final bool isPublic;
+
+  const ChoosePlace(
+      {required this.name,
+      required this.address,
+      required this.description,
+      required this.cathegories,
+      required this.capacity,
+      required this.isPublic,
+      Key? key})
       : super(key: key);
 
   @override
-  _ChoosePlaceState createState() => _ChoosePlaceState();
+  _ChoosePlaceState createState() => _ChoosePlaceState(isPublic);
 }
 
 class _ChoosePlaceState extends State<ChoosePlace> {
-  _ChoosePlaceState();
+  bool isPublic;
+
+  _ChoosePlaceState(this.isPublic);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,11 +57,15 @@ class _ChoosePlaceState extends State<ChoosePlace> {
       body: FlutterMap(
         options: MapOptions(
           onLongPress: (tappedPoint, LatLng thing) {
-            _handleTap;
+            _handleTap(thing);
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const HomePage(),
+                // Versão que faria sentido:
+                // builder: (context) => const HomePage(),
+                // HACK versão que de fato funciona:
+                builder: (context) => const BottomFNBar(),
+                // É, depressão e lágrimas
               ),
             ).then(
               (value) => setState(() {}),
@@ -54,14 +76,14 @@ class _ChoosePlaceState extends State<ChoosePlace> {
           maxZoom: 18,
           minZoom: 5,
         ),
-        layers: [
+        layers: <LayerOptions>[
           TileLayerOptions(
             urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
             subdomains: ['a', 'b', 'c'],
           ),
           MarkerLayerOptions(markers: ListPlaceMarkers.placesMarker),
           MarkerLayerOptions(
-            markers: [
+            markers: <Marker>[
               Marker(
                 width: 130.0,
                 height: 130.0,
@@ -75,9 +97,9 @@ class _ChoosePlaceState extends State<ChoosePlace> {
                           height: MediaQuery.of(context).size.height / 5,
                           color: AppColors.orange,
                           child: Column(
-                            children: [
+                            children: <Widget>[
                               Stack(
-                                children: [
+                                children: <Widget>[
                                   Container(
                                     color: AppColors.orange,
                                     height:
@@ -90,9 +112,10 @@ class _ChoosePlaceState extends State<ChoosePlace> {
                                           "Esta é a sua localização atual",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColors.white,
-                                              fontSize: 26),
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.white,
+                                            fontSize: 26,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -115,11 +138,27 @@ class _ChoosePlaceState extends State<ChoosePlace> {
     );
   }
 
-  _handleTap(LatLng tappedPoint) {
+  Future<void> _handleTap(LatLng tappedPoint) async {
+    await CreatePlaceController.create(
+      latLng: tappedPoint,
+      name: widget.name,
+      address: widget.address,
+      capacity: widget.capacity,
+      description: widget.description,
+      cathegories: widget.cathegories,
+      isPublic: isPublic,
+    );
     setState(
       () {
-        ListPlaceMarkers.placesMarker.add(createmarker(tappedPoint, context,
-            widget.placeName, widget.placeAddress, widget.placeDescription));
+        ListPlaceMarkers.placesMarker.add(
+          createmarker(
+            tappedPoint,
+            context,
+            widget.name,
+            widget.address,
+            widget.description,
+          ),
+        );
       },
     );
   }

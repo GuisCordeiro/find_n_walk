@@ -38,7 +38,6 @@ class User {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
       'email': email,
       'user_name': name,
       'birthday': birthday.toString(),
@@ -50,7 +49,6 @@ class User {
 
   static User fromJson(Map<String, dynamic> map) {
     return User(
-      id: map['id'],
       email: map['email'],
       name: map['user_name'],
       birthday: DateTime.parse(map['birthday']),

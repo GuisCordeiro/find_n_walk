@@ -11,7 +11,7 @@ class PlaceTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(place.name),
-      subtitle: Text(splitString(place.cathegory.toString())),
+      subtitle: Text(splitString(place.cathegories.toString())),
       leading: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

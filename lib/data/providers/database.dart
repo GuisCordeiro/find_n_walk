@@ -50,50 +50,63 @@ mixin Database {
 
   // Operações sobre os lugares.
 
-  // TODO tornar os lugares identificados pelo id
-
-  static Future<Place?> getPlace(String name) async {
-    final dados = await _places.doc(name).get();
+  static Future<Place?> getPlace(String id) async {
+    final dados = await _places.doc(id).get();
     if (!dados.exists) return null;
-    return dados.data();
+    final place = dados.data();
+    if (place == null) return null;
+    place.id = dados.id;
+    return place;
+  }
+
+  static Future<Place?> getPlaceBy(String property, String value) async {
+    final dados = await _places.where(property, isEqualTo: value).get();
+    final placeDoc = dados.docs.first;
+    if (!placeDoc.exists) return null;
+    final place = placeDoc.data();
+    place.id = placeDoc.id;
+    return place;
   }
 
   // TODO deal with potential errors
   static Future<void> addPlace(Place place) async {
-    await _places.doc(place.name).set(place);
+    final dados = await _places.add(place);
+    place.id = dados.id;
   }
 
   // TODO deal with potential errors
-  static Future<void> updatePlace(
-      String name, Map<String, dynamic> data) async {
-    await _places.doc(name).update(data);
+  static Future<void> updatePlace(String id, Map<String, dynamic> data) async {
+    await _places.doc(id).update(data);
   }
 
-  // Ok, acredito que descobri como nós vamos armazenar as avaliações.
-  // As avaliações associadas a um certo lugar serão armazenadas como uma
-  // subcoleção desse lugar. Certo? ;)
+  // Operações sobre as avaliações
 
-  static CollectionReference _reviewCollection(Place place) {
-    return _places.doc(place.name).collection('reviews').withConverter<Review>(
+  // As avaliações associadas a um dado lugar são armazenadas como
+  // uma subcoleção desse lugar. Essa função utilitária retorna
+  // referência à coleção de avaliações associada a um lugar de
+  // certo id.
+
+  static CollectionReference _reviews(String placeId) {
+    return _places.doc(placeId).collection('reviews').withConverter<Review>(
           fromFirestore: (snapshots, _) => Review.fromJson(snapshots.data()!),
           toFirestore: (review, _) => review.toJson(),
         );
   }
 
   // TODO improve this
-  static Future<Iterable<Review?>> getReviews(Place place) async {
-    final snapshot = await _reviewCollection(place).get();
+  static Future<Iterable<Review?>> getReviews(String placeId) async {
+    final snapshot = await _reviews(placeId).get();
     return snapshot.docs.map((doc) => doc.data() as Review?);
   }
 
   // TODO deal with potential errors
-  static Future<void> addReview(Place place, Review review) async {
-    await _reviewCollection(place).doc(review.userId).set(review);
+  static Future<void> addReview(String placeId, Review review) async {
+    await _reviews(placeId).doc(review.userId).set(review);
   }
 
   // TODO deal with potential errors
   static Future<void> updateReview(
-      Place place, String reviewId, Map<String, dynamic> data) async {
-    await _reviewCollection(place).doc(reviewId).update(data);
+      String placeId, String reviewId, Map<String, dynamic> data) async {
+    await _reviews(placeId).doc(reviewId).update(data);
   }
 }

@@ -20,26 +20,27 @@ class TextBlock extends StatelessWidget {
       auxHeight = height!;
     }
     return Block(
-        height: auxHeight,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              title,
-              style: const TextStyle(
-                color: AppColors.orange,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
+      height: auxHeight,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Text>[
+          Text(
+            title,
+            style: const TextStyle(
+              color: AppColors.orange,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
             ),
-            Text(
-              subtitle,
-              style: const TextStyle(
-                color: AppColors.black,
-                fontSize: 15,
-              ),
+          ),
+          Text(
+            subtitle,
+            style: const TextStyle(
+              color: AppColors.black,
+              fontSize: 15,
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,13 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../models/user.dart';
 import '../models/place.dart';
 
 var usuariosDeTeste = [
   User(
-      id: 'Aaaaa',
-      name: "admin",
-      email: "admin@gmail.com",
-      birthday: DateTime(2010),
-      passwordHash: "hfiashfoiahfiahfoa"),
+    id: 'Aaaaa',
+    name: "admin",
+    email: "admin@gmail.com",
+    birthday: DateTime(2010),
+    passwordHash: "hfiashfoiahfiahfoa",
+  ),
 ];
 
 var lugaresDeTeste = [
@@ -16,9 +19,10 @@ var lugaresDeTeste = [
     creatorId: 'Aaaaa',
     name: 'Poliesportivo claudomiro',
     address: 'Rua dos Bobos, n 0, Bairro do Limoeiro',
+    exactLocation: const GeoPoint(12, 13),
     description: 'O melhor poliesportivo',
     isPublic: true,
-    cathegory: ['Futebol', 'Volei', 'Basquete'],
+    cathegories: ['Futebol', 'Volei', 'Basquete'],
     thumbnail: null,
     capacity: 300,
   ),
@@ -27,9 +31,10 @@ var lugaresDeTeste = [
     creatorId: 'Aaaaa',
     name: 'Quadra de futebas do marcola',
     address: 'Rua Juquinha, nº143, Centro',
+    exactLocation: const GeoPoint(13, 12),
     description: 'Bão que só',
     isPublic: false,
-    cathegory: ['Futebol'],
+    cathegories: ['Futebol'],
     thumbnail: null,
     capacity: 100,
   ),
