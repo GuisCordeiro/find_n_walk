@@ -12,12 +12,17 @@ import 'colors.dart';
 
 class FNAppBar extends StatelessWidget {
   final String pageName;
-  final Icon icon;
-  final Widget page;
+  final Icon? icon;
+  final Widget? page;
   final bool arrow;
 
-  const FNAppBar(this.pageName, this.icon, this.page, this.arrow, {Key? key})
-      : super(key: key);
+  const FNAppBar({
+    required this.pageName,
+    required this.icon,
+    required this.page,
+    required this.arrow,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,21 +34,29 @@ class FNAppBar extends StatelessWidget {
           pageName,
           style: const TextStyle(color: AppColors.black),
         ),
-        actions: <Widget>[
-          IconButton(
-            color: AppColors.black,
-            icon: icon,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => page,
-                ),
-              );
-            },
-          )
-        ],
+        actions: hasIcon(context),
       ),
     );
+  }
+
+  hasIcon(BuildContext context) {
+    if (icon == null || page == null) {
+      return null;
+    } else {
+      return <Widget>[
+        IconButton(
+          color: AppColors.black,
+          icon: icon!,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => page!,
+              ),
+            );
+          },
+        )
+      ];
+    }
   }
 }

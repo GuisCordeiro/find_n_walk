@@ -44,24 +44,20 @@ class PlacePage extends StatelessWidget {
             //TODO é necessário que id do registrador do local seja usado para localizar o usuário de forma que seus dados possam ser passados para este widget
             AuthorBlock(user: usuariosDeTeste[0]),
             TextBlock(
-              title: "Categorias",
+              title: "Categorias:",
               subtitle: splitString(place.cathegory.toString()),
-              context: context,
             ),
             TextBlock(
-              title: "Local",
+              title: "Local:",
               subtitle: place.address,
-              context: context,
             ),
             TextBlock(
-              title: "Capacidade máxima",
+              title: "Capacidade máxima:",
               subtitle: place.capacity.toString(),
-              context: context,
             ),
             TextBlock(
-              title: "Descrição",
+              title: "Descrição:",
               subtitle: place.description,
-              context: context,
               height: 200,
             ),
             space()

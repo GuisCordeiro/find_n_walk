@@ -28,8 +28,11 @@ class UserCard extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Block(
             height: 200,
-            child: Text(
-              content(user),
+            child: SingleChildScrollView(
+              child: Text(
+                content(user),
+                overflow: TextOverflow.visible,
+              ),
             ),
           ),
         )

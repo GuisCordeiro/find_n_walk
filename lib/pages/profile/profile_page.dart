@@ -4,8 +4,6 @@ import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 
-import '../settings/settings_page.dart';
-
 /*
   Página de perfil
 */
@@ -23,47 +21,65 @@ class _PerfilPageState extends State<PerfilPage> {
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size.fromHeight(100),
-        child: FNAppBar('Perfil', Icon(Icons.settings), SettingsPage(), true),
+        child: FNAppBar(
+          pageName: 'Perfil',
+          icon: null,
+          page: null,
+          arrow: true,
+        ),
       ),
       body: SafeArea(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
-                  child: Text(
-                    LoginController.user!.name,
+        child: SingleChildScrollView(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  Text(
+                    "Olá, ${LoginController.user!.name}!",
                     style: const TextStyle(
                         color: AppColors.orange,
                         fontSize: 25,
                         fontWeight: FontWeight.bold),
                   ),
-                ),
-                Text(LoginController.user!.bio ??
-                    "Hello there, I am using Find N'Walk!"),
-                GestureDetector(
-                  child: Container(
-                    height: 100,
-                    width: 300,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.grey, width: 2),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 50),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text("Biografia:"),
+                      ),
+                      GestureDetector(
+                        child: Container(
+                          width: 300,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: AppColors.grey, width: 2),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                                LoginController.user!.bio ??
+                                    "Hello there, I am using Find N'Walk!",
+                                overflow: TextOverflow.visible),
+                          ),
+                        ),
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return const EditBioCard();
+                            },
+                          );
+                        },
+                      )
+                    ],
                   ),
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const EditBioCard();
-                      },
-                    );
-                  },
-                )
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

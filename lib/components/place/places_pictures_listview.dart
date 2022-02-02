@@ -1,3 +1,4 @@
+import 'package:findnwalk/components/place/base_block.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/data/models/place.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +14,18 @@ class PlacesPictures extends StatefulWidget {
 class _PlacesPicturesState extends State<PlacesPictures> {
   @override
   Widget build(BuildContext context) {
-    //TODO Trocar != por ==
-    if (widget.place.pictures != null) {
+    if (widget.place.pictures == null) {
       return const Center(
-        child: Text("Nenhuma imagem registrada!"),
+        child: Block(
+          height: 200,
+          width: 300,
+          child: Center(
+            child: Text(
+              "Nenhuma imagem cadastrada!",
+              style: TextStyle(fontSize: 18, color: AppColors.grey),
+            ),
+          ),
+        ),
       );
     } else {
       return SizedBox(
@@ -24,9 +33,7 @@ class _PlacesPicturesState extends State<PlacesPictures> {
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: List.generate(
-              //TODO Substituir o 10 pelo length
-              //widget.place.pictures!.length,
-              10,
+              widget.place.pictures!.length,
               (int index) => Row(
                     children: [
                       const SizedBox(

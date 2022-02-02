@@ -5,13 +5,11 @@ import 'package:flutter/material.dart';
 class TextBlock extends StatelessWidget {
   final String title;
   final String subtitle;
-  final BuildContext context;
   final double? height;
   const TextBlock({
     Key? key,
     required this.title,
     required this.subtitle,
-    required this.context,
     this.height,
   }) : super(key: key);
 

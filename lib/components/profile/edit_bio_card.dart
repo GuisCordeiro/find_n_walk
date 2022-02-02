@@ -1,4 +1,8 @@
+import 'dart:math';
+
+import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 
 import '../shared/colors.dart';
 import '../shared/app_button.dart';
@@ -26,6 +30,7 @@ class EditBioCard extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextFormField(
+            maxLines: null,
             decoration: const InputDecoration(
               hintText: 'Insira sua biografia...',
               border: OutlineInputBorder(),
@@ -33,10 +38,7 @@ class EditBioCard extends StatelessWidget {
           ),
         ),
         //TODO mudar bio
-        AppButton(
-          label: 'Enviar',
-          onTap: () => print('Não implementado ainda'),
-        ),
+        AppButton(label: 'Enviar', onTap: () {}),
       ],
     );
   }

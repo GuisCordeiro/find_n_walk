@@ -13,13 +13,15 @@ class AuthorBlock extends StatelessWidget {
     return GestureDetector(
         onTap: () {
           showDialog(
-              context: context,
-              builder: (context) {
-                return UserCard(user: user);
-              },
-            );
+            context: context,
+            builder: (context) {
+              return UserCard(user: user);
+            },
+          );
         },
         child: TextBlock(
-            title: "Criado por", subtitle: user.name, context: context));
+          title: "Criado por",
+          subtitle: user.name,
+        ));
   }
 }
