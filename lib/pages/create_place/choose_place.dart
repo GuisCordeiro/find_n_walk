@@ -105,17 +105,16 @@ class _ChoosePlaceState extends State<ChoosePlace> {
                                     height:
                                         MediaQuery.of(context).size.height / 12,
                                     child: const Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: Align(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            "Esta é a sua localização atual",
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColors.white,
-                                              fontSize: 26,
-                                            ),
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "Esta é a sua localização atual",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.white,
+                                            fontSize: 26,
                                           ),
                                         ),
                                       ),

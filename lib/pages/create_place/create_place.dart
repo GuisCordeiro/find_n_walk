@@ -24,7 +24,7 @@ class _CreatePlaceState extends State<CreatePlace> {
 
   final capacity = TextEditingController();
 
-  final pictureButton = PictureButton();
+  // final pictureButton = PictureButton();
 
   bool isPublic = true;
 
@@ -99,7 +99,7 @@ class _CreatePlaceState extends State<CreatePlace> {
               icon: const Icon(Icons.person),
               controller: capacity,
             ),
-            pictureButton, // botão simples para seleção de imagens
+            // pictureButton, // botão simples para seleção de imagens
             Padding(
               padding: const EdgeInsets.only(top: 5.0),
               child: SwitchListTile(
@@ -123,8 +123,8 @@ class _CreatePlaceState extends State<CreatePlace> {
                       address.text == '' ||
                       cathegories.text == '' ||
                       capacity.text == '' ||
-                      description.text == '' ||
-                      !pictureButton.usedOnce) {
+                      // !pictureButton.usedOnce ||
+                      description.text == '') {
                     const AlertDialog(
                       title: Text("Preencha todos os campos!"),
                     );
