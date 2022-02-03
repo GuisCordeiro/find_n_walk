@@ -67,13 +67,15 @@ mixin Database {
     return place;
   }
 
-  // NOTE utilizar esse método não é exatamente ótimo
+  // NOTE esse método não está exatamente otimizado kkkk
   static Future<Iterable<Place>> getAllPlaces() async {
     final allPlaces = [];
     final placesSnapshot = await _places.get();
     for (QueryDocumentSnapshot<Place?> snapshot in placesSnapshot.docs) {
-      if (snapshot.data() != null) {
-        allPlaces.add(snapshot.data());
+      final place = snapshot.data();
+      if (place != null) {
+        place.id = snapshot.id;
+        allPlaces.add(place);
       }
     }
     return (allPlaces).map((item) => item as Place).toList();

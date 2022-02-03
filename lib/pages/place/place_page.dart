@@ -4,6 +4,7 @@ import 'package:findnwalk/components/place/places_pictures_listview.dart';
 import 'package:findnwalk/components/place/text_block.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/favorite_button.dart';
+import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:findnwalk/data/models/place.dart';
 import 'package:findnwalk/data/providers/database.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,10 @@ class PlacePage extends StatelessWidget {
             ),
             const Spacer(),
             // HACK o botão meio que se auto-controla
-            FavoriteButton(placeId: place.id!, favorite: false),
+            FavoriteButton(
+              placeId: place.id!,
+              favorite: LoginController.user!.favoritePlaces.contains(place.id!),
+            ),
           ],
         ),
       ),
@@ -47,20 +51,17 @@ class PlacePage extends StatelessWidget {
             // NOTE é preciso carregar o usuário para gerar
             // o AuthorBlock da página.
             FutureBuilder(
-              future: Database.getUser(place.creatorId),
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (snapshot.hasData) {
-                  return AuthorBlock(user: snapshot.data);
-                }
-                return const TextBlock(
-                  title: 'Por favor, aguarde',
-                  subtitle: 'Carregando...'
-                );
-              }
-            ),
+                future: Database.getUser(place.creatorId),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.hasData) {
+                    return AuthorBlock(user: snapshot.data);
+                  }
+                  return const TextBlock(
+                      title: 'Por favor, aguarde', subtitle: 'Carregando...');
+                }),
             TextBlock(
               title: "Categorias:",
-              subtitle: place.cathegories.toString(),
+              subtitle: place.cathegories.join(', '),
             ),
             TextBlock(
               title: "Local:",

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PictureButton extends StatefulWidget {
+  PictureButton({Key? key}) : super(key: key);
+
   bool usedOnce = false;
 
   String thumbnailPath = '';
 
   List<String> otherImagePaths = [];
-
-  PictureButton({Key? key}) : super(key: key);
 
   @override
   _PictureButtonState createState() => _PictureButtonState();

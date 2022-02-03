@@ -14,13 +14,9 @@ class FavoritesPage extends StatefulWidget {
 }
 
 class _FavoritesPageState extends State<FavoritesPage> {
-  FavoritesController? _controller;
-
-  _refresh() => setState(() {});
 
   @override
   void initState() {
-    _controller = FavoritesController(_refresh);
     super.initState();
   }
 
@@ -36,7 +32,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
             'Lugares Favoritos',
             style: TextStyle(color: AppColors.black),
           ),
-          actions: [
+          actions: <IconButton>[
             IconButton(
               color: AppColors.black,
               icon: const Icon(Icons.person),
@@ -52,27 +48,19 @@ class _FavoritesPageState extends State<FavoritesPage> {
           ],
         ),
         // body: const FavoritePlaces(),
-        body: FutureBuilder<List<Place?>>(
-          future: _controller!.favoritePlaces,
+        body: FutureBuilder<List<Place>>(
+          initialData: const [],
+          future: FavoritesController.get(),
           builder:
-              (BuildContext context, AsyncSnapshot<List<Place?>> snapshot) {
-            if (snapshot.hasData) {
-              return ListView.separated(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index) {
-                  final place = snapshot.data![index];
-                  if (place != null) {
-                    return PlaceTile(place: place);
-                  }
-                  // HACK eu só tinha que não exibir nada
-                  // na possibilidade de um lugar não ser
-                  // recuperado do BD.
-                  return const ListTile();
-                },
-                separatorBuilder: (context, index) => const Divider(),
-              );
-            }
-            return ListView();
+              (BuildContext context, AsyncSnapshot snapshot) {
+            return ListView.separated(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                final place = snapshot.data![index];
+                return PlaceTile(place: place);
+              },
+              separatorBuilder: (context, index) => const Divider(),
+            );
           },
         ),
       ),

@@ -15,13 +15,8 @@ class NearbyPlaces extends StatefulWidget {
 
 class _NearbyPlacesState extends State<NearbyPlaces> {
 
-  NearbyPlacesController? _controller;
-
-  _refresh() => setState(() {});
-
   @override
   void initState() {
-    _controller = NearbyPlacesController(_refresh);
     super.initState();
   }
 
@@ -53,19 +48,17 @@ class _NearbyPlacesState extends State<NearbyPlaces> {
           ],
         ),
         body: FutureBuilder(
-          future: _controller!.nearbyPlaces,
+          initialData: const [],
+          future: NearbyPlacesController.get(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasData) {
-              return ListView.separated(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index) {
-                  final place = snapshot.data![index];
-                  return PlaceTile(place: place);
-                },
-                separatorBuilder: (context, index) => const Divider(),
-              );
-            }
-            return ListView();
+            return ListView.separated(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, index) {
+                final place = snapshot.data![index];
+                return PlaceTile(place: place);
+              },
+              separatorBuilder: (context, index) => const Divider(),
+            );
           },
         ),
       ),

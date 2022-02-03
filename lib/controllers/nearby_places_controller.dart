@@ -1,44 +1,27 @@
-import 'package:findnwalk/data/models/place.dart';
 import 'package:findnwalk/controllers/login_controller.dart';
+import 'package:findnwalk/data/models/place.dart';
 import 'package:findnwalk/data/providers/database.dart';
-import 'package:flutter/painting.dart';
 import 'package:latlong2/latlong.dart';
 
-class NearbyPlacesController {
-  final VoidCallback refreshPage;
+// Controlador estático da página de locais próximos
 
-  final location = LoginController.location!;
+mixin NearbyPlacesController {
+  static const distance = Distance();
 
-  Future<List<Place>>? nearbyPlaces;
-
-  NearbyPlacesController(this.refreshPage) {
-    const distance = Distance();
-    final allPlaces = Database.getAllPlaces();
-    allPlaces.then(
-      (snapshot) {
-        final List<Place> nearbyBuffer = [];
-        for (Place place in snapshot) {
-          final km = distance.as(
-            LengthUnit.Kilometer,
-            location,
-            LatLng(
-              place.exactLocation.latitude,
-              place.exactLocation.longitude,
-            ),
-          );
-          if (km < 50) {
-            nearbyBuffer.add(place);
-          }
-        }
-        nearbyPlaces = Future.value(nearbyBuffer);
-      },
-    ).onError(
-      (error, stackTrace) {
-        print(error);
-        print(stackTrace);
-      },
-    );
-    print('Deu tudo certo ao carregar os lugares próximos');
-    refreshPage();
+  static Future<List<Place>> get() async {
+    final List<Place> result = [];
+    final places = await Database.getAllPlaces();
+    for (Place place in places) {
+      final dist = distance.as(
+        LengthUnit.Kilometer,
+        LoginController.location!,
+        LatLng(
+          place.exactLocation.latitude,
+          place.exactLocation.longitude,
+        ),
+      );
+      if (dist < 50) result.add(place);
+    }
+    return result;
   }
 }

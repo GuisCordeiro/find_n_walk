@@ -1,20 +1,17 @@
 import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:findnwalk/data/models/place.dart';
 import 'package:findnwalk/data/providers/database.dart';
-import 'package:flutter/painting.dart';
 
-class FavoritesController {
-  final VoidCallback refreshPage;
+// Controlador estático da página de favoritos
 
-  Future<List<Place?>>? favoritePlaces;
+mixin FavoritesController {
 
-  FavoritesController(this.refreshPage) {
-    final List<Future<Place?>> favoritesBuffer = [];
+  static Future<List<Place>> get() async {
+    final List<Place> result = [];
     for(String placeId in LoginController.user!.favoritePlaces) {
-      favoritesBuffer.add(Database.getPlace(placeId));
+      final place = await Database.getPlace(placeId);
+      if (place != null) result.add(place);
     }
-    favoritePlaces = Future.wait(favoritesBuffer);
-    print('Deu tudo certo ao carregar os favoritos');
-    refreshPage();
+    return result;
   }
 }

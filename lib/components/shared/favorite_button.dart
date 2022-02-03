@@ -31,6 +31,7 @@ class _FavoriteButtonState extends State<FavoriteButton> {
         color: Colors.red,
         onPressed: () async {
           isFavorite = true;
+          // LoginController.user!.favoritePlaces.add(widget.placeId);
           userFavorites.add(widget.placeId);
           await Database.updateUser(
             userId,
