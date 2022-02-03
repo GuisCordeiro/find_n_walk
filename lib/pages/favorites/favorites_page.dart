@@ -43,7 +43,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const PerfilPage(),
+                    builder: (context) => const ProfilePage(),
                   ),
                 );
               },

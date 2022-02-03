@@ -6,9 +6,11 @@ import '../shared/colors.dart';
 import '../shared/app_button.dart';
 
 class EditBioCard extends StatelessWidget {
+  final VoidCallback refreshProfilePage;
+
   final _bioFieldController = TextEditingController();
 
-  EditBioCard({Key? key}) : super(key: key);
+  EditBioCard(this.refreshProfilePage, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,17 +40,18 @@ class EditBioCard extends StatelessWidget {
             ),
           ),
         ),
-        //TODO mudar bio
         AppButton(
           label: 'Enviar',
           onTap: () async {
-            String userId = LoginController.user!.id!;
+            final newBio = _bioFieldController.text;
+            LoginController.user!.bio = newBio;
             await Database.updateUser(
-              userId,
+              LoginController.user!.id!,
               {
-                'bio': _bioFieldController.text,
+                'bio': newBio,
               },
             );
+            refreshProfilePage();
             Navigator.pop(context);
           },
         ),

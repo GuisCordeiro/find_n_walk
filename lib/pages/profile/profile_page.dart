@@ -8,14 +8,16 @@ import 'package:flutter/material.dart';
   Página de perfil
 */
 
-class PerfilPage extends StatefulWidget {
-  const PerfilPage({Key? key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
-  _PerfilPageState createState() => _PerfilPageState();
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _PerfilPageState extends State<PerfilPage> {
+class _ProfilePageState extends State<ProfilePage> {
+  void _refresh() => setState(() {});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,9 +40,10 @@ class _PerfilPageState extends State<PerfilPage> {
                   Text(
                     "Olá, ${LoginController.user!.name}!",
                     style: const TextStyle(
-                        color: AppColors.orange,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                      color: AppColors.orange,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,16 +63,17 @@ class _PerfilPageState extends State<PerfilPage> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                                LoginController.user!.bio ??
-                                    "Hello there, I am using Find N'Walk!",
-                                overflow: TextOverflow.visible),
+                              LoginController.user!.bio ??
+                                  "Hello there, I am using Find N'Walk!",
+                              overflow: TextOverflow.visible,
+                            ),
                           ),
                         ),
                         onTap: () {
                           showDialog(
                             context: context,
                             builder: (context) {
-                              return EditBioCard();
+                              return EditBioCard(_refresh);
                             },
                           );
                         },

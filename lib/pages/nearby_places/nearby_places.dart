@@ -43,7 +43,7 @@ class _NearbyPlacesState extends State<NearbyPlaces> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const PerfilPage(),
+                    builder: (context) => const ProfilePage(),
                   ),
                 );
               },
