@@ -42,10 +42,12 @@ class EditBioCard extends StatelessWidget {
         AppButton(
           label: 'Enviar',
           onTap: () async {
-            final userId = LoginController.user!.id!;
+            String userId = LoginController.user!.id!;
             await Database.updateUser(
               userId,
-              { 'bio' : _bioFieldController.text }
+              {
+                'bio': _bioFieldController.text,
+              },
             );
             Navigator.pop(context);
           },

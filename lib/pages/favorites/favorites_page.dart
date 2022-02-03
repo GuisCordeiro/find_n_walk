@@ -14,10 +14,13 @@ class FavoritesPage extends StatefulWidget {
 }
 
 class _FavoritesPageState extends State<FavoritesPage> {
-
   @override
   void initState() {
     super.initState();
+  }
+
+  Future<void> _refresh() async {
+    setState(() {});
   }
 
   @override
@@ -51,15 +54,17 @@ class _FavoritesPageState extends State<FavoritesPage> {
         body: FutureBuilder<List<Place>>(
           initialData: const [],
           future: FavoritesController.get(),
-          builder:
-              (BuildContext context, AsyncSnapshot snapshot) {
-            return ListView.separated(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                final place = snapshot.data![index];
-                return PlaceTile(place: place);
-              },
-              separatorBuilder: (context, index) => const Divider(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            return RefreshIndicator(
+              onRefresh: _refresh,
+              child: ListView.separated(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  final place = snapshot.data![index];
+                  return PlaceTile(place: place);
+                },
+                separatorBuilder: (context, index) => const Divider(),
+              ),
             );
           },
         ),

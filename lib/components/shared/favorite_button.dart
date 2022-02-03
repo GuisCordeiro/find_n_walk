@@ -26,6 +26,11 @@ class _FavoriteButtonState extends State<FavoriteButton> {
 
   @override
   Widget build(BuildContext context) {
+    if (userFavorites.contains(widget.placeId)) {
+      isFavorite = true;
+    } else {
+      isFavorite = false;
+    }
     if (isFavorite == false) {
       return IconButton(
         color: Colors.red,

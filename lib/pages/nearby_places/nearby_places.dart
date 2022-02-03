@@ -14,10 +14,13 @@ class NearbyPlaces extends StatefulWidget {
 }
 
 class _NearbyPlacesState extends State<NearbyPlaces> {
-
   @override
   void initState() {
     super.initState();
+  }
+
+  Future<void> _refresh() async {
+    setState(() {});
   }
 
   @override
@@ -51,13 +54,16 @@ class _NearbyPlacesState extends State<NearbyPlaces> {
           initialData: const [],
           future: NearbyPlacesController.get(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
-            return ListView.separated(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                final place = snapshot.data![index];
-                return PlaceTile(place: place);
-              },
-              separatorBuilder: (context, index) => const Divider(),
+            return RefreshIndicator(
+              onRefresh: _refresh,
+              child: ListView.separated(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  final place = snapshot.data![index];
+                  return PlaceTile(place: place);
+                },
+                separatorBuilder: (context, index) => const Divider(),
+              ),
             );
           },
         ),

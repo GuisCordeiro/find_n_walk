@@ -28,9 +28,9 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
 
   bool _emailValidate = false;
 
-  String? _emailError = null;
+  String? _emailError;
 
-  String? _passwordError = null;
+  String? _passwordError;
 
   late final AnimationController _controller = AnimationController(
     lowerBound: 0.5,
@@ -112,6 +112,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                           ],
                         ),
                       ),
+                      const SizedBox(height: 20),
                       AppForm(
                         label: 'Digite seu email',
                         icon: const Icon(Icons.email),
@@ -128,7 +129,7 @@ class _LoginPageState extends State<LoginPage> with TickerProviderStateMixin {
                         validate: _passwordValidate,
                         errorMessage: _passwordError,
                       ),
-                      const CheckboxLaranja('lembre-se de mim'),
+                      const SizedBox(height: 30),
                       AppButton(
                         label: 'Enviar',
                         onTap: () {

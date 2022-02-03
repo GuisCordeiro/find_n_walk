@@ -26,6 +26,8 @@ class ChoosePlace extends StatefulWidget {
 
   final bool isPublic;
 
+  final String? thumbnail;
+
   const ChoosePlace(
       {required this.refreshMap,
       required this.name,
@@ -34,6 +36,7 @@ class ChoosePlace extends StatefulWidget {
       required this.cathegories,
       required this.capacity,
       required this.isPublic,
+      this.thumbnail,
       Key? key})
       : super(key: key);
 
@@ -152,6 +155,7 @@ class _ChoosePlaceState extends State<ChoosePlace> {
       description: widget.description,
       cathegories: widget.cathegories,
       isPublic: widget.isPublic,
+      
     );
     setState(
       () {
@@ -164,6 +168,7 @@ class _ChoosePlaceState extends State<ChoosePlace> {
             widget.name,
             widget.address,
             widget.description,
+            widget.thumbnail,
           ),
         );
       },

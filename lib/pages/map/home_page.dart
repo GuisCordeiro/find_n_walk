@@ -1,4 +1,3 @@
-import 'package:anim_search_bar/anim_search_bar.dart';
 import 'package:findnwalk/components/map/map_app.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/controllers/login_controller.dart';
@@ -18,10 +17,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-    refreshMap(){
-    setState(() {
-      
-    });
+  refreshMap() {
+    setState(() {});
   }
 
   TextEditingController textController = TextEditingController();

@@ -4,7 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 createmarker(LatLng tappedPoint, context, String placeName, String placeAdress,
-    String placeDescription) {
+    String placeDescription, String? placeThumbnail) {
   return Marker(
     width: 130,
     height: 130,

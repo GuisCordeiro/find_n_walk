@@ -16,6 +16,7 @@ mixin CreatePlaceController {
     required String capacity,
     required bool isPublic,
     required LatLng latLng,
+    String? thumbnail,
   }) async {
     final place = Place(
       creatorId: LoginController.user!.id!,
@@ -24,9 +25,11 @@ mixin CreatePlaceController {
       exactLocation: GeoPoint(latLng.latitude, latLng.longitude),
       description: description,
       cathegories: cathegories.split(', '),
-      capacity: int.tryParse(capacity) ?? 0, // Se algo der errado, assuma não informado
+      capacity: int.tryParse(capacity) ??
+          0, // Se algo der errado, assuma não informado
       isPublic: isPublic,
       rating: 10,
+      thumbnail: thumbnail,
     );
     await Database.addPlace(place);
   }
