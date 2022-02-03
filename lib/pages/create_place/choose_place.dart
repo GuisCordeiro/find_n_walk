@@ -1,6 +1,4 @@
-import 'package:findnwalk/components/map/map_app.dart';
 import 'package:findnwalk/components/markers/marker_place.dart';
-import 'package:findnwalk/components/shared/bottom_navigation_bar.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/controllers/create_place_controller.dart';
 import 'package:findnwalk/controllers/login_controller.dart';
@@ -29,9 +27,7 @@ class ChoosePlace extends StatefulWidget {
   final bool isPublic;
 
   const ChoosePlace(
-       
-      {
-      required this.refreshMap,
+      {required this.refreshMap,
       required this.name,
       required this.address,
       required this.description,
@@ -42,13 +38,11 @@ class ChoosePlace extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ChoosePlaceState createState() => _ChoosePlaceState(isPublic);
+  _ChoosePlaceState createState() => _ChoosePlaceState();
 }
 
 class _ChoosePlaceState extends State<ChoosePlace> {
-  bool isPublic;
-
-  _ChoosePlaceState(this.isPublic);
+  _ChoosePlaceState();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,55 +88,55 @@ class _ChoosePlaceState extends State<ChoosePlace> {
           ),
           MarkerLayerOptions(markers: ListPlaceMarkers.placesMarker),
           MarkerLayerOptions(
-            markers: [
+            markers: <Marker>[
               Marker(
-              width: 130.0,
-              height: 130.0,
-              // TODO make this better
-              point: LoginController.location ?? LatLng(0, 0),
-              builder: (ctx) => GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (builder) {
-                      return Container(
-                        height: MediaQuery.of(context).size.height / 5,
-                        color: AppColors.orange,
-                        child: Column(
-                          children: [
-                            Stack(
-                              children: [
-                                Container(
-                                  color: AppColors.orange,
-                                  height:
-                                      MediaQuery.of(context).size.height / 12,
-                                  child: const Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "Esta é a sua localização atual",
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.white,
-                                            fontSize: 26),
+                width: 130.0,
+                height: 130.0,
+                // TODO make this better
+                point: LoginController.location ?? LatLng(0, 0),
+                builder: (ctx) => GestureDetector(
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (builder) {
+                        return Container(
+                          height: MediaQuery.of(context).size.height / 5,
+                          color: AppColors.orange,
+                          child: Column(
+                            children: [
+                              Stack(
+                                children: [
+                                  Container(
+                                    color: AppColors.orange,
+                                    height:
+                                        MediaQuery.of(context).size.height / 12,
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "Esta é a sua localização atual",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.white,
+                                              fontSize: 26),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                },
-                child: Image.asset('assets/images/cursor.png'),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  child: Image.asset('assets/images/cursor.png'),
+                ),
               ),
-            ),
-            ]
+            ],
           )
         ],
       ),
@@ -157,7 +151,7 @@ class _ChoosePlaceState extends State<ChoosePlace> {
       capacity: widget.capacity,
       description: widget.description,
       cathegories: widget.cathegories,
-      isPublic: isPublic,
+      isPublic: widget.isPublic,
     );
     setState(
       () {

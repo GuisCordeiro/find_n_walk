@@ -50,8 +50,8 @@ class _HomePageState extends State<HomePage> {
           builder: (context, snapshot) {
             if (LoginController.location!.latitude != 0) {
               return Stack(
-                children: [
-                  const MapApp(),
+                children: const [
+                  MapApp(),
                 ],
               );
             } else {

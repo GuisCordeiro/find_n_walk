@@ -1,14 +1,17 @@
 import 'package:findnwalk/data/models/place.dart';
 import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:findnwalk/data/providers/database.dart';
+import 'package:flutter/painting.dart';
 import 'package:latlong2/latlong.dart';
 
 class NearbyPlacesController {
+  final VoidCallback refreshPage;
+
   final location = LoginController.location!;
 
   Future<List<Place>>? nearbyPlaces;
 
-  NearbyPlacesController() {
+  NearbyPlacesController(this.refreshPage) {
     const distance = Distance();
     final allPlaces = Database.getAllPlaces();
     allPlaces.then(
@@ -35,5 +38,7 @@ class NearbyPlacesController {
         print(stackTrace);
       },
     );
+    print('Deu tudo certo ao carregar os lugares próximos');
+    refreshPage();
   }
 }

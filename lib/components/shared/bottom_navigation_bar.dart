@@ -1,4 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:findnwalk/pages/favorites/favorites_page.dart';
 import 'package:findnwalk/pages/map/home_page.dart';
 import 'package:findnwalk/pages/nearby_places/nearby_places.dart';
@@ -20,19 +21,27 @@ class _BottomFNBarState extends State<BottomFNBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        controller: pageController,
-        children: [
-          NearbyPlaces(),
-          const HomePage(),
-          FavoritesPage(),
-        ],
-        onPageChanged: (index) {
-          setState(
-            () {
-              listIndex = index;
-            },
-          );
+      body: FutureBuilder(
+        future: LoginController.getUserLocation(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            return PageView(
+              controller: pageController,
+              children: const [
+                NearbyPlaces(),
+                HomePage(),
+                FavoritesPage(),
+              ],
+              onPageChanged: (index) {
+                setState(
+                  () {
+                    listIndex = index;
+                  },
+                );
+              },
+            );
+          }
+          return PageView();
         },
       ),
       bottomNavigationBar: CurvedNavigationBar(

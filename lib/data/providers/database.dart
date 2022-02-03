@@ -76,7 +76,7 @@ mixin Database {
         allPlaces.add(snapshot.data());
       }
     }
-    return allPlaces as Iterable<Place>;
+    return (allPlaces).map((item) => item as Place).toList();
   }
 
   // TODO deal with potential errors

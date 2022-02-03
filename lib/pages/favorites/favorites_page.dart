@@ -7,15 +7,23 @@ import 'package:flutter/material.dart';
 import '../profile/profile_page.dart';
 
 class FavoritesPage extends StatefulWidget {
-  final _controller = FavoritesController();
-
-  FavoritesPage({Key? key}) : super(key: key);
+  const FavoritesPage({Key? key}) : super(key: key);
 
   @override
   _FavoritesPageState createState() => _FavoritesPageState();
 }
 
 class _FavoritesPageState extends State<FavoritesPage> {
+  FavoritesController? _controller;
+
+  _refresh() => setState(() {});
+
+  @override
+  void initState() {
+    _controller = FavoritesController(_refresh);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,7 +53,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
         ),
         // body: const FavoritePlaces(),
         body: FutureBuilder<List<Place?>>(
-          future: widget._controller.favoritePlaces,
+          future: _controller!.favoritePlaces,
           builder:
               (BuildContext context, AsyncSnapshot<List<Place?>> snapshot) {
             if (snapshot.hasData) {

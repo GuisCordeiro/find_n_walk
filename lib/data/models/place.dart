@@ -80,10 +80,12 @@ class Place {
       address: map['address'],
       description: map['description'],
       isPublic: map['is_public'],
-      cathegories: map['cathegories'],
+      cathegories:
+          (map['cathegories'] as List).map((item) => item as String).toList(),
       thumbnail: map['thumbnail'],
-      pictures:
-          (map['thumbnail'] as List).map((item) => item as String).toList(),
+      pictures: map['thumbnail'] != null
+          ? (map['thumbnail'] as List).map((item) => item as String).toList()
+          : null,
       capacity: map['capacity'],
       rating: map['rating'],
     );

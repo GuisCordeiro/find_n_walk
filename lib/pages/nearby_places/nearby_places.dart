@@ -7,15 +7,24 @@ import 'package:flutter/material.dart';
 //  Página de lugares próximos do aplicativo
 
 class NearbyPlaces extends StatefulWidget {
-  final _controller = NearbyPlacesController();
-
-  NearbyPlaces({Key? key}) : super(key: key);
+  const NearbyPlaces({Key? key}) : super(key: key);
 
   @override
   _NearbyPlacesState createState() => _NearbyPlacesState();
 }
 
 class _NearbyPlacesState extends State<NearbyPlaces> {
+
+  NearbyPlacesController? _controller;
+
+  _refresh() => setState(() {});
+
+  @override
+  void initState() {
+    _controller = NearbyPlacesController(_refresh);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,7 +53,7 @@ class _NearbyPlacesState extends State<NearbyPlaces> {
           ],
         ),
         body: FutureBuilder(
-          future: widget._controller.nearbyPlaces,
+          future: _controller!.nearbyPlaces,
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
               return ListView.separated(
