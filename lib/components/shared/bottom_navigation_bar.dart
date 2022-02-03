@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:findnwalk/pages/favorites/favorites_page.dart';
 import 'package:findnwalk/pages/map/home_page.dart';
-import 'package:findnwalk/pages/places_listviews/places_listviews_page.dart';
+import 'package:findnwalk/pages/nearby_places/nearby_places.dart';
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
@@ -23,7 +23,7 @@ class _BottomFNBarState extends State<BottomFNBar> {
       body: PageView(
         controller: pageController,
         children: [
-          const PlacesPage(),
+          NearbyPlaces(),
           const HomePage(),
           FavoritesPage(),
         ],

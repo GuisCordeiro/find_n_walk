@@ -1,21 +1,21 @@
 import 'package:findnwalk/components/places_listviews/place_tile.dart';
+import 'package:findnwalk/controllers/nearby_places_controller.dart';
 import 'package:findnwalk/components/shared/colors.dart';
-import 'package:findnwalk/controllers/favorites_controller.dart';
-import 'package:findnwalk/data/models/place.dart';
+import 'package:findnwalk/pages/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 
-import '../profile/profile_page.dart';
+//  Página de lugares próximos do aplicativo
 
-class FavoritesPage extends StatefulWidget {
-  final _controller = FavoritesController();
+class NearbyPlaces extends StatefulWidget {
+  final _controller = NearbyPlacesController();
 
-  FavoritesPage({Key? key}) : super(key: key);
+  NearbyPlaces({Key? key}) : super(key: key);
 
   @override
-  _FavoritesPageState createState() => _FavoritesPageState();
+  _NearbyPlacesState createState() => _NearbyPlacesState();
 }
 
-class _FavoritesPageState extends State<FavoritesPage> {
+class _NearbyPlacesState extends State<NearbyPlaces> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +25,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
         appBar: AppBar(
           backgroundColor: AppColors.orange,
           title: const Text(
-            'Lugares Favoritos',
+            'Lugares Próximos',
             style: TextStyle(color: AppColors.black),
           ),
           actions: [
@@ -43,23 +43,15 @@ class _FavoritesPageState extends State<FavoritesPage> {
             )
           ],
         ),
-        // body: const FavoritePlaces(),
-        body: FutureBuilder<List<Place?>>(
-          future: widget._controller.favoritePlaces,
-          builder:
-              (BuildContext context, AsyncSnapshot<List<Place?>> snapshot) {
+        body: FutureBuilder(
+          future: widget._controller.nearbyPlaces,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
               return ListView.separated(
                 itemCount: snapshot.data!.length,
                 itemBuilder: (context, index) {
                   final place = snapshot.data![index];
-                  if (place != null) {
-                    return PlaceTile(place: place);
-                  }
-                  // HACK eu só tinha que não exibir nada
-                  // na possibilidade de um lugar não ser
-                  // recuperado do BD.
-                  return const ListTile();
+                  return PlaceTile(place: place);
                 },
                 separatorBuilder: (context, index) => const Divider(),
               );

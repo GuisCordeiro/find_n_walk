@@ -1,6 +1,6 @@
 import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:findnwalk/controllers/temp.dart';
-import 'package:findnwalk/pages/create_place/create_place.dart';
+// import 'package:findnwalk/pages/create_place/create_place.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
