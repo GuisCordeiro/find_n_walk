@@ -1,5 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:findnwalk/pages/history/history_page.dart';
+import 'package:findnwalk/pages/favorites/favorites_page.dart';
 import 'package:findnwalk/pages/map/home_page.dart';
 import 'package:findnwalk/pages/places_listviews/places_listviews_page.dart';
 import 'package:flutter/material.dart';
@@ -22,10 +22,10 @@ class _BottomFNBarState extends State<BottomFNBar> {
     return Scaffold(
       body: PageView(
         controller: pageController,
-        children: const [
-          PlacesPage(),
-          HomePage(),
-          FavoriesPage(),
+        children: [
+          const PlacesPage(),
+          const HomePage(),
+          FavoritesPage(),
         ],
         onPageChanged: (index) {
           setState(
@@ -63,9 +63,11 @@ class _BottomFNBarState extends State<BottomFNBar> {
             },
           );
           pageController.jumpToPage(listIndex);
-          pageController.animateToPage(listIndex,
-              duration: const Duration(microseconds: 800),
-              curve: Curves.easeInOut);
+          pageController.animateToPage(
+            listIndex,
+            duration: const Duration(microseconds: 800),
+            curve: Curves.easeInOut,
+          );
           pageController.animateToPage(
             listIndex,
             duration: const Duration(microseconds: 800),

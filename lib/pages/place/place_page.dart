@@ -5,7 +5,7 @@ import 'package:findnwalk/components/place/text_block.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/favorite_button.dart';
 import 'package:findnwalk/data/models/place.dart';
-import 'package:findnwalk/data/providers/mock.dart';
+import 'package:findnwalk/data/providers/database.dart';
 import 'package:flutter/material.dart';
 
 class PlacePage extends StatelessWidget {
@@ -18,20 +18,22 @@ class PlacePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.orange,
         title: Row(
-          children: [
+          children: <Widget>[
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.63,
               child: Flexible(
-                child: Text(place.name,
-                    style: const TextStyle(
-                      color: AppColors.black,
-                      fontWeight: FontWeight.bold,
-                    )),
+                child: Text(
+                  place.name,
+                  style: const TextStyle(
+                    color: AppColors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
             const Spacer(),
-            //TODO adicionar controlador do botão de favorito
-            const FavoriteButton(favorite: false),
+            // HACK o botão meio que se auto-controla
+            FavoriteButton(placeId: place.id!, favorite: false),
           ],
         ),
       ),
@@ -42,8 +44,20 @@ class PlacePage extends StatelessWidget {
             PlacesPictures(place: place),
             space(),
             IsPublicBlock(place: place),
-            //TODO é necessário que id do registrador do local seja usado para localizar o usuário de forma que seus dados possam ser passados para este widget
-            AuthorBlock(user: usuariosDeTeste[0]),
+            // NOTE é preciso carregar o usuário para gerar
+            // o AuthorBlock da página.
+            FutureBuilder(
+              future: Database.getUser(place.creatorId),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  return AuthorBlock(user: snapshot.data);
+                }
+                return const TextBlock(
+                  title: 'Por favor, aguarde',
+                  subtitle: 'Carregando...'
+                );
+              }
+            ),
             TextBlock(
               title: "Categorias:",
               subtitle: place.cathegories.toString(),
@@ -72,8 +86,7 @@ class PlacePage extends StatelessWidget {
     return list.split('[')[1].split(']')[0];
   }
 
-  SizedBox space({double? height}) {
-    height ??= 10;
+  SizedBox space({double height = 10}) {
     return SizedBox(height: height);
   }
 }

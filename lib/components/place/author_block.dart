@@ -11,17 +11,18 @@ class AuthorBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return UserCard(user: user);
-            },
-          );
-        },
-        child: TextBlock(
-          title: "Criado por",
-          subtitle: user.name,
-        ));
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return UserCard(user: user);
+          },
+        );
+      },
+      child: TextBlock(
+        title: "Criado por",
+        subtitle: user.name,
+      ),
+    );
   }
 }

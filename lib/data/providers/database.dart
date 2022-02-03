@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../models/place.dart';
 import '../models/user.dart';
-import '../models/review.dart';
 
 mixin Database {
   static final _source = FirebaseFirestore.instance;
@@ -77,36 +76,5 @@ mixin Database {
   // TODO deal with potential errors
   static Future<void> updatePlace(String id, Map<String, dynamic> data) async {
     await _places.doc(id).update(data);
-  }
-
-  // Operações sobre as avaliações
-
-  // As avaliações associadas a um dado lugar são armazenadas como
-  // uma subcoleção desse lugar. Essa função utilitária retorna
-  // referência à coleção de avaliações associada a um lugar de
-  // certo id.
-
-  static CollectionReference _reviews(String placeId) {
-    return _places.doc(placeId).collection('reviews').withConverter<Review>(
-          fromFirestore: (snapshots, _) => Review.fromJson(snapshots.data()!),
-          toFirestore: (review, _) => review.toJson(),
-        );
-  }
-
-  // TODO improve this
-  static Future<Iterable<Review?>> getReviews(String placeId) async {
-    final snapshot = await _reviews(placeId).get();
-    return snapshot.docs.map((doc) => doc.data() as Review?);
-  }
-
-  // TODO deal with potential errors
-  static Future<void> addReview(String placeId, Review review) async {
-    await _reviews(placeId).doc(review.userId).set(review);
-  }
-
-  // TODO deal with potential errors
-  static Future<void> updateReview(
-      String placeId, String reviewId, Map<String, dynamic> data) async {
-    await _reviews(placeId).doc(reviewId).update(data);
   }
 }

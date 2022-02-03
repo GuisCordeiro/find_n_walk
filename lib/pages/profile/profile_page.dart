@@ -69,7 +69,7 @@ class _PerfilPageState extends State<PerfilPage> {
                           showDialog(
                             context: context,
                             builder: (context) {
-                              return const EditBioCard();
+                              return EditBioCard();
                             },
                           );
                         },
