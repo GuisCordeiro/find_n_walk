@@ -7,15 +7,15 @@ mixin Storage {
   // Operação de upload de arquivos para o Firebase Storage. Executa o
   // upload e retorna uma URL que permite o acesso ao arquivo remoto
   // por meio de algo como o Image.network.
-  static Future<String> uploadFile(File localPath, String storagePath) async {
-    final storageReference = _storage.ref(storagePath);
-    await storageReference.putFile(localPath);
-    return storageReference.getDownloadURL();
+  static Future<void> uploadThumb(String placeId, File image) async {
+    final storageReference = _storage.ref(placeId);
+    await storageReference.putFile(image);
   }
 
   // Operação de download de arquivos do Firebase Storage. Executa o
   // download para o caminho escolhido.
-  static Future<void> downloadFile(File localPath, String storagePath) async {
-    await _storage.ref(storagePath).writeToFile(localPath);
+  static Future<String> getDownloadThumb(String placeId) async {
+    final storageReference = _storage.ref(placeId);
+    return await storageReference.getDownloadURL();
   }
 }

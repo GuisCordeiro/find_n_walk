@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:findnwalk/components/markers/place_marker.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/controllers/create_place_controller.dart';
@@ -26,7 +28,9 @@ class ChoosePlace extends StatefulWidget {
 
   final bool isPublic;
 
-  final String? thumbnail;
+  final bool hasThumb;
+
+  final File? picture;
 
   const ChoosePlace(
       {required this.refreshMap,
@@ -36,7 +40,8 @@ class ChoosePlace extends StatefulWidget {
       required this.cathegories,
       required this.capacity,
       required this.isPublic,
-      this.thumbnail,
+      required this.hasThumb,
+      this.picture,
       Key? key})
       : super(key: key);
 
@@ -149,6 +154,8 @@ class _ChoosePlaceState extends State<ChoosePlace> {
       description: widget.description,
       cathegories: widget.cathegories,
       isPublic: widget.isPublic,
+      hasThumb: widget.hasThumb,
+      picture: widget.picture,
     );
     setState(
       () {
@@ -161,7 +168,6 @@ class _ChoosePlaceState extends State<ChoosePlace> {
             address: widget.address,
             description: widget.description,
             isPublic: widget.isPublic,
-            thumbnail: widget.thumbnail,
           ),
         );
         widget.refreshMap();

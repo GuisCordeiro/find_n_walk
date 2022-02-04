@@ -29,32 +29,25 @@ class Place {
   List<String> cathegories;
 
   // Foto principal
-  // Armazenada como o caminho até a imagem no storage remoto
-  String? thumbnail;
-
-  // Demais fotos
-  // Armazenadas como os caminhos até as imagens no storage remoto
-  List<String>? pictures;
-
-  // Nota, em meias-estrelas (0-10)
-  int? rating;
+  // Se true, a imagem está armazenada sob
+  // o nome do id do lugar no storage remoto.
+  bool hasThumb;
 
   // Capacidade de pessoas
   int? capacity;
 
-  Place(
-      {required this.creatorId,
-      required this.name,
-      required this.exactLocation,
-      required this.address,
-      required this.description,
-      required this.isPublic,
-      required this.cathegories,
-      this.id,
-      this.capacity,
-      this.pictures,
-      this.thumbnail,
-      this.rating});
+  Place({
+    required this.creatorId,
+    required this.name,
+    required this.exactLocation,
+    required this.address,
+    required this.description,
+    required this.isPublic,
+    required this.cathegories,
+    required this.hasThumb,
+    this.id,
+    this.capacity,
+  });
 
   Map<String, dynamic> toJson() {
     return {
@@ -65,10 +58,8 @@ class Place {
       'description': description,
       'is_public': isPublic,
       'cathegories': cathegories,
-      'thumbnail': thumbnail,
-      'pictures': pictures,
+      'has_thumb': hasThumb,
       'capacity': capacity,
-      'rating': rating ?? 10,
     };
   }
 
@@ -82,12 +73,8 @@ class Place {
       isPublic: map['is_public'],
       cathegories:
           (map['cathegories'] as List).map((item) => item as String).toList(),
-      thumbnail: map['thumbnail'],
-      pictures: map['thumbnail'] != null
-          ? (map['thumbnail'] as List).map((item) => item as String).toList()
-          : null,
+      hasThumb: map['has_thumb'],
       capacity: map['capacity'],
-      rating: map['rating'],
     );
   }
 }

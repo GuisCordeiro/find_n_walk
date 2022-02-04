@@ -16,8 +16,6 @@ class PlaceMarker extends Marker {
 
   final BuildContext context;
 
-  String? thumbnail;
-
   PlaceMarker({
     required this.location,
     required this.name,
@@ -25,7 +23,6 @@ class PlaceMarker extends Marker {
     required this.description,
     required this.isPublic,
     required this.context,
-    this.thumbnail,
   }) : super(
           width: 130,
           height: 130,

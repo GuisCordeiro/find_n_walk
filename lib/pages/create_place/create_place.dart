@@ -3,6 +3,7 @@ import 'package:findnwalk/components/shared/app_button.dart';
 import 'package:findnwalk/components/shared/colors.dart';
 import 'package:findnwalk/components/shared/custom_select_form_field.dart';
 import 'package:findnwalk/components/shared/form.dart';
+import 'package:findnwalk/controllers/picture_button_controller.dart';
 import 'package:findnwalk/pages/create_place/choose_place.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class _CreatePlaceState extends State<CreatePlace> {
 
   final capacity = TextEditingController();
 
-  final pictureButton = PictureButton();
+  final picture = PictureButtonController();
 
   bool isPublic = true;
 
@@ -100,7 +101,9 @@ class _CreatePlaceState extends State<CreatePlace> {
               icon: const Icon(Icons.person),
               controller: capacity,
             ),
-            pictureButton, // botão simples para seleção de imagens
+            PictureButton(
+              controller: picture,
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 5.0),
               child: SwitchListTile(
@@ -124,7 +127,7 @@ class _CreatePlaceState extends State<CreatePlace> {
                       address.text == '' ||
                       cathegories.text == '' ||
                       capacity.text == '' ||
-                      // !pictureButton.usedOnce ||
+                      !picture.used ||
                       description.text == '') {
                     const AlertDialog(
                       title: Text("Preencha todos os campos!"),
@@ -141,7 +144,8 @@ class _CreatePlaceState extends State<CreatePlace> {
                           description: description.text,
                           cathegories: cathegories.text,
                           isPublic: isPublic,
-                          // Lidar com as fotos...
+                          hasThumb: picture.used,
+                          picture: picture.picture,
                         ),
                       ),
                     );

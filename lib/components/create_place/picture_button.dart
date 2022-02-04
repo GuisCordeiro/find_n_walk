@@ -1,15 +1,14 @@
 import 'package:findnwalk/components/shared/colors.dart';
+import 'package:findnwalk/controllers/picture_button_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class PictureButton extends StatefulWidget {
-  PictureButton({Key? key}) : super(key: key);
+  final PictureButtonController controller;
 
-  bool usedOnce = false;
-
-  String thumbnailPath = '';
-
-  List<String> otherImagePaths = [];
+  const PictureButton({
+    required this.controller,
+    Key? key,
+  }) : super(key: key);
 
   @override
   _PictureButtonState createState() => _PictureButtonState();
@@ -18,7 +17,7 @@ class PictureButton extends StatefulWidget {
 class _PictureButtonState extends State<PictureButton> {
   @override
   Widget build(BuildContext context) {
-    if (!widget.usedOnce) {
+    if (!widget.controller.used) {
       return Padding(
         padding: const EdgeInsets.only(
           left: 20,
@@ -43,24 +42,12 @@ class _PictureButtonState extends State<PictureButton> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const <Widget>[
                 Icon(Icons.close),
-                Text('  Clique aqui para adicionar uma foto principal'),
+                Text('  Clique aqui para adicionar uma foto do local'),
               ],
             ),
             onPressed: () async {
-              final image = await ImagePicker().pickImage(
-                source: ImageSource.gallery,
-                imageQuality: 100,
-              );
-              if (image != null) {
-                widget.thumbnailPath = image.path;
-                setState(
-                  () {
-                    widget.usedOnce = true;
-                  },
-                );
-              } else {
-                print('Algo deu errado ao adicionar thumbnail...');
-              }
+              await widget.controller.getPicture();
+              setState(() {});
             },
           ),
         ),
@@ -90,20 +77,10 @@ class _PictureButtonState extends State<PictureButton> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const <Widget>[
                 Icon(Icons.check),
-                Text('  Clique aqui para adicionar mais fotos'),
+                Text('  Foto adicionada com sucesso'),
               ],
             ),
-            onPressed: () async {
-              final image = await ImagePicker().pickImage(
-                source: ImageSource.gallery,
-                imageQuality: 100,
-              );
-              if (image != null) {
-                widget.otherImagePaths.add(image.path);
-              } else {
-                print('Algo deu errado ao adicionar fotos extras...');
-              }
-            },
+            onPressed: () {},
           ),
         ),
       );

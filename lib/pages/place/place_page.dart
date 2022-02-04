@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 
 class PlacePage extends StatelessWidget {
   final Place place;
+
   const PlacePage({Key? key, required this.place}) : super(key: key);
 
   @override
@@ -36,7 +37,8 @@ class PlacePage extends StatelessWidget {
             // HACK o botão meio que se auto-controla
             FavoriteButton(
               placeId: place.id!,
-              favorite: LoginController.user!.favoritePlaces.contains(place.id!),
+              favorite:
+                  LoginController.user!.favoritePlaces.contains(place.id!),
             ),
           ],
         ),
@@ -51,14 +53,15 @@ class PlacePage extends StatelessWidget {
             // NOTE é preciso carregar o usuário para gerar
             // o AuthorBlock da página.
             FutureBuilder(
-                future: Database.getUser(place.creatorId),
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  if (snapshot.hasData) {
-                    return AuthorBlock(user: snapshot.data);
-                  }
-                  return const TextBlock(
-                      title: 'Por favor, aguarde', subtitle: 'Carregando...');
-                }),
+              future: Database.getUser(place.creatorId),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.hasData) {
+                  return AuthorBlock(user: snapshot.data);
+                }
+                return const TextBlock(
+                    title: 'Por favor, aguarde', subtitle: 'Carregando...');
+              },
+            ),
             TextBlock(
               title: "Categorias:",
               subtitle: place.cathegories.join(', '),
@@ -76,15 +79,11 @@ class PlacePage extends StatelessWidget {
               subtitle: place.description,
               height: 200,
             ),
-            space()
+            space(),
           ],
         ),
       ),
     );
-  }
-
-  String splitString(String list) {
-    return list.split('[')[1].split(']')[0];
   }
 
   SizedBox space({double height = 10}) {

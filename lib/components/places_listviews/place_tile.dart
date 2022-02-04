@@ -14,8 +14,8 @@ class PlaceTile extends StatelessWidget {
       subtitle: Text(place.cathegories.join(', ')),
       leading: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          checkThumbnail(place),
+        children: const [
+          SizedBox(width: 10, height: 10),
         ],
       ),
       onTap: () {
@@ -27,17 +27,5 @@ class PlaceTile extends StatelessWidget {
         );
       },
     );
-  }
-
-  dynamic checkThumbnail(Place place) {
-    if (place.thumbnail == null) {
-      return const SizedBox(width: 10, height: 10);
-    } else {
-      return Image.asset(place.thumbnail!);
-    }
-  }
-
-  String splitString(String list) {
-    return list.split('[')[1].split(']')[0];
   }
 }

@@ -1,13 +1,15 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:findnwalk/controllers/login_controller.dart';
 import 'package:findnwalk/data/models/place.dart';
 import 'package:findnwalk/data/providers/database.dart';
+import 'package:findnwalk/data/providers/storage.dart';
 import 'package:latlong2/latlong.dart';
 
 // Controlador estático que gerencia o cadastro de lugares.
 
 mixin CreatePlaceController {
-  // Protótipo
   static Future<void> create({
     required String name,
     required String address,
@@ -16,7 +18,8 @@ mixin CreatePlaceController {
     required String capacity,
     required bool isPublic,
     required LatLng latLng,
-    String? thumbnail,
+    required bool hasThumb,
+    File? picture,
   }) async {
     final place = Place(
       creatorId: LoginController.user!.id!,
@@ -28,9 +31,11 @@ mixin CreatePlaceController {
       capacity: int.tryParse(capacity) ??
           0, // Se algo der errado, assuma não informado
       isPublic: isPublic,
-      rating: 10,
-      thumbnail: thumbnail,
+      hasThumb: hasThumb,
     );
     await Database.addPlace(place);
+    if (hasThumb && picture != null) {
+      await Storage.uploadThumb(place.id!, picture);
+    }
   }
 }
