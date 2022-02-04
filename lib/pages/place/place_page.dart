@@ -72,7 +72,7 @@ class PlacePage extends StatelessWidget {
             ),
             TextBlock(
               title: "Capacidade máxima:",
-              subtitle: place.capacity.toString(),
+              subtitle: place.capacity == 0 ? "Não informado" : place.capacity.toString(),
             ),
             TextBlock(
               title: "Descrição:",

@@ -74,7 +74,7 @@ class _CreatePlaceState extends State<CreatePlace> {
             ),
             AppForm(
               label: 'Nome do local',
-              icon: const Icon(Icons.event),
+              icon: const Icon(Icons.create),
               decision: false,
               controller: name,
             ),
@@ -127,7 +127,7 @@ class _CreatePlaceState extends State<CreatePlace> {
                       address.text == '' ||
                       cathegories.text == '' ||
                       capacity.text == '' ||
-                      !picture.used ||
+                      // !picture.used ||
                       description.text == '') {
                     const AlertDialog(
                       title: Text("Preencha todos os campos!"),
